@@ -74,6 +74,10 @@ export async function analyzeImage(base64Image: string): Promise<AIAnalysisResul
   // ── Gemini Vision path ──────────────────────────────────────────────────────
   if (apiKey) {
     try {
+      const allProducts = await getProducts()
+      const diamondProducts = allProducts.filter(p => p.companyId === 'diamond' || p.id.includes('diamond'))
+      const productCatalogString = diamondProducts.map(p => `- ID: "${p.id}" | Name: ${p.name} | Description: ${p.shortDescription}`).join('\n')
+
       const prompt = `You are an expert agricultural plant pathologist AI. Analyze this plant image carefully.
 
 Return a JSON object with EXACTLY these fields (no extra fields):
@@ -92,13 +96,17 @@ Return a JSON object with EXACTLY these fields (no extra fields):
   "treatmentStepsAr": ["خطوة 1", "خطوة 2", "خطوة 3", "خطوة 4"],
   "preventionTips": ["tip 1", "tip 2", "tip 3"],
   "preventionTipsAr": ["نصيحة 1", "نصيحة 2", "نصيحة 3"],
-  "recommendedProductIds": []
+  "recommendedProductIds": ["product-id-1", "product-id-2"]
 }
+
+Diamond Products Catalog (Our specialized agricultural products):
+${productCatalogString}
 
 Rules:
 - severity must be exactly "low", "medium", or "high"
 - confidence is an integer 0-100
 - if plant appears healthy, set diseaseName to "Healthy Plant" and diseaseNameAr to "نبات صحي"
+- IMPORTANT: You MUST pick 1 to 3 suitable product IDs from the "Diamond Products Catalog" above to fill "recommendedProductIds" if they are applicable to treat the disease or improve plant health. Only use the exact IDs provided.
 - Return ONLY valid JSON, no markdown, no explanation`
 
       const res = await fetch(
