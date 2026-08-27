@@ -23,8 +23,8 @@ export default function Tilt3D({ children, className, intensity = 10, ...props }
   const glare = useMotionTemplate`radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.15), transparent 70%)`
 
   const handleMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      if (reduce || !ref.current) return
+    (e: any) => {
+      if (!ref.current || reduce) return
       const rect = ref.current.getBoundingClientRect()
       const mouseX = e.clientX - rect.left
       const mouseY = e.clientY - rect.top

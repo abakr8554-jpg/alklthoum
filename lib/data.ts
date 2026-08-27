@@ -16,7 +16,7 @@ export interface Company {
   logo: string        // path or URL
   coverImage: string
   services: { title: string; titleAr: string; desc: string; descAr: string }[]
-  contact: { email: string; phone: string; address: string; addressAr: string }
+  contact: { email: string; phone: string; address: string; addressAr: string; website?: string }
   externalUrl?: string
 }
 
