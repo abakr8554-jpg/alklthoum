@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 260" fill="none">
+  <!-- Lowercase k - orange, serif rounded style -->
+  <!-- Vertical stem -->
+  <path d="M28 20 C22 20 18 24 18 30 L18 230 C18 236 22 240 28 240 L52 240 C58 240 62 236 62 230 L62 158 L110 222 C114 228 120 232 128 232 L162 232 C172 232 176 220 170 214 L112 140 L164 76 C170 70 166 58 156 58 L124 58 C116 58 110 62 106 68 L62 126 L62 30 C62 24 58 20 52 20 Z" fill="#E8571A"/>
+  <!-- Leaf growing from top junction of k -->
+  <path d="M78 45 C78 45 95 15 130 8 C155 3 168 18 168 18 C168 18 140 20 120 38 C105 52 98 72 98 72 C98 72 88 62 78 45 Z" fill="#4CAF2A"/>
+  <path d="M98 72 C98 72 88 55 78 45 C90 52 108 62 120 68 C132 74 145 72 155 65 C140 80 118 82 98 72 Z" fill="#2E7D1A"/>
+</svg>

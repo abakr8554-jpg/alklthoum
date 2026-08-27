@@ -1,0 +1,258 @@
+/* ═══════════════════════════════════════════════════
+   Brand orbit — logos spin around center (3D)
+   ═══════════════════════════════════════════════════ */
+
+.hub-orbit-3d {
+  --orbit-speed: 42s;
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+
+.hub-orbit-3d .hub-orbit-ring {
+  animation-duration: var(--orbit-speed);
+  pointer-events: none;
+}
+
+.hub-orbit-3d .hub-c-anim {
+  animation-duration: var(--orbit-speed);
+}
+
+.hub-orbit-3d .hub-logo-card {
+  pointer-events: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hub-orbit-3d:hover .hub-orbit-ring,
+.hub-orbit-3d:hover .hub-c-anim {
+  animation-play-state: paused;
+}
+
+.hub-center-img {
+  width: clamp(50px, 8vw, 80px) !important;
+  height: auto !important;
+  object-fit: contain !important;
+  display: block;
+  position: relative;
+  z-index: 1000;
+  margin-top: 20px;
+}
+
+/* Logo-only cards on the orbit */
+.hub-logo-card {
+  width: 90px;
+  height: 90px;
+  padding: 12px !important;
+  display: grid !important;
+  place-items: center;
+  border-radius: 18px !important;
+  background: #fff !important;
+  border: 1px solid rgba(20, 40, 25, 0.07) !important;
+  box-shadow:
+    0 14px 36px rgba(20, 40, 25, 0.1),
+    0 2px 0 rgba(255, 255, 255, 0.9) inset !important;
+  transform-style: preserve-3d;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+  z-index: 5;
+}
+
+.hub-logo-card::before {
+  display: none;
+}
+
+.hub-logo-card:hover {
+  transform: scale(1.1) translateY(-6px) translateZ(12px) !important;
+  box-shadow: 0 22px 48px rgba(20, 40, 25, 0.16) !important;
+  border-color: rgba(46, 107, 26, 0.22) !important;
+}
+
+.hub-logo-img {
+  width: 50px !important;
+  height: 50px !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+/* Subtle 3D tilt on the whole scene */
+.hub-orbit-3d .hub-orbit-item {
+  transform-style: preserve-3d;
+}
+
+.hub-orbit-3d .hub-c-static {
+  transform-style: preserve-3d;
+}
+
+.companies-hub.soft-hub {
+  padding: 72px 0 80px;
+  overflow: hidden;
+}
+
+.hub-orbit-cta {
+  text-align: center;
+}
+
+.soft-page-hero {
+  max-width: 800px;
+  margin: 24px auto 8px;
+  padding: 24px 24px 8px;
+  text-align: center;
+}
+
+.soft-page-kicker {
+  margin: 0 0 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #e85a1a;
+}
+
+.soft-page-hero h1 {
+  margin: 0 0 14px;
+  font-family: var(--font-display), var(--font-sans);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: #142218;
+}
+
+.soft-page-hero p {
+  margin: 0 auto;
+  max-width: 46ch;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #6b756e;
+}
+
+.companies-map-wrap {
+  padding: 24px 16px 40px;
+  background: #f3f1ec;
+  margin: 0 16px;
+  border-radius: 36px;
+}
+
+/* ── Laptop (≤1100px) ── */
+@media (max-width: 1100px) {
+  .hub-logo-card {
+    width: 82px !important;
+    height: 82px !important;
+    padding: 10px !important;
+    border-radius: 16px !important;
+  }
+  .hub-orbit-3d .hub-c-static {
+    top: -41px; left: -41px; width: 82px;
+  }
+  .hub-logo-img {
+    width: 48px !important;
+    height: 48px !important;
+  }
+  .hub-center-img {
+    width: clamp(60px, 8vw, 80px) !important;
+  }
+  a.hub-orbit-logo, .hub-orbit-logo {
+    padding: 16px 14px;
+    border-radius: 22px;
+  }
+}
+
+/* ── Tablet (≤860px) ── */
+@media (max-width: 860px) {
+  .hub-logo-card {
+    width: 68px !important;
+    height: 68px !important;
+    padding: 8px !important;
+    border-radius: 14px !important;
+  }
+  .hub-orbit-3d .hub-c-static {
+    top: -34px; left: -34px; width: 68px;
+  }
+  .hub-logo-img {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .hub-center-img {
+    width: 52px !important;
+  }
+  a.hub-orbit-logo, .hub-orbit-logo {
+    padding: 12px 10px;
+    border-radius: 18px;
+    box-shadow:
+      0 0 0 1px rgba(46,107,26,0.1),
+      0 6px 28px rgba(0,0,0,0.1);
+  }
+  .companies-hub.soft-hub {
+    padding: 36px 0 44px;
+    overflow: hidden;
+  }
+  .soft-section-head { margin: 0 auto 20px; }
+  .soft-section-head h2 { font-size: clamp(26px, 6vw, 38px); }
+  .soft-section-head p { font-size: 14px; }
+  .hub-orbit-cta { margin-top: 20px; }
+  .hub-orbit-cta .soft-btn-green { font-size: 14px; padding: 10px 10px 10px 20px; }
+  .hub-orbit-cta .soft-btn-green .ico { width: 38px; height: 38px; }
+}
+
+/* ── Mobile (≤600px) ── */
+@media (max-width: 600px) {
+  .hub-logo-card {
+    width: 54px !important;
+    height: 54px !important;
+    padding: 7px !important;
+    border-radius: 12px !important;
+  }
+  .hub-orbit-3d .hub-c-static {
+    top: -27px; left: -27px; width: 54px;
+  }
+  .hub-logo-img {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  .hub-center-img {
+    width: 40px !important;
+  }
+  a.hub-orbit-logo, .hub-orbit-logo {
+    padding: 10px 8px;
+    border-radius: 14px;
+    box-shadow:
+      0 0 0 1px rgba(46,107,26,0.1),
+      0 4px 18px rgba(0,0,0,0.1);
+  }
+}
+
+/* ── Small phone (≤400px) ── */
+@media (max-width: 400px) {
+  .hub-logo-card {
+    width: 46px !important;
+    height: 46px !important;
+    padding: 6px !important;
+    border-radius: 10px !important;
+  }
+  .hub-orbit-3d .hub-c-static {
+    top: -23px; left: -23px; width: 46px;
+  }
+  .hub-logo-img {
+    width: 26px !important;
+    height: 26px !important;
+  }
+  .hub-center-img {
+    width: 32px !important;
+  }
+  a.hub-orbit-logo, .hub-orbit-logo {
+    padding: 8px 6px;
+    border-radius: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hub-orbit-3d .hub-orbit-ring,
+  .hub-orbit-3d .hub-c-anim,
+  .hub-orbit-3d .hub-deco-ring-1,
+  .hub-orbit-3d .hub-deco-ring-2,
+  .hub-orbit-3d .hub-orbit-logo {
+    animation: none !important;
+  }
+}

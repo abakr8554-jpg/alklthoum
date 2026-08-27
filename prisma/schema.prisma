@@ -1,0 +1,208 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  role         String   @default("admin") // superadmin | admin | editor
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  logs         ActivityLog[]
+}
+
+model Company {
+  id            String    @id @default(cuid())
+  slug          String    @unique
+  name          String
+  nameAr        String
+  tagline       String    @default("")
+  taglineAr     String    @default("")
+  description   String    @default("")
+  descriptionAr String    @default("")
+  logo          String    @default("/logo.png")
+  coverImage    String    @default("")
+  servicesJson  String    @default("[]") // JSON array
+  email         String    @default("")
+  phone         String    @default("")
+  address       String    @default("")
+  addressAr     String    @default("")
+  externalUrl   String?
+  sortOrder     Int       @default(0)
+  published     Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  products      Product[]
+}
+
+model Product {
+  id                   String   @id @default(cuid())
+  slug                 String   @unique
+  companyId            String?
+  company              Company? @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  category             String
+  name                 String
+  nameAr               String
+  shortDescription     String   @default("")
+  shortDescriptionAr   String   @default("")
+  description          String   @default("")
+  descriptionAr        String   @default("")
+  imagesJson           String   @default("[]")
+  targetCropsJson      String   @default("[]")
+  targetCropsArJson    String   @default("[]")
+  targetDiseasesJson   String   @default("[]")
+  benefitsJson         String   @default("[]")
+  benefitsArJson       String   @default("[]")
+  usageInstructions    String   @default("")
+  usageInstructionsAr  String   @default("")
+  applicationMethod    String   @default("")
+  applicationMethodAr  String   @default("")
+  aiRecommended        Boolean  @default(false)
+  published            Boolean  @default(true)
+  sortOrder            Int      @default(0)
+  metaTitle            String?
+  metaDescription      String?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+model Disease {
+  id                      String   @id @default(cuid())
+  slug                    String   @unique
+  name                    String
+  nameAr                  String
+  scientificName          String?
+  description             String   @default("")
+  descriptionAr           String   @default("")
+  cause                   String   @default("")
+  causeAr                 String   @default("")
+  affectedCropsJson       String   @default("[]")
+  affectedCropsArJson     String   @default("[]")
+  symptomsJson            String   @default("[]")
+  symptomsArJson          String   @default("[]")
+  treatmentStepsJson      String   @default("[]")
+  treatmentStepsArJson    String   @default("[]")
+  preventionTipsJson      String   @default("[]")
+  preventionTipsArJson    String   @default("[]")
+  severity                String   @default("medium")
+  image                   String   @default("")
+  recommendedProductIdsJson String @default("[]")
+  published               Boolean  @default(true)
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+}
+
+model Distributor {
+  id         String   @id @default(cuid())
+  name       String
+  nameAr     String
+  region     String   @default("")
+  regionAr   String   @default("")
+  wilaya     String   @default("")
+  wilayaAr   String   @default("")
+  address    String   @default("")
+  addressAr  String   @default("")
+  phone      String   @default("")
+  whatsapp   String   @default("")
+  lat        Float    @default(0)
+  lng        Float    @default(0)
+  published  Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Article {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  title           String
+  titleAr         String
+  excerpt         String   @default("")
+  excerptAr       String   @default("")
+  content         String   @default("")
+  contentAr       String   @default("")
+  coverImage      String   @default("")
+  author          String   @default("Al Kalthoum Group")
+  authorAr        String   @default("مجموعة الكلثوم")
+  category        String   @default("news")
+  published       Boolean  @default(true)
+  publishedAt     DateTime @default(now())
+  sortOrder       Int      @default(0)
+  metaTitle       String?
+  metaDescription String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Faq {
+  id         String   @id @default(cuid())
+  question   String
+  questionAr String
+  answer     String
+  answerAr   String
+  sortOrder  Int      @default(0)
+  published  Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  company   String   @default("")
+  subject   String   @default("")
+  message   String
+  status    String   @default("new") // new | read | archived
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model MediaAsset {
+  id        String   @id @default(cuid())
+  filename  String
+  url       String
+  mimeType  String
+  size      Int      @default(0)
+  alt       String   @default("")
+  folder    String   @default("general")
+  createdAt DateTime @default(now())
+}
+
+model WebsiteSetting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+}
+
+model SeoPage {
+  id              String   @id @default(cuid())
+  path            String   @unique
+  title           String   @default("")
+  titleAr         String   @default("")
+  description     String   @default("")
+  descriptionAr   String   @default("")
+  ogImage         String?
+  canonical       String?
+  noIndex         Boolean  @default(false)
+  updatedAt       DateTime @updatedAt
+}
+
+model ActivityLog {
+  id        String     @id @default(cuid())
+  userId    String?
+  user      AdminUser? @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action    String
+  entity    String     @default("")
+  entityId  String     @default("")
+  detail    String     @default("")
+  createdAt DateTime   @default(now())
+}
