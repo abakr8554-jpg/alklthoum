@@ -14,7 +14,7 @@ export default async function AdminOverviewPage() {
     redirect('/admin/login')
   }
 
-  let stats = { articles: 0, products: 0, messages: 0, users: 0 }
+  let stats = { products: 0, companies: 0, messages: 0, distributors: 0, media: 0, unread: 0, articles: 0 }
   let messages: any[] = []
   let logs: any[] = []
 
