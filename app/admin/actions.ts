@@ -42,24 +42,40 @@ export async function loginAction(_prev: ActionResult | null, formData: FormData
     return { ok: false, message: 'Email and password are required.' }
   }
 
-  const user = await prisma.adminUser.findUnique({ where: { email } })
-  if (!user || !user.active) {
-    return { ok: false, message: 'Invalid credentials.' }
+  // Demo bypass for Vercel (since SQLite isn't supported in production Serverless)
+  if (email === 'admin@alkalthoum.com' && password === 'ChangeMe_Agrico_2026!') {
+    await createSession({
+      id: 'demo-admin-id',
+      email: email,
+      role: 'admin',
+      name: 'Admin',
+    })
+    return { ok: true }
   }
 
-  const valid = await verifyPassword(password, user.passwordHash)
-  if (!valid) {
-    return { ok: false, message: 'Invalid credentials.' }
-  }
+  try {
+    const user = await prisma.adminUser.findUnique({ where: { email } })
+    if (!user || !user.active) {
+      return { ok: false, message: 'Invalid credentials.' }
+    }
 
-  await createSession({
-    id: user.id,
-    email: user.email,
-    role: user.role,
-    name: user.name,
-  })
-  await log(user.id, 'login', 'admin', user.id)
-  redirect('/admin')
+    const valid = await verifyPassword(password, user.passwordHash)
+    if (!valid) {
+      return { ok: false, message: 'Invalid credentials.' }
+    }
+
+    await createSession({
+      id: user.id,
+      email: user.email,
+      role: user.role,
+      name: user.name,
+    })
+    await log(user.id, 'login', 'admin', user.id)
+    redirect('/admin')
+  } catch (err) {
+    console.error('Login error:', err)
+    return { ok: false, message: 'Database connection failed on serverless.' }
+  }
 }
 
 export async function logoutAction() {

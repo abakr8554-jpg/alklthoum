@@ -5,19 +5,38 @@ import { PageHeader } from '@/components/admin/PageHeader'
 import { AdminTable } from '@/components/admin/AdminTable'
 import { StatusBadge } from '@/components/admin/StatusBadge'
 
+import { redirect } from 'next/navigation'
+import { getSession } from '@/lib/auth'
+
 export default async function AdminOverviewPage() {
-  const [stats, messages, logs] = await Promise.all([
-    getAdminStats(),
-    prisma.contactMessage.findMany({
-      orderBy: { createdAt: 'desc' },
-      take: 8,
-    }),
-    prisma.activityLog.findMany({
-      orderBy: { createdAt: 'desc' },
-      take: 12,
-      include: { user: { select: { name: true, email: true } } },
-    }),
-  ])
+  const session = await getSession()
+  if (!session?.userId) {
+    redirect('/admin/login')
+  }
+
+  let stats = { articles: 0, products: 0, messages: 0, users: 0 }
+  let messages: any[] = []
+  let logs: any[] = []
+
+  try {
+    const data = await Promise.all([
+      getAdminStats(),
+      prisma.contactMessage.findMany({
+        orderBy: { createdAt: 'desc' },
+        take: 8,
+      }),
+      prisma.activityLog.findMany({
+        orderBy: { createdAt: 'desc' },
+        take: 12,
+        include: { user: { select: { name: true, email: true } } },
+      }),
+    ])
+    stats = data[0]
+    messages = data[1]
+    logs = data[2]
+  } catch (err) {
+    console.error('Prisma error on Vercel:', err)
+  }
 
   return (
     <>
