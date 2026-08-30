@@ -1328,6 +1328,11 @@ html[lang='ar'] .soft-hero-stats .sp-stat-label {
     width: 16px;
     height: 16px;
   }
+  /* On the homepage the collapsed CTA circle is orange — force a white arrow
+     so it stays visible (the .sp.is-soft rule otherwise makes it orange-on-orange). */
+  .sp.is-soft .soft-cta-arrow {
+    color: #fff;
+  }
 }
 
 @media (max-width: 640px) {
