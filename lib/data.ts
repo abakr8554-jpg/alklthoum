@@ -105,10 +105,12 @@ export const categoryLabels: Record<ProductCategory, { en: string; ar: string }>
 /** Map positions for the homepage / companies brand constellation */
 export const companyMapPositions: Record<string, { x: number; y: number }> = {
   shaza: { x: 50, y: 8 },
-  'kalthoum-farms': { x: 90, y: 38 },
-  'fresh-fruit': { x: 78, y: 86 },
-  'sona-plast': { x: 22, y: 86 },
-  diamond: { x: 10, y: 38 },
+  diamond: { x: 83, y: 24 },
+  'kalthoum-farms': { x: 91, y: 59 },
+  'kayra-tarim': { x: 68, y: 88 },
+  'fresh-fruit': { x: 32, y: 88 },
+  'sona-plast': { x: 9, y: 59 },
+  'sona-drip': { x: 17, y: 24 },
 }
 
 const GROUP_CONTACT = {
