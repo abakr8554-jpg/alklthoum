@@ -36,7 +36,6 @@ export const metadata: Metadata = {
     alternateLocale: ['ar_EG'],
     url: siteUrl,
     siteName: SITE.name,
-    images: [{ url: SITE.logo, alt: SITE.name }],
   },
   twitter: {
     card: 'summary_large_image',
