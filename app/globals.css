@@ -2586,3 +2586,172 @@ html[lang='ar'] .site-footer .footer-col-title {
     scroll-behavior: auto !important;
   }
 }
+
+/* ============================================================
+   DESIGN REFINEMENT LAYER — bold modern agri-tech polish
+   Appended last so it refines shared primitives across every
+   page. Keeps brand colours; adds a consistent elevation,
+   interaction and accent system. (Pass 1)
+   ============================================================ */
+:root {
+  --shadow-xs: 0 1px 2px rgba(23, 59, 43, 0.06);
+  --shadow-sm: 0 4px 14px rgba(23, 59, 43, 0.07);
+  --shadow-md: 0 12px 30px rgba(23, 59, 43, 0.10);
+  --shadow-lg: 0 24px 56px rgba(23, 59, 43, 0.14);
+  --shadow-brand: 0 14px 34px rgba(232, 87, 26, 0.30);
+  --shadow-green: 0 14px 34px rgba(46, 107, 26, 0.28);
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --focus-ring: 0 0 0 3px rgba(232, 87, 26, 0.35);
+}
+
+/* Consistent, smooth interaction feel */
+a,
+button,
+.button,
+.soft-cta,
+.product-card,
+.rec-product-card {
+  transition: transform 0.28s var(--ease-out), box-shadow 0.28s var(--ease-out),
+    background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Visible keyboard focus (accessibility + polish) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: 8px;
+}
+
+/* On-brand text selection */
+::selection {
+  background: rgba(232, 87, 26, 0.18);
+  color: var(--ink);
+}
+
+/* Crisper images */
+img {
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* --- Section eyebrow: confident brand accent --- */
+.kicker {
+  color: var(--brand-orange);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+}
+
+/* --- Cards: unified elevation + tactile hover lift --- */
+.product-card {
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(23, 59, 43, 0.06);
+}
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(232, 87, 26, 0.28);
+}
+.rec-product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* --- Buttons: bolder and tactile --- */
+.soft-btn-green:hover,
+.soft-btn-orange:hover,
+.soft-btn-dark:hover,
+.soft-btn-light:hover {
+  transform: translateY(-2px);
+}
+.soft-btn-green:active,
+.soft-btn-orange:active,
+.soft-btn-dark:active,
+.soft-btn-light:active,
+.soft-cta:active,
+.button:active {
+  transform: translateY(0) scale(0.99);
+}
+.soft-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-brand);
+}
+.button.primary-button {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: var(--shadow-md);
+}
+.button.primary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-green);
+}
+.button.outline-button:hover {
+  border-color: var(--brand-orange);
+  color: var(--brand-orange);
+}
+
+/* ============================================================
+   DESIGN REFINEMENT LAYER — Pass 2 (premium micro-details)
+   ============================================================ */
+
+/* Image zoom on card hover — a hallmark of polished product sites */
+.product-card-image,
+.rec-product-img,
+.company-card-media,
+.blog-card-media,
+.article-card-media {
+  overflow: hidden;
+}
+.product-card-image img,
+.rec-product-img img {
+  transition: transform 0.6s var(--ease-out);
+  will-change: transform;
+}
+.product-card:hover .product-card-image img,
+.rec-product-card:hover .rec-product-img img {
+  transform: scale(1.06);
+}
+
+/* Confident section headings */
+.soft-section-head h2,
+.divisions-head h2 {
+  letter-spacing: -0.02em;
+}
+
+/* Product card body: stronger title, branded CTA */
+.product-card-body h3 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.product-cta {
+  font-weight: 700;
+  color: var(--brand-green);
+}
+.product-card:hover .product-cta {
+  color: var(--brand-orange);
+}
+
+/* Category / filter pills: tactile */
+.cat-pills button {
+  transition: transform 0.2s var(--ease-out), background-color 0.2s ease,
+    color 0.2s ease, box-shadow 0.2s ease;
+}
+.cat-pills button:hover {
+  transform: translateY(-1px);
+}
+
+/* Softer, consistent hero framing on inner pages */
+.page-hero-title {
+  letter-spacing: -0.02em;
+}
+
+/* Contact / form inputs: refined focus */
+.contact-form input,
+.contact-form textarea,
+.admin-field input,
+.admin-field textarea {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}

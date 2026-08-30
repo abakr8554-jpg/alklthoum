@@ -48,8 +48,8 @@ html[lang='ar'] .sp.is-soft .soft-kicker {
 html[lang='en'] .sp.is-soft .soft-section-head h2,
 html[lang='en'] .sp.is-soft .soft-hero-title {
   font-family: var(--font-en-display);
-  font-weight: 700;
-  letter-spacing: -0.025em;
+  font-weight: 800;
+  letter-spacing: -0.03em;
 }
 html[lang='ar'] .sp.is-soft .soft-section-head h2,
 html[lang='ar'] .sp.is-soft .soft-hero-title {
