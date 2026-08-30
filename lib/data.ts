@@ -295,6 +295,48 @@ export const companies: Company[] = [
       website: 'https://www.diamond-fertilizers.com',
     },
   },
+  {
+    id: 'kayra-tarim',
+    slug: 'kayra-tarim',
+    name: 'Kayra Tarim',
+    nameAr: 'كايرا تاريم',
+    tagline: 'Agricultural Solutions',
+    taglineAr: 'حلول زراعية',
+    description: 'Specialized agricultural solutions and products for optimal crop yield.',
+    descriptionAr: 'حلول ومنتجات زراعية متخصصة للحصول على أفضل محصول زراعي.',
+    logo: '/logos/clean/logo-1.png',
+    coverImage: 'https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1600&q=85',
+    services: [
+      {
+        title: 'Crop Enhancement',
+        titleAr: 'تحسين المحاصيل',
+        desc: 'Advanced agricultural inputs for better growth.',
+        descAr: 'مدخلات زراعية متطورة لنمو أفضل.',
+      }
+    ],
+    contact: GROUP_CONTACT,
+  },
+  {
+    id: 'sona-drip',
+    slug: 'sona-drip',
+    name: 'Sona Drip',
+    nameAr: 'سونا دريب',
+    tagline: 'Irrigation Systems',
+    taglineAr: 'أنظمة الري',
+    description: 'Advanced drip irrigation systems for efficient water management in agriculture.',
+    descriptionAr: 'أنظمة ري بالتنقيط متطورة لإدارة المياه بكفاءة في الزراعة.',
+    logo: '/logos/clean/logo-2.png',
+    coverImage: 'https://images.unsplash.com/photo-1563514222-d856980d7f4e?auto=format&fit=crop&w=1600&q=85',
+    services: [
+      {
+        title: 'Irrigation Solutions',
+        titleAr: 'حلول الري',
+        desc: 'Modern drip and micro-irrigation systems.',
+        descAr: 'أنظمة ري حديثة بالتنقيط والري الدقيق.',
+      }
+    ],
+    contact: GROUP_CONTACT,
+  }
 ]
 
 // ─── Products ───────────────────────────────────────────────────────────────────
