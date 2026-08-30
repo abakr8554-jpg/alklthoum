@@ -42,17 +42,6 @@ export async function loginAction(_prev: ActionResult | null, formData: FormData
     return { ok: false, message: 'Email and password are required.' }
   }
 
-  // Demo bypass for Vercel (since SQLite isn't supported in production Serverless)
-  if (email === 'admin@alkalthoum.com' && password === 'ChangeMe_Agrico_2026!') {
-    await createSession({
-      id: 'demo-admin-id',
-      email: email,
-      role: 'admin',
-      name: 'Admin',
-    })
-    return { ok: true }
-  }
-
   try {
     const user = await prisma.adminUser.findUnique({ where: { email } })
     if (!user || !user.active) {
@@ -71,11 +60,13 @@ export async function loginAction(_prev: ActionResult | null, formData: FormData
       name: user.name,
     })
     await log(user.id, 'login', 'admin', user.id)
-    redirect('/admin')
   } catch (err) {
     console.error('Login error:', err)
-    return { ok: false, message: 'Database connection failed on serverless.' }
+    return { ok: false, message: 'Login failed. Please try again.' }
   }
+
+  // redirect() must run outside try/catch — it signals via a thrown error
+  redirect('/admin')
 }
 
 export async function logoutAction() {

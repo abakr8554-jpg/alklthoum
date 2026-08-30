@@ -8,6 +8,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/about',
     '/products',
     '/companies',
+    '/diseases',
     '/distributors',
     '/ai-assistant',
     '/contact',
@@ -17,11 +18,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/terms',
   ]
 
-  const { getArticles, getProducts, getCompanies } = await import('@/lib/cms/queries')
-  const [articles, products, companies] = await Promise.all([
+  const { getArticles, getProducts, getCompanies, getDiseases } = await import('@/lib/cms/queries')
+  const [articles, products, companies, diseases] = await Promise.all([
     getArticles(true),
     getProducts(true),
     getCompanies(true),
+    getDiseases(true),
   ])
 
   const articleRoutes = articles.map((a) => ({
@@ -45,6 +47,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }))
 
+  const diseaseRoutes = diseases.map((d) => ({
+    url: `${base}/diseases/${d.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.55,
+  }))
+
   return [
     ...staticRoutes.map((path) => ({
       url: `${base}${path || '/'}`,
@@ -54,6 +63,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     ...productRoutes,
     ...companyRoutes,
+    ...diseaseRoutes,
     ...articleRoutes,
   ]
 }

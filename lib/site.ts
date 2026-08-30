@@ -49,6 +49,7 @@ export const FOOTER_LINKS = {
   ],
   services: [
     { href: '/ai-assistant', en: 'AI Assistant', ar: 'المساعد الذكي' },
+    { href: '/diseases', en: 'Plant Diseases', ar: 'أمراض النباتات' },
     { href: '/distributors', en: 'Find Distributor', ar: 'الموزعون' },
     { href: '/contact', en: 'Contact', ar: 'اتصل بنا' },
     { href: '/faq', en: 'FAQ', ar: 'الأسئلة الشائعة' },

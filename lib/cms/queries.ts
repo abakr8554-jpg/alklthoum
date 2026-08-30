@@ -75,6 +75,14 @@ export async function getDistributors(publishedOnly = true) {
   }, staticDistributors)
 }
 
+export async function getDiseaseBySlug(slug: string) {
+  return safe(async () => {
+    const row = await prisma.disease.findUnique({ where: { slug } })
+    if (row && row.published) return mapDisease(row)
+    return staticDiseases.find((d) => d.slug === slug) || null
+  }, staticDiseases.find((d) => d.slug === slug) || null)
+}
+
 export async function getFaqs(publishedOnly = true) {
   return safe(async () => {
     return prisma.faq.findMany({

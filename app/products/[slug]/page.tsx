@@ -45,7 +45,7 @@ export default async function ProductDetailPage({
     .filter((p) => p.slug !== product.slug && p.category === product.category)
     .slice(0, 3)
   const diseases = product.targetDiseases
-    .map((dId) => allDiseases.find((d) => d.id === dId))
+    .map((dId) => allDiseases.find((d) => d.id === dId || d.slug === dId))
     .filter(Boolean) as typeof allDiseases
 
   return (

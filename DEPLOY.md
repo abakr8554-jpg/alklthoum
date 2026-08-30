@@ -16,24 +16,22 @@ Copy the connection string (`postgresql://...?sslmode=require`).
 
 ### 2. Switch Prisma to Postgres (one-time)
 
-Edit `prisma/schema.prisma`:
+The schema is already set to Postgres (`provider = "postgresql"`) and the app
+connects through the `@prisma/adapter-pg` driver adapter (see `lib/db.ts`).
 
-```prisma
-datasource db {
-  provider = "postgresql"
-}
-```
-
-Then create and apply a fresh migration for Postgres:
+Put the **pooled** connection string in `DATABASE_URL`, then create the tables
+and seed data:
 
 ```bash
-export DATABASE_URL="postgresql://USER:PASS@HOST:5432/DB?sslmode=require"
-npx prisma migrate dev --name init_postgres
+export DATABASE_URL="postgresql://USER:PASS@HOST-pooler.REGION.aws.neon.tech/DB?sslmode=require"
+npm run db:setup   # = prisma db push  +  seed
 ```
 
-Commit the new migration folder before deploying.
+`db push` syncs the schema directly (no migration files needed for a project
+this size). To re-seed later without touching the schema: `npm run db:seed`.
 
-> **Local dev:** keep using SQLite by leaving `provider = "sqlite"` on your machine, or point `DATABASE_URL` at a shared Neon dev branch.
+> **Local dev:** point `DATABASE_URL` at the same Neon database (or a Neon dev
+> branch). Local SQLite is no longer used.
 
 ### 3. Vercel environment variables
 
@@ -51,13 +49,15 @@ Commit the new migration folder before deploying.
 
 ### 4. Deploy
 
-Connect the Git repo to Vercel. The `vercel.json` build runs migrations automatically.
+Connect the Git repo to Vercel and set the environment variables above. The
+tables + seed data are created once via `npm run db:setup` (step 2) against the
+Neon database — you do **not** need to re-run it on every deploy.
 
-After first deploy, seed the database (Vercel CLI or one-off job):
+To seed from your machine using the deployed env values:
 
 ```bash
 vercel env pull .env.local
-npm run db:seed
+npm run db:setup
 ```
 
 ### 5. Post-deploy checklist
