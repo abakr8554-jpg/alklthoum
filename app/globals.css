@@ -2938,3 +2938,21 @@ img {
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
+
+/* Bring the remaining section eyebrows (about page, soft page heroes)
+   into the same brand-accent-line treatment as the rest of the site. */
+.soft-page-kicker,
+.ap-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.soft-page-kicker::before,
+.ap-label::before {
+  content: "";
+  width: 24px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--brand-orange);
+  flex: 0 0 auto;
+}
