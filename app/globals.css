@@ -2956,3 +2956,28 @@ img {
   background: var(--brand-orange);
   flex: 0 0 auto;
 }
+
+/* Centred section headers: balance the eyebrow with an accent line on BOTH
+   sides so it reads symmetrically (e.g. the "شركاتنا" companies header). */
+.soft-section-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.soft-section-head .soft-kicker {
+  justify-content: center;
+}
+.soft-section-head .soft-kicker::after {
+  content: "";
+  width: 26px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--brand-orange);
+  flex: 0 0 auto;
+}
+.soft-section-head h2 {
+  margin-bottom: 14px;
+}
+.soft-section-head p {
+  max-width: 52ch;
+}
