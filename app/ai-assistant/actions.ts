@@ -1,6 +1,6 @@
 'use server'
 
-import { getProducts } from '@/lib/cms/queries'
+import { products as catalogProducts } from '@/lib/data'
 
 export interface AIAnalysisResult {
   plantName: string
@@ -19,6 +19,8 @@ export interface AIAnalysisResult {
   preventionTipsAr: string[]
   recommendedProductIds: string[]
   diseaseId?: string
+  /** true when returned by the offline demo fallback (no API key / API error) */
+  demo?: boolean
 }
 
 const MOCK_RESULT: AIAnalysisResult = {
@@ -64,53 +66,69 @@ const MOCK_RESULT: AIAnalysisResult = {
     'ضع مبيداً فطرياً وقائياً قبل توقعات الطقس الرطب',
     'أزل بقايا النباتات في نهاية الموسم',
   ],
-  recommendedProductIds: ['diamond-standard-46xxu', 'diamond-salt-destroy-nz62t', 'diamond-phosphoric-6xcdt'],
+  recommendedProductIds: [],
   diseaseId: 'early-blight',
 }
 
-export async function analyzeImage(base64Image: string): Promise<AIAnalysisResult> {
+const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-3.6-flash'
+
+// A few sensible product picks for the offline demo, resolved to REAL catalog ids.
+function demoRecommendations(): string[] {
+  const picks = catalogProducts.filter((p) => p.aiRecommended).slice(0, 3)
+  return (picks.length ? picks : catalogProducts.slice(0, 3)).map((p) => p.id)
+}
+
+export async function analyzeImage(
+  base64Image: string,
+  mimeType = 'image/jpeg',
+): Promise<AIAnalysisResult> {
   const apiKey = process.env.GEMINI_API_KEY
 
   // ── Gemini Vision path ──────────────────────────────────────────────────────
   if (apiKey) {
     try {
-      const allProducts = await getProducts()
-      const diamondProducts = allProducts.filter(p => p.companyId === 'diamond' || p.id.includes('diamond'))
-      const productCatalogString = diamondProducts.map(p => `- ID: "${p.id}" | Name: ${p.name} | Description: ${p.shortDescription}`).join('\n')
+      // Build a compact catalog the model can recommend from. Uses the SAME
+      // product ids the results UI resolves against, so picks always render.
+      const catalog = catalogProducts
+        .slice(0, 40)
+        .map((p) => `- ID:"${p.id}" | ${p.name} | ${p.category} | ${p.shortDescription}`)
+        .join('\n')
 
-      const prompt = `You are an expert agricultural plant pathologist AI. Analyze this plant image carefully.
+      const prompt = `You are an expert agricultural plant pathologist. Look at the plant image very carefully and identify the plant and any disease, pest damage, deficiency or stress visible.
 
-Return a JSON object with EXACTLY these fields (no extra fields):
+Return ONLY a JSON object with EXACTLY these fields:
 {
   "plantName": "English plant name",
-  "plantNameAr": "Arabic plant name",
-  "diseaseName": "English disease name",
-  "diseaseNameAr": "Arabic disease name",
-  "confidence": 85,
-  "severity": "medium",
-  "description": "2-3 sentence English description of the disease",
-  "descriptionAr": "2-3 sentence Arabic description",
-  "cause": "English cause explanation",
-  "causeAr": "Arabic cause explanation",
+  "plantNameAr": "اسم النبات بالعربية",
+  "diseaseName": "English disease/problem name",
+  "diseaseNameAr": "اسم المرض بالعربية",
+  "confidence": 0-100 integer (how sure you are),
+  "severity": "low" | "medium" | "high",
+  "description": "2-3 sentence English description of what you see and the disease",
+  "descriptionAr": "وصف بالعربية 2-3 جمل",
+  "cause": "English explanation of the cause and favouring conditions",
+  "causeAr": "شرح السبب بالعربية",
   "treatmentSteps": ["step 1", "step 2", "step 3", "step 4"],
   "treatmentStepsAr": ["خطوة 1", "خطوة 2", "خطوة 3", "خطوة 4"],
   "preventionTips": ["tip 1", "tip 2", "tip 3"],
   "preventionTipsAr": ["نصيحة 1", "نصيحة 2", "نصيحة 3"],
-  "recommendedProductIds": ["product-id-1", "product-id-2"]
+  "recommendedProductIds": ["id1", "id2"]
 }
 
-Diamond Products Catalog (Our specialized agricultural products):
-${productCatalogString}
+Product catalog — pick 1 to 3 relevant product IDs for treatment/improvement, using the EXACT IDs shown:
+${catalog}
 
 Rules:
-- severity must be exactly "low", "medium", or "high"
-- confidence is an integer 0-100
-- if plant appears healthy, set diseaseName to "Healthy Plant" and diseaseNameAr to "نبات صحي"
-- IMPORTANT: You MUST pick 1 to 3 suitable product IDs from the "Diamond Products Catalog" above to fill "recommendedProductIds" if they are applicable to treat the disease or improve plant health. Only use the exact IDs provided.
-- Return ONLY valid JSON, no markdown, no explanation`
+- Base your answer ONLY on what is actually visible in the image. Do NOT default to tomato/early blight.
+- If the plant looks healthy, set diseaseName to "Healthy Plant" and diseaseNameAr to "نبات سليم", severity "low", and give general care tips.
+- If the image is not a plant, set plantName to "Unknown", diseaseName to "Not a plant image", confidence low, and leave arrays short.
+- severity must be exactly "low", "medium" or "high"; confidence is an integer 0-100.
+- Arabic fields must be natural Arabic, not transliteration.
+- recommendedProductIds must be EXACT IDs from the catalog above (or an empty array if none fit).
+- Return ONLY the JSON, no markdown, no commentary.`
 
       const res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -118,12 +136,7 @@ Rules:
             contents: [
               {
                 parts: [
-                  {
-                    inlineData: {
-                      mimeType: 'image/jpeg',
-                      data: base64Image,
-                    },
-                  },
+                  { inlineData: { mimeType: mimeType || 'image/jpeg', data: base64Image } },
                   { text: prompt },
                 ],
               },
@@ -131,47 +144,54 @@ Rules:
             generationConfig: {
               temperature: 0.2,
               maxOutputTokens: 2048,
+              responseMimeType: 'application/json',
             },
           }),
         },
       )
 
-      if (!res.ok) throw new Error(`Gemini API error: ${res.status}`)
+      if (!res.ok) {
+        const body = await res.text().catch(() => '')
+        throw new Error(`Gemini API ${res.status}: ${body.slice(0, 300)}`)
+      }
 
       const data = await res.json()
       const text = data.candidates?.[0]?.content?.parts?.[0]?.text ?? ''
       const cleaned = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim()
       const parsed = JSON.parse(cleaned) as AIAnalysisResult
 
-      // Match recommended products from our catalog based on disease keywords
-      const products = await getProducts(true)
-      const matchedProducts = products
-        .filter(
-          (p) =>
-            p.aiRecommended ||
-            p.targetCrops.some((c) =>
-              parsed.plantName.toLowerCase().includes(c.toLowerCase()),
-            ),
-        )
-        .slice(0, 3)
-        .map((p) => p.id)
+      // Keep only product ids that actually exist so the UI can render them.
+      const validIds = new Set(catalogProducts.map((p) => p.id))
+      let rec = (parsed.recommendedProductIds || []).filter((id) => validIds.has(id))
+
+      // Fallback: match by crop / AI-recommended flag if the model gave none.
+      if (rec.length === 0) {
+        const plant = (parsed.plantName || '').toLowerCase()
+        rec = catalogProducts
+          .filter(
+            (p) =>
+              p.aiRecommended ||
+              p.targetCrops.some((c) => plant.includes(c.toLowerCase())),
+          )
+          .slice(0, 3)
+          .map((p) => p.id)
+      }
 
       return {
         ...parsed,
-        recommendedProductIds:
-          parsed.recommendedProductIds?.length > 0
-            ? parsed.recommendedProductIds
-            : matchedProducts,
+        confidence: Math.max(0, Math.min(100, Math.round(Number(parsed.confidence) || 0))),
+        severity: (['low', 'medium', 'high'] as const).includes(parsed.severity)
+          ? parsed.severity
+          : 'medium',
+        recommendedProductIds: rec,
       }
-
     } catch (err) {
-      console.error('Gemini analysis failed, falling back to mock:', err)
-      // Fall through to mock
+      console.error('Gemini analysis failed, falling back to demo result:', err)
+      // Fall through to demo
     }
   }
 
-  // ── Mock/demo fallback ──────────────────────────────────────────────────────
-  // Simulate a short delay like a real API call
-  await new Promise((r) => setTimeout(r, 1800))
-  return MOCK_RESULT
+  // ── Offline demo fallback (no API key or API error) ─────────────────────────
+  await new Promise((r) => setTimeout(r, 1200))
+  return { ...MOCK_RESULT, recommendedProductIds: demoRecommendations(), demo: true }
 }

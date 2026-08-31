@@ -43,9 +43,10 @@ export default function AIAssistantPage() {
         setStep('analyzing')
 
         try {
-          // Extract base64 (remove data:image/xxx;base64, prefix)
+          // Extract base64 + mime type (data:image/xxx;base64,....)
           const base64 = dataUrl.split(',')[1]
-          const analysis = await analyzeImage(base64)
+          const mimeType = dataUrl.substring(5, dataUrl.indexOf(';')) || 'image/jpeg'
+          const analysis = await analyzeImage(base64, mimeType)
           setResult(analysis)
           setStep('results')
         } catch {
@@ -263,6 +264,22 @@ export default function AIAssistantPage() {
                 <p className="results-plant">
                   <Leaf size={14} /> {isAr ? result.plantNameAr : result.plantName}
                 </p>
+                {result.demo && (
+                  <p
+                    style={{
+                      fontSize: 12,
+                      color: '#b45309',
+                      background: 'rgba(232,87,26,.1)',
+                      padding: '6px 10px',
+                      borderRadius: 8,
+                      margin: '8px 0 0',
+                    }}
+                  >
+                    {isAr
+                      ? '⚠ نتيجة توضيحية (وضع تجريبي) — فعّل مفتاح الذكاء الاصطناعي للتحليل الحقيقي.'
+                      : '⚠ Sample result (demo mode) — enable the AI key for real analysis.'}
+                  </p>
+                )}
                 <div className="confidence-bar">
                   <span>{isAr ? 'الثقة:' : 'Confidence:'}</span>
                   <div className="confidence-track">
