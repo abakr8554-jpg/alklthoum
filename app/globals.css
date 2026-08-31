@@ -2863,3 +2863,30 @@ img {
 .blog-preview-card {
   transition: transform 0.28s var(--ease-out), box-shadow 0.28s var(--ease-out);
 }
+
+/* ============================================================
+   DESIGN REFINEMENT LAYER — Pass 5 (final punch + consistency)
+   ============================================================ */
+
+/* Punchier hero stat numbers */
+.sp.is-soft .soft-hero-stats .sp-stat-num {
+  font-weight: 800;
+}
+
+/* Brand accent line before inner-page eyebrows too (matches homepage) */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.kicker::before {
+  content: "";
+  width: 24px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--brand-orange);
+  flex: 0 0 auto;
+}
+.kicker.light::before {
+  background: #ffb890;
+}
