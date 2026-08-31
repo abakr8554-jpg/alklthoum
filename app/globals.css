@@ -2890,3 +2890,51 @@ img {
 .kicker.light::before {
   background: #ffb890;
 }
+
+/* ============================================================
+   DESIGN REFINEMENT LAYER — Pass 6 (site-wide cohesion)
+   One consistent rhythm for every page: heroes, section
+   headers and spacing all follow the same scale.
+   ============================================================ */
+
+/* Unify every page hero title to the same scale/weight
+   (metrics only — font-family stays per-language). */
+.page-hero-title,
+.company-hero-content h1,
+.contact-hero h1,
+.blog-article-hero-content h1,
+.ai-hero-content h1,
+.ap-hero-content h1 {
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+}
+
+/* Consistent lime italic accent inside hero titles */
+.page-hero-title em,
+.company-hero-content h1 em,
+.contact-hero h1 em,
+.blog-article-hero-content h1 em {
+  color: var(--lime);
+  font-style: italic;
+}
+
+/* Consistent hero sub-copy */
+.page-hero-sub,
+.company-hero-content p,
+.contact-hero p,
+.ai-hero-content p,
+.ap-hero-sub {
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.7;
+  max-width: 60ch;
+}
+
+/* Consistent section eyebrow treatment everywhere the
+   inner-page kicker appears (colour handled elsewhere). */
+.kicker {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
