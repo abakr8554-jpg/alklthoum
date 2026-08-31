@@ -2820,3 +2820,46 @@ img {
 .cat-pills button {
   font-weight: 700;
 }
+
+/* ============================================================
+   DESIGN REFINEMENT LAYER — Pass 4 (consistent cards site-wide)
+   Apply the same bold, floating treatment to every card type.
+   ============================================================ */
+.company-card,
+.blog-card,
+.blog-preview-card {
+  border: none;
+  border-radius: 22px;
+  box-shadow: 0 12px 34px rgba(23, 59, 43, 0.1);
+}
+
+/* Category badge on articles: bolder, with a soft brand glow */
+.blog-card-cat {
+  font-weight: 700;
+  box-shadow: 0 6px 16px rgba(46, 107, 26, 0.32);
+}
+
+/* Image zoom on hover for company & article cards (desktop) */
+.company-card-cover,
+.blog-card-image {
+  overflow: hidden;
+}
+.company-card-cover img,
+.blog-card-image img {
+  transition: transform 0.6s var(--ease-out);
+}
+.company-card:hover .company-card-cover img,
+.blog-card:hover .blog-card-image img {
+  transform: scale(1.06);
+}
+.company-card:hover,
+.blog-card:hover,
+.blog-preview-card:hover {
+  box-shadow: 0 22px 50px rgba(23, 59, 43, 0.16);
+  transform: translateY(-4px);
+}
+.company-card,
+.blog-card,
+.blog-preview-card {
+  transition: transform 0.28s var(--ease-out), box-shadow 0.28s var(--ease-out);
+}
