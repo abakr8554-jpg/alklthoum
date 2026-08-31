@@ -67,7 +67,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
         <div
           className="page-hero-bg"
           style={{
-            backgroundImage: "url('/images/products-cover.jpg?v=2')",
+            backgroundImage: "url('/covers/products.svg')",
           }}
         />
         <div className="page-hero-overlay" />

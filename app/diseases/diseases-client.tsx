@@ -40,7 +40,7 @@ export default function DiseasesClient({ diseases }: { diseases: Disease[] }) {
       <section className="page-hero" style={{ background: 'var(--ink)' }}>
         <div
           className="page-hero-bg"
-          style={{ backgroundImage: "url('/images/products-cover.jpg?v=2')" }}
+          style={{ backgroundImage: "url('/covers/diseases.svg')" }}
         />
         <div className="page-hero-overlay" />
         <div className="page-hero-content">
