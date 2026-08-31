@@ -1,0 +1,29 @@
+<svg viewBox="0 0 1600 480" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#102c18"/>
+      <stop offset="0.55" stop-color="#284f1c"/>
+      <stop offset="1" stop-color="#463a12"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.62" cy="0.3" r="0.6">
+      <stop offset="0" stop-color="#e0a43a" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#e0a43a" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="36" height="36" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1.5" fill="#f3f1e8" opacity="0.05"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="480" fill="url(#bg)"/>
+  <rect width="1600" height="480" fill="url(#glow)"/>
+  <rect width="1600" height="480" fill="url(#dots)"/>
+  <g transform="translate(560,70) scale(1.15)" opacity="0.24" fill="none" stroke="#f3f1e8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="230" y1="300" x2="230" y2="70" stroke-width="7"/>
+      <g stroke-width="6">
+        <path d="M230 90 C200 70 180 92 210 116"/><path d="M230 90 C260 70 280 92 250 116"/>
+        <path d="M230 140 C200 120 180 142 210 166"/><path d="M230 140 C260 120 280 142 250 166"/>
+        <path d="M230 190 C200 170 180 192 210 216"/><path d="M230 190 C260 170 280 192 250 216"/>
+        <path d="M230 240 C200 220 180 242 210 266"/><path d="M230 240 C260 220 280 242 250 266"/>
+      </g>
+  </g>
+  <rect x="0" y="474" width="1600" height="6" fill="#e0a43a"/>
+</svg>

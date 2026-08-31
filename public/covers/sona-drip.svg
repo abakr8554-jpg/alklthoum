@@ -1,0 +1,27 @@
+<svg viewBox="0 0 1600 480" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b2a2c"/>
+      <stop offset="0.55" stop-color="#0f4048"/>
+      <stop offset="1" stop-color="#123033"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.62" cy="0.3" r="0.6">
+      <stop offset="0" stop-color="#39b6d8" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#39b6d8" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="36" height="36" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1.5" fill="#f3f1e8" opacity="0.05"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="480" fill="url(#bg)"/>
+  <rect width="1600" height="480" fill="url(#glow)"/>
+  <rect width="1600" height="480" fill="url(#dots)"/>
+  <g transform="translate(560,70) scale(1.15)" opacity="0.24" fill="none" stroke="#f3f1e8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="10" y1="70" x2="430" y2="70" stroke-width="7"/>
+      <path d="M120 70 v40" /><path d="M220 70 v40" /><path d="M320 70 v40" />
+      <path d="M120 150 c-26 30 -26 56 0 56 c26 0 26 -26 0 -56 Z" fill="#f3f1e8" stroke="none" opacity="0.9"/>
+      <path d="M220 175 c-22 26 -22 48 0 48 c22 0 22 -22 0 -48 Z" fill="#f3f1e8" stroke="none" opacity="0.9"/>
+      <path d="M320 150 c-26 30 -26 56 0 56 c26 0 26 -26 0 -56 Z" fill="#f3f1e8" stroke="none" opacity="0.9"/>
+  </g>
+  <rect x="0" y="474" width="1600" height="6" fill="#39b6d8"/>
+</svg>

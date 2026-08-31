@@ -134,7 +134,7 @@ export const companies: Company[] = [
       'مزرعة شذى الحية — إنتاج زراعي متميز وتجارب مزرعية حية ضمن منظومة مجموعة الكلثوم.',
     logo: '/logos/clean/shaza.png',
     coverImage:
-      'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1600&q=85',
+      '/covers/shaza.svg',
     services: [
       {
         title: 'Live Farm Production',
@@ -164,7 +164,7 @@ export const companies: Company[] = [
       'أول شركة بذور في مصر ورائدة في التطوير الزراعي — بذور هجينة ومشاتل ومشاريع زراعية ضخمة.',
     logo: '/logos/clean/kalthoum-farms.png',
     coverImage:
-      'https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1600&q=85',
+      '/covers/kalthoum-farms.svg',
     services: [
       {
         title: 'Hybrid Seeds',
@@ -194,7 +194,7 @@ export const companies: Company[] = [
       'شركة فريش فروت — التوسع خارج الحدود المصرية بفروع في لبنان والعراق لخدمة القطاع الزراعي الإقليمي.',
     logo: '/logos/clean/fresh-fruit.png',
     coverImage:
-      'https://images.unsplash.com/photo-1595855759920-86582396756a?auto=format&fit=crop&w=1600&q=85',
+      '/covers/fresh-fruit.svg',
     services: [
       {
         title: 'Fresh Produce',
@@ -224,7 +224,7 @@ export const companies: Company[] = [
       'مصنع سونا بلاست لتصنيع جميع أنواع الأغشية البلاستيكية الزراعية وأنابيب الري بالتنقيط. يعمل بآلات عالمية مزودة بأحدث التقنيات الأوروبية لتلبية احتياجات عملائنا لجميع المحاصيل.',
     logo: '/logos/clean/sona-plast.png',
     coverImage:
-      'https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?auto=format&fit=crop&w=1600&q=85',
+      '/covers/sona-plast.svg',
     services: [
       {
         title: 'Agricultural Films',
@@ -260,7 +260,7 @@ export const companies: Company[] = [
       'ضمن مجموعة الكلثوم الزراعية، وبخبرة تمتد لأكثر من ثلاثة عقود، تواصل شركة ديموند ريادتها في تقديم حلول الأسمدة المتطورة، من خلال تطوير تركيبات مبتكرة تلائم مختلف البيئات الزراعية، مع التزام راسخ بالجودة والاستدامة، لنكون الشريك الموثوق في تحقيق نمو وإنتاجية مستدامة.',
     logo: '/logos/clean/diamond.png',
     coverImage:
-      'https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=1600&q=85',
+      '/covers/diamond.svg',
     services: [
       {
         title: 'Soluble NPK Series',
@@ -305,7 +305,7 @@ export const companies: Company[] = [
     description: 'Specialized agricultural solutions and products for optimal crop yield.',
     descriptionAr: 'حلول ومنتجات زراعية متخصصة للحصول على أفضل محصول زراعي.',
     logo: '/logos/clean/logo-1.png',
-    coverImage: 'https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1600&q=85',
+    coverImage: '/covers/kayra-tarim.svg',
     services: [
       {
         title: 'Crop Enhancement',
@@ -326,7 +326,7 @@ export const companies: Company[] = [
     description: 'Advanced drip irrigation systems for efficient water management in agriculture.',
     descriptionAr: 'أنظمة ري بالتنقيط متطورة لإدارة المياه بكفاءة في الزراعة.',
     logo: '/logos/clean/logo-2.png',
-    coverImage: 'https://images.unsplash.com/photo-1563514222-d856980d7f4e?auto=format&fit=crop&w=1600&q=85',
+    coverImage: '/covers/sona-drip.svg',
     services: [
       {
         title: 'Irrigation Solutions',
