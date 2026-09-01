@@ -145,11 +145,11 @@ const FEATURES = [
   },
   {
     en: {
-      title: `${new Date().getFullYear() - SITE.foundedYear}+ Years`,
+      title: `30+ Years`,
       desc: 'Decades of agricultural knowledge aimed at raising efficiency for the farmer.',
     },
     ar: {
-      title: `+${new Date().getFullYear() - SITE.foundedYear} عاماً`,
+      title: `+30 عاماً`,
       desc: 'عقود من المعرفة الزراعية تهدف لرفع كفاءة المزارع.',
     },
   },
@@ -180,7 +180,7 @@ export default function HomePage() {
   const [slide, setSlide] = useState(0)
   const [ready, setReady] = useState(true)
   const tx = (en: string, ar: string) => (isAr ? ar : en)
-  const years = new Date().getFullYear() - SITE.foundedYear
+  const years = 30
   const current = SLIDES[slide]
   const title = isAr ? current.ar.title : current.en.title
   const accent = isAr ? current.ar.accent : current.en.accent

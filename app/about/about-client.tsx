@@ -32,7 +32,7 @@ const values = [
 
 export default function AboutClient({ companiesCount }: { companiesCount: number }) {
   const { isAr, dir } = useLang()
-  const years = new Date().getFullYear() - SITE.foundedYear
+  const years = 30
 
   const stats = [
     { value: `${years}+`, en: 'Years of experience', ar: 'سنة خبرة' },
