@@ -126,17 +126,16 @@ export default function AIAssistantPage() {
               onDragOver={(e) => { e.preventDefault(); setDragging(true) }}
               onDragLeave={() => setDragging(false)}
               onDrop={handleDrop}
-              onClick={() => fileRef.current?.click()}
+              onClick={() => { fileRef.current?.removeAttribute('capture'); fileRef.current?.click() }}
               role="button"
               tabIndex={0}
-              onKeyDown={(e) => e.key === 'Enter' && fileRef.current?.click()}
+              onKeyDown={(e) => { if (e.key === 'Enter') { fileRef.current?.removeAttribute('capture'); fileRef.current?.click() } }}
               aria-label={isAr ? 'منطقة رفع الصورة' : 'Image upload area'}
             >
               <input
                 ref={fileRef}
                 type="file"
                 accept="image/*"
-                capture="environment"
                 style={{ display: 'none' }}
                 onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])}
                 id="plant-image-input"
@@ -151,7 +150,17 @@ export default function AIAssistantPage() {
                   : 'Drag & drop an image here, or click to select'}
               </p>
               <div className="dropzone-actions">
-                <button type="button" className="upload-btn">
+                <button
+                  type="button"
+                  className="upload-btn"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    if (fileRef.current) {
+                      fileRef.current.removeAttribute('capture')
+                      fileRef.current.click()
+                    }
+                  }}
+                >
                   <Upload size={15} />
                   {isAr ? 'اختر صورة' : 'Choose Image'}
                 </button>
