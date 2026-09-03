@@ -78,15 +78,11 @@ function demoRecommendations(): string[] {
   return (picks.length ? picks : catalogProducts.slice(0, 3)).map((p) => p.id)
 }
 
-export async function analyzeImage(
+async function callGemini(
+  apiKey: string,
   base64Image: string,
-  mimeType = 'image/jpeg',
+  mimeType: string,
 ): Promise<AIAnalysisResult> {
-  const apiKey = process.env.GEMINI_API_KEY
-
-  // ── Gemini Vision path ──────────────────────────────────────────────────────
-  if (apiKey) {
-    try {
       // Build a compact catalog the model can recommend from. Uses the SAME
       // product ids the results UI resolves against, so picks always render.
       const catalog = catalogProducts
@@ -185,13 +181,39 @@ Rules:
           : 'medium',
         recommendedProductIds: rec,
       }
-    } catch (err) {
-      console.error('Gemini analysis failed, falling back to demo result:', err)
-      // Fall through to demo
-    }
+}
+
+export async function analyzeImage(
+  base64Image: string,
+  mimeType = 'image/jpeg',
+): Promise<AIAnalysisResult> {
+  const apiKey = process.env.GEMINI_API_KEY
+
+  // No API key → clearly-flagged offline demo result.
+  if (!apiKey) {
+    await new Promise((r) => setTimeout(r, 1000))
+    return { ...MOCK_RESULT, recommendedProductIds: demoRecommendations(), demo: true }
   }
 
-  // ── Offline demo fallback (no API key or API error) ─────────────────────────
-  await new Promise((r) => setTimeout(r, 1200))
-  return { ...MOCK_RESULT, recommendedProductIds: demoRecommendations(), demo: true }
+  // Retry on transient failures (free-tier rate limits, brief model overloads).
+  let lastErr: unknown
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      return await callGemini(apiKey, base64Image, mimeType)
+    } catch (err) {
+      lastErr = err
+      const msg = String((err as Error)?.message || err)
+      const transient =
+        /\b(429|500|502|503|504)\b/.test(msg) ||
+        /rate|quota|overload|unavailable|timeout|timed out|network|fetch failed|econn/i.test(msg)
+      if (attempt < 2 && transient) {
+        await new Promise((r) => setTimeout(r, 1500 * (attempt + 1)))
+        continue
+      }
+      break
+    }
+  }
+  console.error('Gemini analysis failed after retries:', lastErr)
+  // Honest failure — never show a misleading fixed diagnosis when a key is set.
+  throw new Error('AI_ANALYSIS_FAILED')
 }

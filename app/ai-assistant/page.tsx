@@ -52,8 +52,8 @@ export default function AIAssistantPage() {
         } catch {
           setError(
             isAr
-              ? 'حدث خطأ أثناء التحليل. يرجى المحاولة مرة أخرى.'
-              : 'Analysis failed. Please try again.',
+              ? 'تعذّر تحليل الصورة (قد يكون الضغط عاليًا). انتظر لحظة وحاول مرة أخرى.'
+              : 'Could not analyze the image (service may be busy). Please wait a moment and try again.',
           )
           setStep('upload')
         }
