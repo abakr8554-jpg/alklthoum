@@ -76,7 +76,7 @@ const PRODUCT_SECTIONS: {
 }[] = [
   {
     cat: 'seeds',
-    img: '/images/categories/seeds.png',
+    img: 'https://images.unsplash.com/photo-1615671524827-c1fe3973b648?auto=format&fit=crop&w=1400&q=80',
     en: { name: 'Seeds', desc: 'Hybrid varieties for tomatoes, peppers, watermelon and more.' },
     ar: { name: 'البذور', desc: 'أصناف هجينة للطماطم والفلفل والبطيخ والمزيد.' },
   },
@@ -100,13 +100,13 @@ const PRODUCT_SECTIONS: {
   },
   {
     cat: 'fertilizers-pesticides',
-    img: '/images/categories/fertilizers.png',
+    img: 'https://images.unsplash.com/photo-1598512752271-33f913a5af13?auto=format&fit=crop&w=1400&q=80',
     en: { name: 'Fertilizers & Protection', desc: 'Crop nutrition and protection programs for productive harvests.' },
     ar: { name: 'الأسمدة والحماية', desc: 'برامج تغذية وحماية المحاصيل لحصاد منتج.' },
   },
   {
     cat: 'soil',
-    img: '/images/categories/soil.png',
+    img: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1400&q=80',
     en: { name: 'Soil & Substrates', desc: 'Growing media and soil amendments for greenhouse and open field.' },
     ar: { name: 'التربة والركائز', desc: 'وسائط زراعية ومحسنات التربة للبيوت المحمية والحقول.' },
   },
