@@ -76,13 +76,13 @@ const PRODUCT_SECTIONS: {
 }[] = [
   {
     cat: 'seeds',
-    img: '/covers/div-seeds.svg',
+    img: '/images/categories/seeds.png',
     en: { name: 'Seeds', desc: 'Hybrid varieties for tomatoes, peppers, watermelon and more.' },
     ar: { name: 'البذور', desc: 'أصناف هجينة للطماطم والفلفل والبطيخ والمزيد.' },
   },
   {
     cat: 'sona-plant-plastic',
-    img: '/covers/div-plastic.svg',
+    img: '/images/categories/plastic.png',
     en: {
       name: 'Sona Plant Plastic',
       desc: 'Greenhouse covers, mulch films, and high-performance agricultural plastics.',
@@ -94,19 +94,19 @@ const PRODUCT_SECTIONS: {
   },
   {
     cat: 'hoses',
-    img: '/covers/div-irrigation.svg',
+    img: '/images/categories/hoses.png',
     en: { name: 'Hoses & Irrigation', desc: 'Precision drip systems and water management solutions.' },
     ar: { name: 'الخراطيم والري', desc: 'أنظمة تنقيط دقيقة وحلول إدارة المياه.' },
   },
   {
     cat: 'fertilizers-pesticides',
-    img: '/covers/div-fertilizers.svg',
+    img: '/images/categories/fertilizers.png',
     en: { name: 'Fertilizers & Protection', desc: 'Crop nutrition and protection programs for productive harvests.' },
     ar: { name: 'الأسمدة والحماية', desc: 'برامج تغذية وحماية المحاصيل لحصاد منتج.' },
   },
   {
     cat: 'soil',
-    img: '/covers/div-soil.svg',
+    img: '/images/categories/soil.png',
     en: { name: 'Soil & Substrates', desc: 'Growing media and soil amendments for greenhouse and open field.' },
     ar: { name: 'التربة والركائز', desc: 'وسائط زراعية ومحسنات التربة للبيوت المحمية والحقول.' },
   },
