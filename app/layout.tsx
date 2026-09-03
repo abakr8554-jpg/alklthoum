@@ -46,14 +46,8 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-  icons: {
-    icon: [
-      { url: '/icon-light-32x32.png', media: '(prefers-color-scheme: light)' },
-      { url: '/icon-dark-32x32.png', media: '(prefers-color-scheme: dark)' },
-      { url: '/icon.svg', type: 'image/svg+xml' },
-    ],
-    apple: '/apple-icon.png',
-  },
+  // Favicons are provided by the app/ file convention:
+  // app/icon.svg, app/icon.png and app/apple-icon.png (the Al Kalthoum mark).
   alternates: {
     canonical: siteUrl,
   },
