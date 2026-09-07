@@ -14,6 +14,7 @@ import {
   canWrite,
 } from '@/lib/auth'
 import { escapeHtml, slugify } from '@/lib/cms/mappers'
+import { saveUpload } from '@/lib/storage'
 
 export type ActionResult = { ok: true; message?: string; id?: string } | { ok: false; message: string }
 
@@ -126,26 +127,15 @@ export async function saveProductAction(_prev: ActionResult | null, formData: Fo
   if (imageFiles && imageFiles.length > 0) {
     for (const file of imageFiles) {
       if (file instanceof File && file.size > 0) {
-        const bytes = await file.arrayBuffer()
-        const buffer = Buffer.from(bytes)
-        
         // Generate unique filename
         const timestamp = Date.now()
         const random = Math.random().toString(36).substring(2, 9)
         const ext = file.name.split('.').pop() || 'jpg'
         const filename = `${timestamp}-${random}.${ext}`
-        
-        // Save to public/uploads
-        const fs = await import('fs/promises')
-        const path = await import('path')
-        const uploadDir = path.join(process.cwd(), 'public', 'uploads')
-        const filepath = path.join(uploadDir, filename)
-        
-        await fs.mkdir(uploadDir, { recursive: true })
-        await fs.writeFile(filepath, buffer)
-        
-        // Add URL to images array
-        images.push(`/uploads/${filename}`)
+
+        // Store (Vercel Blob in production, local disk in dev)
+        const url = await saveUpload(await file.arrayBuffer(), filename, file.type || 'image/jpeg')
+        images.push(url)
       }
     }
   }
@@ -625,17 +615,11 @@ export async function uploadMediaAction(formData: FormData): Promise<ActionResul
     return { ok: false, message: 'File too large (max 8MB).' }
   }
 
-  const { writeFile, mkdir } = await import('node:fs/promises')
-  const path = await import('node:path')
   const ext = file.name.split('.').pop()?.toLowerCase() || 'bin'
   const safeExt = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'pdf'].includes(ext) ? ext : 'bin'
   const filename = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${safeExt}`
-  const dir = path.join(process.cwd(), 'public', 'uploads')
-  await mkdir(dir, { recursive: true })
-  const buffer = Buffer.from(await file.arrayBuffer())
-  await writeFile(path.join(dir, filename), buffer)
 
-  const url = `/uploads/${filename}`
+  const url = await saveUpload(await file.arrayBuffer(), filename, file.type)
   const asset = await prisma.mediaAsset.create({
     data: {
       filename: file.name,

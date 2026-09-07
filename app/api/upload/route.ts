@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { requireAdmin } from '@/lib/auth'
-import { writeFile, mkdir } from 'fs/promises'
-import { join } from 'path'
+import { saveUpload } from '@/lib/storage'
 
 export const runtime = 'nodejs'
 
@@ -36,11 +35,9 @@ export async function POST(req: NextRequest) {
     const ext = (file.name.split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '')
     const filename = `${timestamp}-${random}.${ext}`
 
-    const uploadDir = join(process.cwd(), 'public', 'uploads')
-    await mkdir(uploadDir, { recursive: true })
-    await writeFile(join(uploadDir, filename), Buffer.from(await file.arrayBuffer()))
+    const url = await saveUpload(await file.arrayBuffer(), filename, file.type)
 
-    return NextResponse.json({ url: `/uploads/${filename}` })
+    return NextResponse.json({ url })
   } catch (err) {
     console.error('Upload error:', err)
     return NextResponse.json({ error: 'Upload failed' }, { status: 500 })
