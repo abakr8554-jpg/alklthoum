@@ -43,13 +43,13 @@ const SLIDES = [
   {
     img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=85',
     en: {
-      title: ['Inputs built', 'for the field'],
-      accent: 'PROVEN',
+      title: ['Integrated', 'agricultural solutions'],
+      accent: 'high quality',
       lead: 'Precision supply and partnerships designed for heat, dust, and real farm conditions.',
     },
     ar: {
-      title: ['مستلزمات', 'مبنية للحقل'],
-      accent: 'مُجرَّبة',
+      title: ['حلول زراعية', 'متكاملة'],
+      accent: 'بجودة عالية',
       lead: 'توريد دقيق وشراكات مصممة للحرارة والغبار وواقع المزرعة.',
     },
   },
