@@ -49,7 +49,11 @@ export default function ContactPage() {
               {tx('Phone', 'الهاتف')}
             </div>
             <div className="ci-value">
-              <a href={`tel:${SITE.phoneTel}`}>{SITE.phone}</a>
+              {SITE.phones.map((p) => (
+                <a key={p} href={`tel:${p.replace(/[^\d+]/g, '')}`} style={{ display: 'block' }}>
+                  {p}
+                </a>
+              ))}
             </div>
           </div>
 

@@ -12,12 +12,13 @@ export const SITE = {
   foundedYear: 1993,
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://alkalthoum.com',
   email: 'info@alkalthoum.com',
-  phone: '+20 109 330 9222',
-  phoneTel: '+201093309222',
-  whatsapp: '201093309222',
+  phone: '+20 109 034 4040',
+  phoneTel: '+201090344040',
+  whatsapp: '201090344040',
+  phones: ['+20 109 034 4040', '+20 100 217 2598', '050 240 0838', '050 240 6606'],
   address: {
-    en: 'Egypt–Alexandria Desert Road, Egypt',
-    ar: 'طريق مصر إسكندرية الصحراوي، مصر',
+    en: 'Nabaroh Road, Beside Al-Wadi International School, Mansoura, Egypt',
+    ar: 'طريق نبروه، بجوار مدرسة الوادي الدولية، المنصورة، مصر',
   },
   social: {
     facebook: 'https://www.facebook.com/share/1FmPM6DL6w/?mibextid=wwXIfr',

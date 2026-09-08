@@ -115,9 +115,9 @@ export const companyMapPositions: Record<string, { x: number; y: number }> = {
 
 const GROUP_CONTACT = {
   email: 'info@alkalthoum.com',
-  phone: '+20 109 330 9222',
-  address: 'Egypt–Alexandria Desert Road, Egypt',
-  addressAr: 'طريق مصر إسكندرية الصحراوي، مصر',
+  phone: '+20 109 034 4040',
+  address: 'Nabaroh Road, Beside Al-Wadi International School, Mansoura, Egypt',
+  addressAr: 'طريق نبروه، بجوار مدرسة الوادي الدولية، المنصورة، مصر',
 }
 
 export const companies: Company[] = [
