@@ -45,12 +45,12 @@ const SLIDES = [
     en: {
       title: ['Integrated', 'agricultural solutions'],
       accent: 'high quality',
-      lead: 'Precision supply and partnerships designed for heat, dust, and real farm conditions.',
+      lead: 'We blend agricultural expertise with the latest technology to grow the finest crops.',
     },
     ar: {
       title: ['حلول زراعية', 'متكاملة'],
       accent: 'بجودة عالية',
-      lead: 'توريد دقيق وشراكات مصممة للحرارة والغبار وواقع المزرعة.',
+      lead: 'ندمج الخبرة الزراعية بأحدث التقنيات لإنتاج أجود المحاصيل.',
     },
   },
   {
