@@ -50,7 +50,12 @@ export default function ContactPage() {
             </div>
             <div className="ci-value">
               {SITE.phones.map((p) => (
-                <a key={p} href={`tel:${p.replace(/[^\d+]/g, '')}`} style={{ display: 'block' }}>
+                <a
+                  key={p}
+                  href={`tel:+20${p.replace(/[^\d]/g, '').replace(/^0/, '')}`}
+                  dir="ltr"
+                  style={{ display: 'block', unicodeBidi: 'plaintext' }}
+                >
                   {p}
                 </a>
               ))}

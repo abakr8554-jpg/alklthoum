@@ -61,8 +61,8 @@ export default function Footer() {
               <h4 className="footer-col-title">{tx('Contact', 'تواصل')}</h4>
               <div className="footer-contact-block">
                 <p>{tx(SITE.address.en, SITE.address.ar)}</p>
-                <a href={`tel:${SITE.phoneTel}`}>{SITE.phone}</a>
-                <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+                <a href={`tel:${SITE.phoneTel}`} dir="ltr" style={{ unicodeBidi: 'plaintext' }}>{SITE.phone}</a>
+                <a href={`mailto:${SITE.email}`} dir="ltr" style={{ unicodeBidi: 'plaintext' }}>{SITE.email}</a>
               </div>
             </div>
           </div>
