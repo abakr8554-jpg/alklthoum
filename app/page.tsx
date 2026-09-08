@@ -163,9 +163,9 @@ const HERO_STATS = [
 ] as const
 
 const PROCESS = [
-  { en: 'Consult', ar: 'استشارة' },
-  { en: 'Supply', ar: 'توريد' },
-  { en: 'Install', ar: 'تركيب' },
+  { en: 'Assessment', ar: 'دراسة' },
+  { en: 'Supply', ar: 'امداد' },
+  { en: 'Setup', ar: 'تطبيق' },
   { en: 'Support', ar: 'دعم' },
 ]
 
