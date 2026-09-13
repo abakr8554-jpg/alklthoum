@@ -343,113 +343,6 @@ export const companies: Company[] = [
 
 export const products: Product[] = [
   // ── Seeds ──
-  {
-    id: 'tomato-hybrid-f1',
-    slug: 'tomato-hybrid-f1',
-    companyId: 'kalthoum-farms',
-    category: 'seeds',
-    name: 'Tomato Hybrid F1',
-    nameAr: 'بذور طماطم هجين F1',
-    shortDescription: 'High-yield hybrid tomato seeds resistant to major diseases.',
-    shortDescriptionAr: 'بذور طماطم هجينة عالية الإنتاج مقاومة للأمراض الرئيسية.',
-    description:
-      'Our premium F1 hybrid tomato seeds are bred for exceptional yield, early maturity, and strong resistance to fusarium wilt and tomato mosaic virus. Ideal for both open field and greenhouse cultivation.',
-    descriptionAr:
-      'بذور الطماطم الهجينة F1 المميزة لدينا تم تربيتها لإنتاجية استثنائية ونضج مبكر ومقاومة قوية لذبول الفيوزاريوم وفيروس موزاييك الطماطم. مثالية لزراعة الحقول المفتوحة والبيوت المحمية.',
-    images: [
-      'https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1546094097-35c89c7e6af9?auto=format&fit=crop&w=800&q=80',
-    ],
-    targetCrops: ['Tomato'],
-    targetCropsAr: ['الطماطم'],
-    targetDiseases: ['fusarium-wilt', 'tomato-mosaic-virus'],
-    benefits: [
-      'High yield potential (up to 80 t/ha)',
-      'Early maturity (65–70 days)',
-      'Excellent post-harvest shelf life',
-      'Resistant to TMV, Fusarium wilt',
-    ],
-    benefitsAr: [
-      'إمكانية إنتاج عالية (تصل إلى 80 طن/هكتار)',
-      'نضج مبكر (65–70 يوم)',
-      'مدة صلاحية ما بعد الحصاد ممتازة',
-      'مقاوم لـ TMV وذبول الفيوزاريوم',
-    ],
-    usageInstructions: 'Sow 0.5–1 g per m² in nursery trays. Transplant at 4–6 leaf stage.',
-    usageInstructionsAr: 'ازرع 0.5–1 جرام لكل م² في صواني المشتل. انقل الشتلات في مرحلة 4–6 أوراق.',
-    applicationMethod: 'Direct sowing or transplanting after nursery stage.',
-    applicationMethodAr: 'الزراعة المباشرة أو الزرع بعد مرحلة المشتل.',
-    aiRecommended: true,
-  },
-  {
-    id: 'pepper-bell-mixed',
-    slug: 'pepper-bell-mixed',
-    companyId: 'kalthoum-farms',
-    category: 'seeds',
-    name: 'Bell Pepper Mixed Colors',
-    nameAr: 'بذور فلفل ملون مشكل',
-    shortDescription: 'Mixed color bell pepper seeds for vibrant market appeal.',
-    shortDescriptionAr: 'بذور فلفل ملون مشكل لمظهر سوقي جذاب.',
-    description:
-      'A mixed selection of red, yellow, and orange bell pepper varieties. High sugar content, thick walls, and excellent transportability.',
-    descriptionAr:
-      'تشكيلة مختارة من أصناف الفلفل الأحمر والأصفر والبرتقالي. محتوى سكر مرتفع وجدران سميكة وقابلية نقل ممتازة.',
-    images: [
-      'https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?auto=format&fit=crop&w=800&q=80',
-    ],
-    targetCrops: ['Bell Pepper'],
-    targetCropsAr: ['الفلفل الحلو'],
-    targetDiseases: ['powdery-mildew'],
-    benefits: [
-      'Mixed color variety for premium markets',
-      'Disease resistant',
-      'High brix content',
-    ],
-    benefitsAr: [
-      'تنوع ألوان للأسواق المميزة',
-      'مقاوم للأمراض',
-      'محتوى بريكس مرتفع',
-    ],
-    usageInstructions: 'Sow seeds in trays at 25–28°C. Germination in 7–10 days.',
-    usageInstructionsAr: 'ابذر البذور في الصواني عند 25–28 درجة مئوية. الإنبات في 7–10 أيام.',
-    applicationMethod: 'Nursery sowing then transplanting.',
-    applicationMethodAr: 'البذر في المشتل ثم زرع الشتلات.',
-  },
-  {
-    id: 'watermelon-seedless',
-    slug: 'watermelon-seedless',
-    companyId: 'kalthoum-farms',
-    category: 'seeds',
-    name: 'Seedless Watermelon',
-    nameAr: 'بذور بطيخ بلا بذور',
-    shortDescription: 'Triploid seedless watermelon for high-value markets.',
-    shortDescriptionAr: 'بطيخ ثلاثي الصبغيات بلا بذور للأسواق عالية القيمة.',
-    description:
-      'Premium triploid seedless watermelon variety. Large fruit size (8–12 kg), sweet flesh, and excellent shipping qualities.',
-    descriptionAr:
-      'صنف بطيخ بلا بذور ثلاثي الصبغيات المميز. حجم ثمرة كبير (8–12 كجم) ولب حلو وجودة شحن ممتازة.',
-    images: [
-      'https://images.unsplash.com/photo-1550258987-190a2d41a8ba?auto=format&fit=crop&w=800&q=80',
-    ],
-    targetCrops: ['Watermelon'],
-    targetCropsAr: ['البطيخ'],
-    targetDiseases: ['powdery-mildew', 'fusarium-wilt'],
-    benefits: [
-      'Seedless — premium market price',
-      '8–12 kg average fruit weight',
-      'High Brix sugar content (12–14)',
-    ],
-    benefitsAr: [
-      'بلا بذور — سعر سوق مميز',
-      'متوسط وزن الثمرة 8–12 كجم',
-      'محتوى سكر بريكس مرتفع (12–14)',
-    ],
-    usageInstructions: 'Requires pollinator variety. Plant in rows of 2m × 3m spacing.',
-    usageInstructionsAr: 'يتطلب صنفاً ملقحاً. ازرع في صفوف بمسافة 2م × 3م.',
-    applicationMethod: 'Transplanting from nursery.',
-    applicationMethodAr: 'الزرع من المشتل.',
-    aiRecommended: true,
-  },
   // ── Sona Plant Plastic ──
 
   {
@@ -3281,7 +3174,7 @@ export const diseases: Disease[] = [
     ],
     severity: 'high',
     image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=800&q=80',
-    recommendedProductIds: ['tomato-hybrid-f1', 'npk-20-20-20'],
+    recommendedProductIds: ['tomato-meola', 'npk-20-20-20'],
   },
   {
     id: 'powdery-mildew',
@@ -3489,7 +3382,7 @@ export const diseases: Disease[] = [
     ],
     severity: 'high',
     image: 'https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=800&q=80',
-    recommendedProductIds: ['tomato-hybrid-f1', 'insecticide-imidacloprid'],
+    recommendedProductIds: ['tomato-nhawand', 'insecticide-imidacloprid'],
   },
 ]
 
