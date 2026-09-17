@@ -89,6 +89,54 @@
 .companies-hub.soft-hub {
   padding: 72px 0 80px;
   overflow: hidden;
+  position: relative;
+  isolation: isolate;
+}
+
+/* Soft branded panel that blends into the off-white / sand bands around it
+   (raised specificity to beat `.sp.is-soft .companies-hub { background: transparent }`) */
+.sp.is-soft .companies-hub.soft-hub {
+  background:
+    linear-gradient(180deg, #f6f4ee 0%, #eef5ea 30%, #ecf5e7 62%, #f4f1ea 100%);
+}
+
+/* Layered brand halos glowing behind the orbit */
+.sp.is-soft .companies-hub.soft-hub::before {
+  background-image:
+    radial-gradient(58% 52% at 50% 46%, rgba(46, 107, 26, 0.11) 0%, transparent 70%),
+    radial-gradient(34% 38% at 50% 46%, rgba(232, 87, 26, 0.07) 0%, transparent 72%),
+    radial-gradient(circle at 12% 22%, rgba(46, 107, 26, 0.05) 0%, transparent 46%),
+    radial-gradient(circle at 88% 80%, rgba(232, 87, 26, 0.045) 0%, transparent 46%);
+  z-index: -1;
+}
+
+/* Finer dot grid, softly faded toward the edges */
+.sp.is-soft .companies-hub.soft-hub::after {
+  background-image: radial-gradient(circle, rgba(46, 107, 26, 0.09) 1px, transparent 1px);
+  background-size: 34px 34px;
+  -webkit-mask-image: radial-gradient(ellipse 78% 72% at 50% 46%, #000 28%, transparent 82%);
+  mask-image: radial-gradient(ellipse 78% 72% at 50% 46%, #000 28%, transparent 82%);
+  z-index: -1;
+}
+
+/* Smooth top & bottom blend into the neighbouring sections */
+.sp.is-soft .companies-hub.soft-hub .sp-container::before,
+.sp.is-soft .companies-hub.soft-hub .sp-container::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 90px;
+  pointer-events: none;
+  z-index: -1;
+}
+.sp.is-soft .companies-hub.soft-hub .sp-container::before {
+  top: -72px;
+  background: linear-gradient(180deg, #f4f1ea 0%, transparent 100%);
+}
+.sp.is-soft .companies-hub.soft-hub .sp-container::after {
+  bottom: -80px;
+  background: linear-gradient(0deg, #f4f1ea 0%, transparent 100%);
 }
 
 .hub-orbit-cta {
