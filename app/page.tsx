@@ -444,20 +444,20 @@ export default function HomePage() {
             <p className="sp-about-eyebrow">{tx('Who We Are', 'من نحن')}</p>
             <h2>
               {tx(
-                'An agricultural group delivering plastics, irrigation, seeds, and crop inputs — with practical support for farmers.',
-                'مجموعة زراعية تقدّم البلاستيك والري والبذور ومستلزمات المحاصيل — مع دعم عملي للمزارعين.'
+                'At Al Kalthoum Agriculture Group we are more than partners in farming — we believe agriculture is the foundation of development and the future of generations.',
+                'في مجموعة الكلثوم الزراعية، لا نقتصر على كوننا شركاء في قطاع الزراعة، بل نؤمن بأن الزراعة هي أساس التنمية ومستقبل الأجيال.'
               )}
             </h2>
             <p className="sp-subtitle">
               {tx(
-                'Through decades of work, we focus on reliable inputs and solutions that help farmers improve yield and efficiency.',
-                'من خلال عقود من العمل، نركّز على مستلزمات موثوقة وحلول تساعد المزارعين على تحسين الإنتاجية والكفاءة.'
+                'Over more than 30 years of deep experience and hard work in the agricultural market, we have built bridges of mutual trust with our clients and become the distinctive name in delivering integrated agricultural solutions.',
+                'على مدار أكثر من 30 عاماً من الخبرة العميقة والعمل الجاد في السوق الزراعي، استطعنا أن نبني جسوراً من الثقة المتبادلة مع عملائنا، وأن نكون العلامة الفارقة في تقديم حلول زراعية متكاملة.'
               )}
             </p>
             <p className="sp-desc">
               {tx(
-                'Our portfolio spans Sona Plant agricultural plastics, irrigation systems, crop nutrition, and an AI assistant that helps identify plant issues and recommend matching products from our catalog.',
-                'تشمل محفظتنا بلاستيك سونا بلانت الزراعي وأنظمة الري وتغذية المحاصيل ومساعداً ذكياً يساعد على تحديد مشكلات النباتات واقتراح المنتجات المناسبة من كتالوجنا.'
+                'We stand with the farmer step by step, from seed to harvest, offering a complete, high-quality package.',
+                'نحن نرافق المزارع خطوة بخطوة من البذرة وحتى حصاد الثمار؛ حيث نقدم حزمة شاملة وعالية الجودة.'
               )}
             </p>
             <Link href="/about" className="soft-btn-orange">
