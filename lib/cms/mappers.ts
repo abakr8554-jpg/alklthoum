@@ -71,6 +71,8 @@ export function mapProduct(row: {
   applicationMethod: string
   applicationMethodAr: string
   aiRecommended: boolean
+  compositionJson?: string
+  unit?: string
 }): Product {
   return {
     id: row.id,
@@ -94,6 +96,8 @@ export function mapProduct(row: {
     applicationMethod: row.applicationMethod,
     applicationMethodAr: row.applicationMethodAr,
     aiRecommended: row.aiRecommended,
+    composition: parseJson(row.compositionJson ?? '[]', []),
+    unit: row.unit ?? '',
   }
 }
 

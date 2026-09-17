@@ -135,6 +135,32 @@ export default function ProductClient({ product, company, related, diseases }: P
 
       {/* Details */}
       <section className="product-details-tabs">
+        {product.composition && product.composition.length > 0 && (
+          <div className="detail-block">
+            <h2>{isAr ? 'التحليل المضمون' : 'Guaranteed Analysis'}</h2>
+            <div className="composition-table-wrap">
+              <table className="composition-table">
+                <thead>
+                  <tr>
+                    <th>{isAr ? 'العنصر' : 'Element'}</th>
+                    <th>{isAr ? 'الرمز' : 'Formula'}</th>
+                    <th>{product.unit ? `% ${product.unit}` : '%'}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {product.composition.map((c, i) => (
+                    <tr key={i}>
+                      <td>{isAr ? c.ar : c.en}</td>
+                      <td dir="ltr">{c.formula}</td>
+                      <td dir="ltr">{c.value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
         <div className="detail-block">
           <h2>{isAr ? 'المزايا' : 'Benefits'}</h2>
           <ul className="benefits-list">

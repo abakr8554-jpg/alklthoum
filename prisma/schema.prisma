@@ -65,6 +65,8 @@ model Product {
   usageInstructionsAr  String   @default("")
   applicationMethod    String   @default("")
   applicationMethodAr  String   @default("")
+  compositionJson      String   @default("[]")
+  unit                 String   @default("")
   aiRecommended        Boolean  @default(false)
   published            Boolean  @default(true)
   sortOrder            Int      @default(0)
