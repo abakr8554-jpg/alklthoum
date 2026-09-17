@@ -107,8 +107,8 @@ const PRODUCT_SECTIONS: {
   {
     cat: 'soil',
     img: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1400&q=80',
-    en: { name: 'Soil & Substrates', desc: 'Growing media and soil amendments for greenhouse and open field.' },
-    ar: { name: 'التربة والركائز', desc: 'وسائط زراعية ومحسنات التربة للبيوت المحمية والحقول.' },
+    en: { name: 'Soil & Substrates', desc: 'Optimized growing media and soil conditioners supporting strong root development.' },
+    ar: { name: 'التربة وبدائلها', desc: 'بيئات نمو ومحسنات تربة متطورة لدعم نمو جذري قوي.' },
   },
 ]
 
