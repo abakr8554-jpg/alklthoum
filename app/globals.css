@@ -1434,6 +1434,29 @@ html[lang='ar'] .footer-links span {
 .company-products-section { padding: 0 clamp(24px,8vw,140px) 100px; }
 .company-products-section .section-head { margin-bottom: 40px; }
 
+/* ─── Farm locations ──────────────────────────────────────── */
+.company-locations-section { padding: 0 clamp(24px,8vw,140px) 90px; }
+.company-locations-section .section-head { margin-bottom: 32px; }
+.locations-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px;
+}
+.location-card {
+  border: 1px solid var(--border); border-radius: 16px; background: #fff;
+  padding: 24px 26px; display: flex; flex-direction: column; gap: 12px;
+  transition: transform .25s, box-shadow .25s;
+}
+.location-card:hover { transform: translateY(-4px); box-shadow: 0 20px 56px rgba(23,59,43,.1); }
+.location-card-head { display: flex; align-items: center; gap: 10px; }
+.location-card-head svg { color: var(--brand-green); flex-shrink: 0; }
+.location-card-head h3 { margin: 0; font-size: 19px; font-weight: 600; letter-spacing: -.01em; }
+.location-card p { margin: 0; color: #516258; font-size: 14px; line-height: 1.7; flex: 1; }
+.location-map-link {
+  display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;
+  color: var(--brand-orange); font-size: 14px; font-weight: 600; text-decoration: none;
+  padding-top: 4px; transition: gap .2s;
+}
+.location-map-link:hover { gap: 12px; }
+
 /* ─── AI Assistant ────────────────────────────────────────── */
 .ai-hero {
   min-height: 380px; background: var(--ink);

@@ -31,6 +31,7 @@ model Company {
   logo          String    @default("/logo.png")
   coverImage    String    @default("")
   servicesJson  String    @default("[]") // JSON array
+  locationsJson String    @default("[]") // JSON array of farm sites
   email         String    @default("")
   phone         String    @default("")
   address       String    @default("")

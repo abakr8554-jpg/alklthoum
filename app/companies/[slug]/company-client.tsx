@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowUpRight, Mail, Phone, MapPin } from 'lucide-react'
+import { ArrowUpRight, Mail, Phone, MapPin, Navigation } from 'lucide-react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { useLang } from '@/lib/lang-context'
@@ -93,6 +93,30 @@ export default function CompanyClient({ company, companyProducts }: Props) {
           </aside>
         </div>
       </section>
+
+      {/* Farm locations */}
+      {company.locations && company.locations.length > 0 && (
+        <section className="company-locations-section">
+          <div className="section-head">
+            <h2 className="section-h2">{isAr ? 'مواقع المزارع' : 'Our Farms'}</h2>
+          </div>
+          <div className="locations-grid">
+            {company.locations.map((loc, i) => (
+              <div key={i} className="location-card">
+                <div className="location-card-head">
+                  <MapPin size={18} />
+                  <h3>{isAr ? loc.nameAr : loc.name}</h3>
+                </div>
+                <p>{isAr ? loc.addressAr : loc.address}</p>
+                <a href={loc.mapUrl} target="_blank" rel="noopener noreferrer" className="location-map-link">
+                  <Navigation size={14} />
+                  {isAr ? 'الاتجاهات على الخريطة' : 'Directions on map'}
+                </a>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Products */}
       {companyProducts.length > 0 && (

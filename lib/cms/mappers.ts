@@ -26,6 +26,7 @@ export function mapCompany(row: {
   address: string
   addressAr: string
   externalUrl: string | null
+  locationsJson?: string
 }): Company {
   return {
     id: row.id,
@@ -45,6 +46,7 @@ export function mapCompany(row: {
       address: row.address,
       addressAr: row.addressAr,
     },
+    locations: parseJson(row.locationsJson ?? '[]', []),
     externalUrl: row.externalUrl || undefined,
   }
 }

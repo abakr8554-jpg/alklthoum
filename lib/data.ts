@@ -17,6 +17,8 @@ export interface Company {
   coverImage: string
   services: { title: string; titleAr: string; desc: string; descAr: string }[]
   contact: { email: string; phone: string; address: string; addressAr: string; website?: string }
+  /** Optional physical locations (e.g. farm sites) with a maps link */
+  locations?: { name: string; nameAr: string; address: string; addressAr: string; mapUrl: string }[]
   externalUrl?: string
 }
 
@@ -159,13 +161,13 @@ export const companies: Company[] = [
     id: 'kalthoum-farms',
     slug: 'kalthoum-farms',
     name: 'Al Kalthoum Farms',
-    nameAr: 'مزارع الكلثوم',
-    tagline: 'Seeds & Agriculture',
-    taglineAr: 'البذور والزراعة',
+    nameAr: 'مزارع الكلثوم الزراعية',
+    tagline: 'From Seed to Harvest',
+    taglineAr: 'من البذرة حتى الثمرة',
     description:
-      'The first seed company in Egypt and a pioneer in agricultural development — hybrid seeds, nurseries, and large-scale farm projects.',
+      "From seed to harvest — a journey that begins with quality and ends with a product we're proud of. Al Kalthoum Farms is one of the group's agricultural-production arms, committed to delivering high-quality crops by selecting the best varieties and seeds, applying the latest cultivation, irrigation and nutrition methods, and monitoring crops all the way to harvest and packing. We work to precise standards that ensure outstanding productivity and quality meeting the needs of both local and export markets.",
     descriptionAr:
-      'أول شركة بذور في مصر ورائدة في التطوير الزراعي — بذور هجينة ومشاتل ومشاريع زراعية ضخمة.',
+      'من البذرة حتى الثمرة… رحلة تبدأ بالجودة وتنتهي بمنتج نفخر به. تُعد مزارع الكلثوم الزراعية أحد أذرع المجموعة في مجال الإنتاج الزراعي، حيث نحرص على تقديم محاصيل عالية الجودة من خلال اختيار أفضل الأصناف والبذور، وتطبيق أحدث أساليب الزراعة والري والتغذية، مع المتابعة المستمرة للمحاصيل حتى الحصاد والتجهيز. نعمل وفق معايير دقيقة تضمن إنتاجية متميزة وجودة تلبي متطلبات الأسواق المحلية والتصديرية.',
     logo: '/logos/clean/kalthoum-farms.png',
     coverImage:
       '/covers/kalthoum-farms.svg',
@@ -183,7 +185,41 @@ export const companies: Company[] = [
         descAr: 'بما في ذلك أكبر مشتل تطعيم في مصر.',
       },
     ],
-    contact: GROUP_CONTACT,
+    contact: {
+      email: 'info@alkalthoum.com',
+      phone: '+201002187972',
+      address: 'Beni Suef · Minya · Alexandria Desert Road, Egypt',
+      addressAr: 'بني سويف · المنيا · طريق إسكندرية الصحراوي، مصر',
+    },
+    locations: [
+      {
+        name: 'Beni Suef Farm',
+        nameAr: 'مزرعة بني سويف',
+        address:
+          'West Assiut Road, after Qasr El-Basel and the silos, opposite the abandoned Samasta checkpoint, Dishdasha Antiquities Road, Beni Suef.',
+        addressAr:
+          'طريق أسيوط الغربي، بعد قصر الباسل وبعد الصوامع، أمام كمين سمسطا المهجور، طريق آثار دشداشة، بني سويف.',
+        mapUrl: 'https://maps.google.com/?q=29.005140,30.798796',
+      },
+      {
+        name: 'Al Tahaddi Farm',
+        nameAr: 'مزرعة التحدي',
+        address:
+          'Alexandria Desert Road, Al-Tahaddi Road, Al-Nagah village entrance, opposite Sobhy petrol station.',
+        addressAr:
+          'مصر إسكندرية الصحراوي، طريق التحدي، مدخل قرية النجاح، أمام بنزينة صبحي.',
+        mapUrl: 'https://maps.google.com/?q=30.524231,30.464500',
+      },
+      {
+        name: 'Minya Farm',
+        nameAr: 'مزرعة المنيا',
+        address:
+          'West Assiut Road, ~20 km after the Minya toll gate, after Dakahlia Agriculture Co., Egyptian Countryside entrance, then 17 km down the track.',
+        addressAr:
+          'طريق أسيوط الغربي، بعد بوابة كارتة المنيا بـ 20 كيلو تقريبًا، بعد شركة الدقهلية زراعي، مدخل الريف المصري، يدخل المدق جوه 17 كم.',
+        mapUrl: 'https://maps.google.com/?q=27.936069,30.566486',
+      },
+    ],
   },
   {
     id: 'fresh-fruit',
