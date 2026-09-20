@@ -229,9 +229,9 @@ export const companies: Company[] = [
     tagline: 'Fresh Produce & Export',
     taglineAr: 'المنتجات الطازجة والتصدير',
     description:
-      'Fresh Fruit Company — expanding beyond Egyptian borders with branches in Lebanon and Iraq to serve the regional agricultural sector.',
+      'Fresh Fruit is a leading agricultural company headquartered in Beirut, operating across all continents — Asia, Africa, America, and Europe. With a strong commitment to innovation and sustainability, we specialize in high-quality seeds, fertilizers, agricultural plastic for greenhouses, irrigation tools, and peat moss — all carefully selected to meet the diverse needs of global markets. Our mission is to empower farmers by offering them the best agricultural products and solutions, helping them increase productivity and overcome challenges in an ever-evolving industry. We stand by the farmer at every stage, from seed selection to harvest, offering climate-adapted seeds, advanced fertilizers, and efficient irrigation technologies for higher yields, better crop quality, and sustainable farming.',
     descriptionAr:
-      'شركة فريش فروت — التوسع خارج الحدود المصرية بفروع في لبنان والعراق لخدمة القطاع الزراعي الإقليمي.',
+      'فريش فروت شركة زراعية رائدة مقرها بيروت، تعمل في جميع القارات — آسيا وأفريقيا وأمريكا وأوروبا. بالتزامنا القوي بالابتكار والاستدامة، نتخصص في توفير بذور عالية الجودة وأسمدة وبلاستيك زراعي للصوب وأدوات ري وبيتموس — كلها مختارة بعناية لتلبية احتياجات الأسواق العالمية المتنوعة. رسالتنا هي تمكين المزارعين بتقديم أفضل المنتجات والحلول الزراعية لهم، ومساعدتهم على زيادة إنتاجيتهم وتجاوز التحديات في صناعة دائمة التطور. نقف بجانب المزارع في كل مرحلة، من اختيار البذرة حتى الحصاد، عبر توفير بذور متأقلمة مع المناخ وأسمدة متطورة وتقنيات ري فعّالة لتحقيق إنتاجية أعلى وجودة محاصيل أفضل وزراعة مستدامة.',
     logo: '/logos/clean/fresh-fruit.png',
     coverImage:
       '/covers/fresh-fruit.svg',
@@ -249,7 +249,12 @@ export const companies: Company[] = [
         descAr: 'عمليات في لبنان والعراق وعبر شبكة المجموعة.',
       },
     ],
-    contact: GROUP_CONTACT,
+    contact: {
+      email: 'Fawzyabboud@freshfruites.com',
+      phone: '+9613374809',
+      address: 'Hourch Tabet, Facing Hilton Hotel, Central Business Center, 5th Floor, Beirut, Lebanon',
+      addressAr: 'حرش تابت، مقابل فندق هيلتون، مركز الأعمال المركزي، الطابق الخامس، بيروت، لبنان',
+    },
   },
   {
     id: 'sona-plast',
