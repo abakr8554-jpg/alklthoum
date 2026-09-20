@@ -327,8 +327,10 @@ export const companies: Company[] = [
     nameAr: 'سونا دريب',
     tagline: 'Irrigation Systems',
     taglineAr: 'أنظمة الري',
-    description: 'Advanced drip irrigation systems for efficient water management in agriculture.',
-    descriptionAr: 'أنظمة ري بالتنقيط متطورة لإدارة المياه بكفاءة في الزراعة.',
+    description:
+      "Sona Drip for manufacturing all types of drip irrigation pipes. Operating with global machinery equipped with the latest European technologies to meet our customers' needs for all crops.",
+    descriptionAr:
+      'سونا دريب لتصنيع جميع أنواع أنابيب الري بالتنقيط. تعمل بآلات عالمية مزودة بأحدث التقنيات الأوروبية لتلبية احتياجات عملائنا لجميع المحاصيل.',
     logo: '/logos/clean/logo-2.png',
     coverImage: '/covers/sona-drip.svg',
     services: [
@@ -339,7 +341,12 @@ export const companies: Company[] = [
         descAr: 'أنظمة ري حديثة بالتنقيط والري الدقيق.',
       }
     ],
-    contact: GROUP_CONTACT,
+    contact: {
+      phone: '201093309222',
+      email: 'info@sonaplast.eg.com',
+      address: 'Industrial Zone, Egypt',
+      addressAr: 'المنطقة الصناعية، مصر',
+    },
   }
 ]
 
