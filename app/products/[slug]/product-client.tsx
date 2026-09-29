@@ -107,8 +107,8 @@ export default function ProductClient({ product, company, related, diseases }: P
             </div>
           )}
 
-          {/* Target diseases */}
-          {diseases.length > 0 && (
+          {/* Target diseases — hidden for seeds */}
+          {diseases.length > 0 && product.category !== 'seeds' && (
             <div className="product-tags-row">
               <Target size={14} />
               <div>
