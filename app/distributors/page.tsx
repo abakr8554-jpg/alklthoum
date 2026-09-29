@@ -13,12 +13,10 @@ import { useLang } from '@/lib/lang-context'
 import { distributors, getNearestDistributors, type Distributor } from '@/lib/data'
 
 const GOVERNORATE_OPTIONS = [
-  'Giza', 'Cairo', 'Alexandria', 'Tanta', 'Assiut', 'Ismailia',
-  'Dakahlia', 'Sharqia', 'Qalyubia', 'Beheira',
+  'Desert Road, Al-Nahda & Al-Bangar', 'Upper Egypt', 'Delta', 'Western Region & Al-Bostan',
 ]
 const GOVERNORATE_OPTIONS_AR = [
-  'الجيزة', 'القاهرة', 'الإسكندرية', 'طنطا', 'أسيوط', 'الإسماعيلية',
-  'الدقهلية', 'الشرقية', 'القليوبية', 'البحيرة',
+  'الصحراوي والنهضة والبنجر', 'الصعيد', 'الدلتا', 'المنطقة الغربية والبستان',
 ]
 
 type GeoState = 'idle' | 'loading' | 'success' | 'denied'
@@ -198,7 +196,7 @@ export default function DistributorsPage() {
           value={selectedGovernorate}
           onChange={(e) => setSelectedGovernorate(e.target.value)}
         >
-          <option value="">{isAr ? 'كل المحافظات' : 'All Governorates'}</option>
+          <option value="">{isAr ? 'كل المناطق' : 'All Regions'}</option>
           {GOVERNORATE_OPTIONS.map((g, i) => (
             <option key={g} value={g}>{isAr ? GOVERNORATE_OPTIONS_AR[i] : g}</option>
           ))}
@@ -238,7 +236,9 @@ export default function DistributorsPage() {
                   <div>
                     <h3>{isAr ? dist.nameAr : dist.name}</h3>
                     <p className="dist-region">
-                      {isAr ? dist.wilayaAr : dist.wilaya} — {isAr ? dist.regionAr : dist.region}
+                      {dist.wilaya && dist.wilaya !== dist.region
+                        ? `${isAr ? dist.wilayaAr : dist.wilaya} — ${isAr ? dist.regionAr : dist.region}`
+                        : isAr ? dist.regionAr : dist.region}
                     </p>
                   </div>
                 </div>
@@ -297,8 +297,8 @@ export default function DistributorsPage() {
                 <span>{isAr ? 'موزع معتمد' : 'Authorised Distributors'}</span>
               </div>
               <div>
-                <strong>6</strong>
-                <span>{isAr ? 'محافظة' : 'Governorates'}</span>
+                <strong>{new Set(distributors.map((d) => d.regionAr)).size}</strong>
+                <span>{isAr ? 'مناطق تغطية' : 'Coverage Regions'}</span>
               </div>
               <div>
                 <strong>24/7</strong>
