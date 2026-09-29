@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect } from 'react'
 import Link from 'next/link'
-import { ArrowUpRight, Search, SlidersHorizontal, X } from 'lucide-react'
+import { ArrowUpRight, Search, X } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -40,7 +40,6 @@ export default function ProductsClient({ products }: { products: Product[] }) {
   const [activeCategory, setActiveCategory] = useState<ProductCategory | 'all'>('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCrop, setSelectedCrop] = useState<string | null>(null)
-  const [showFilters, setShowFilters] = useState(false)
 
   useEffect(() => {
     const cat = searchParams.get('cat') as ProductCategory | null
@@ -53,11 +52,10 @@ export default function ProductsClient({ products }: { products: Product[] }) {
   const chooseCategory = (cat: ProductCategory | 'all') => {
     setActiveCategory(cat)
     setSelectedCrop(null)
-    if (cat !== 'seeds') setShowFilters(false)
   }
 
-  // The crop filter shows automatically for seeds, or when toggled on elsewhere
-  const cropFilterOpen = activeCategory === 'seeds' || showFilters
+  // The crop filter shows only for seeds
+  const cropFilterOpen = activeCategory === 'seeds'
 
   // Only show crops we actually stock seeds for
   const availableCrops = useMemo(() => {
@@ -149,16 +147,6 @@ export default function ProductsClient({ products }: { products: Product[] }) {
           ))}
         </div>
 
-        {/* Crop filter toggle — hidden for seeds, where the crop filter shows automatically */}
-        {activeCategory !== 'seeds' && (
-          <button
-            className={`filter-toggle-btn ${showFilters ? 'active' : ''}`}
-            onClick={() => setShowFilters(!showFilters)}
-          >
-            <SlidersHorizontal size={14} />
-            {isAr ? 'تصفية' : 'Filter'}
-          </button>
-        )}
       </section>
 
       {/* Crop filter dropdown */}
