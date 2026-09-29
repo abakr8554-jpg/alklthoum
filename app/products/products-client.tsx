@@ -41,6 +41,16 @@ export default function ProductsClient({ products }: { products: Product[] }) {
     }
   }, [searchParams])
 
+  // Choosing a category resets the crop filter (crops only apply to seeds)
+  const chooseCategory = (cat: ProductCategory | 'all') => {
+    setActiveCategory(cat)
+    setSelectedCrop(null)
+    if (cat !== 'seeds') setShowFilters(false)
+  }
+
+  // The crop filter shows automatically for seeds, or when toggled on elsewhere
+  const cropFilterOpen = activeCategory === 'seeds' || showFilters
+
   const filtered = useMemo(() => {
     return products.filter((p) => {
       const matchCat = activeCategory === 'all' || p.category === activeCategory
@@ -107,7 +117,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
         <div className="cat-pills">
           <button
             className={activeCategory === 'all' ? 'active' : ''}
-            onClick={() => setActiveCategory('all')}
+            onClick={() => chooseCategory('all')}
           >
             {isAr ? 'الكل' : 'All'}
           </button>
@@ -115,25 +125,27 @@ export default function ProductsClient({ products }: { products: Product[] }) {
             <button
               key={cat}
               className={activeCategory === cat ? 'active' : ''}
-              onClick={() => setActiveCategory(cat)}
+              onClick={() => chooseCategory(cat)}
             >
               {isAr ? categoryLabels[cat].ar : categoryLabels[cat].en}
             </button>
           ))}
         </div>
 
-        {/* Crop filter toggle */}
-        <button
-          className={`filter-toggle-btn ${showFilters ? 'active' : ''}`}
-          onClick={() => setShowFilters(!showFilters)}
-        >
-          <SlidersHorizontal size={14} />
-          {isAr ? 'تصفية' : 'Filter'}
-        </button>
+        {/* Crop filter toggle — hidden for seeds, where the crop filter shows automatically */}
+        {activeCategory !== 'seeds' && (
+          <button
+            className={`filter-toggle-btn ${showFilters ? 'active' : ''}`}
+            onClick={() => setShowFilters(!showFilters)}
+          >
+            <SlidersHorizontal size={14} />
+            {isAr ? 'تصفية' : 'Filter'}
+          </button>
+        )}
       </section>
 
       {/* Crop filter dropdown */}
-      {showFilters && (
+      {cropFilterOpen && (
         <div className="crop-filter-panel">
           <p>{isAr ? 'تصفية حسب المحصول:' : 'Filter by crop:'}</p>
           <div className="crop-pills">
