@@ -1117,18 +1117,21 @@ html[lang='ar'] .footer-links span {
 .page-hero:first-child { margin-top: 80px; }
 
 .page-hero-bg {
-  position: absolute; inset: 0;
+  position: absolute; inset: 0; z-index: 0;
   background-size: cover; background-position: center;
   transform: scale(1.04); transition: transform 8s ease-out;
 }
 .page-hero:hover .page-hero-bg { transform: scale(1); }
 .page-hero-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(90deg, rgba(13,48,34,.88) 0%, rgba(13,48,34,.3) 100%),
-              linear-gradient(0deg, rgba(13,48,34,.7) 0%, transparent 60%);
+  position: absolute; inset: 0; z-index: 1;
+  /* Direction-agnostic scrim: flat tint + strong darkening at the bottom
+     where the (bottom-aligned) hero text sits, so copy stays legible */
+  background:
+    linear-gradient(0deg, rgba(13,48,34,.92) 0%, rgba(13,48,34,.55) 42%, rgba(13,48,34,.32) 100%),
+    rgba(13,48,34,.28);
 }
 .page-hero-content {
-  position: relative; z-index: 1;
+  position: relative; z-index: 2;
   padding: clamp(50px,7vw,100px) clamp(24px,8vw,140px);
   max-width: 780px;
 }
