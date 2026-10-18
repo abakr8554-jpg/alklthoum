@@ -101,8 +101,8 @@ const PRODUCT_SECTIONS: {
   {
     cat: 'fertilizers-pesticides',
     img: 'https://images.unsplash.com/photo-1598512752271-33f913a5af13?auto=format&fit=crop&w=1400&q=80',
-    en: { name: 'Fertilizers & Protection', desc: 'Crop nutrition and protection programs for productive harvests.' },
-    ar: { name: 'الأسمدة والحماية', desc: 'برامج تغذية وحماية المحاصيل لحصاد منتج.' },
+    en: { name: 'Fertilizers', desc: 'Crop nutrition programs for productive harvests.' },
+    ar: { name: 'الأسمدة', desc: 'برامج تغذية المحاصيل لحصاد منتج.' },
   },
   {
     cat: 'soil',
