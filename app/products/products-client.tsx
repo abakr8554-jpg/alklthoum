@@ -41,6 +41,8 @@ export default function ProductsClient({ products }: { products: Product[] }) {
   const [activeCategory, setActiveCategory] = useState<ProductCategory | 'all'>('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCrop, setSelectedCrop] = useState<string | null>(null)
+  // Fertilizer sub-type filter: 'liquid' (W/V%) or 'powder' (W/W%)
+  const [selectedFertType, setSelectedFertType] = useState<'liquid' | 'powder' | null>(null)
 
   // Keep the active category in sync with the ?cat= URL param so that
   // returning from a product detail page lands back in its section.
@@ -54,11 +56,13 @@ export default function ProductsClient({ products }: { products: Product[] }) {
   const chooseCategory = (cat: ProductCategory | 'all') => {
     setActiveCategory(cat)
     setSelectedCrop(null)
+    setSelectedFertType(null)
     router.replace(cat === 'all' ? '/products' : `/products?cat=${cat}`, { scroll: false })
   }
 
-  // The crop filter shows only for seeds
+  // The crop filter shows only for seeds; the type filter only for fertilizers
   const cropFilterOpen = activeCategory === 'seeds'
+  const fertFilterOpen = activeCategory === 'fertilizers-pesticides'
 
   // Only show crops we actually stock seeds for
   const availableCrops = useMemo(() => {
@@ -82,9 +86,12 @@ export default function ProductsClient({ products }: { products: Product[] }) {
         desc.toLowerCase().includes(searchQuery.toLowerCase())
       const matchCrop =
         !selectedDef || selectedDef.match.some((m) => p.targetCrops.includes(m))
-      return matchCat && matchSearch && matchCrop
+      const matchFertType =
+        !selectedFertType ||
+        (selectedFertType === 'liquid' ? p.unit === 'W/V%' : p.unit === 'W/W%')
+      return matchCat && matchSearch && matchCrop && matchFertType
     })
-  }, [products, activeCategory, searchQuery, selectedCrop, isAr])
+  }, [products, activeCategory, searchQuery, selectedCrop, selectedFertType, isAr])
 
   return (
     <main lang={isAr ? 'ar' : 'en'} dir={dir} id="top">
@@ -176,12 +183,39 @@ export default function ProductsClient({ products }: { products: Product[] }) {
         </div>
       )}
 
+      {/* Fertilizer type filter */}
+      {fertFilterOpen && (
+        <div className="crop-filter-panel">
+          <p>{isAr ? 'تصفية حسب النوع:' : 'Filter by type:'}</p>
+          <div className="crop-pills">
+            <button
+              className={!selectedFertType ? 'active' : ''}
+              onClick={() => setSelectedFertType(null)}
+            >
+              {isAr ? 'الكل' : 'All'}
+            </button>
+            <button
+              className={selectedFertType === 'liquid' ? 'active' : ''}
+              onClick={() => setSelectedFertType(selectedFertType === 'liquid' ? null : 'liquid')}
+            >
+              {isAr ? 'سائل' : 'Liquid'}
+            </button>
+            <button
+              className={selectedFertType === 'powder' ? 'active' : ''}
+              onClick={() => setSelectedFertType(selectedFertType === 'powder' ? null : 'powder')}
+            >
+              {isAr ? 'بودر' : 'Powder'}
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Products grid */}
       <section className="products-grid-section">
         {filtered.length === 0 ? (
           <div className="empty-state">
             <p>{isAr ? 'لا توجد منتجات تطابق بحثك.' : 'No products match your search.'}</p>
-            <button onClick={() => { setActiveCategory('all'); setSearchQuery(''); setSelectedCrop(null) }}>
+            <button onClick={() => { setActiveCategory('all'); setSearchQuery(''); setSelectedCrop(null); setSelectedFertType(null) }}>
               {isAr ? 'إعادة التعيين' : 'Reset filters'}
             </button>
           </div>
