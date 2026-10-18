@@ -706,43 +706,6 @@ export const products: Product[] = [
     applicationMethod: 'Mix into substrate or use as standalone.',
     applicationMethodAr: 'الخلط في الركيزة أو الاستخدام المستقل.',
   },
-  {
-    id: 'coco-peat-compressed',
-    slug: 'coco-peat-compressed',
-    companyId: 'kalthoum-farms',
-    category: 'soil',
-    name: 'Compressed Coco Peat Blocks',
-    nameAr: 'بلوكات الكوكوبيت المضغوطة',
-    shortDescription: 'Organic coco peat growing medium with excellent water retention.',
-    shortDescriptionAr: 'وسط نمو كوكوبيت عضوي بقدرة احتجاز مياه ممتازة.',
-    description:
-      'Premium washed and buffered coco peat compressed blocks. Low EC, pH 5.5–6.5, high water retention capacity, and excellent root aeration.',
-    descriptionAr:
-      'بلوكات كوكوبيت مضغوطة مغسولة ومعالجة مميزة. EC منخفض، pH 5.5–6.5، قدرة احتجاز مياه عالية وتهوية جذور ممتازة.',
-    images: [
-      'https://images.unsplash.com/photo-1472141521881-95d0e87e2e39?auto=format&fit=crop&w=800&q=80',
-    ],
-    targetCrops: ['Tomato', 'Pepper', 'Strawberry', 'Herbs'],
-    targetCropsAr: ['الطماطم', 'الفلفل', 'الفراولة', 'الأعشاب'],
-    targetDiseases: [],
-    benefits: [
-      'EC < 0.5 mS/cm after washing',
-      'pH 5.5–6.5 ideal for most crops',
-      'Expands 5–8× when hydrated',
-      'Sustainable — organic byproduct',
-    ],
-    benefitsAr: [
-      'EC < 0.5 mS/cm بعد الغسيل',
-      'pH 5.5–6.5 مثالي لمعظم المحاصيل',
-      'يتمدد 5–8 أضعاف عند الترطيب',
-      'مستدام — منتج ثانوي عضوي',
-    ],
-    usageInstructions: 'Hydrate block with 20–25L water before use. Mix with perlite for hydroponics.',
-    usageInstructionsAr: 'رطب البلوك بـ 20–25 لتر ماء قبل الاستخدام. اخلط مع البيرلايت للزراعة المائية.',
-    applicationMethod: 'Use as growing medium in pots, bags, or slabs.',
-    applicationMethodAr: 'استخدم كوسط نمو في الأوعية أو الأكياس أو الألواح.',
-    aiRecommended: true,
-  },
   // ── Seeds: Cucumber & Tomato variety catalogue (Al Kalthoum) ──
   {
     id: 'cucumber-nouria',
