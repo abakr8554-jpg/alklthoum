@@ -6,13 +6,13 @@ const companyOld = `{
     id: 'diamond',
     slug: 'diamond',
     name: 'Diamond for Fertilizers',
-    nameAr: 'دايموند للأسمدة',
+    nameAr: 'ديموند للأسمدة',
     tagline: 'Fertilizers',
     taglineAr: 'الأسمدة',
     description:
       'Diamond Fertilizer Factory — among the highest fertilizer technology globally, producing compounds tailored to each crop for maximum productivity.',
     descriptionAr:
-      'مصنع دايموند للأسمدة — من أعلى تكنولوجيا الأسمدة عالمياً، لتصنيع مركبات تناسب كل محصول لأقصى إنتاجية.',
+      'مصنع ديموند للأسمدة — من أعلى تكنولوجيا الأسمدة عالمياً، لتصنيع مركبات تناسب كل محصول لأقصى إنتاجية.',
     logo: '/logos/clean/diamond.png',
     coverImage:
       'https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=1600&q=85',
@@ -37,7 +37,7 @@ const companyNew = `{
     id: 'diamond',
     slug: 'diamond',
     name: 'Diamond for Fertilizers & Pesticides',
-    nameAr: 'دايموند للأسمدة والمبيدات',
+    nameAr: 'ديموند للأسمدة والمبيدات',
     tagline: 'Leading Fertilizer Industry in the Middle East',
     taglineAr: 'رواد صناعة الأسمدة في الشرق الأوسط',
     description:

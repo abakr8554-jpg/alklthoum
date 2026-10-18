@@ -24,7 +24,7 @@ const generateProducts = () => {
             shortDescription: `${categoryName} series fertilizer.`,
             shortDescriptionAr: `سماد من سلسلة ${categoryName}.`,
             description: `High quality ${name} fertilizer from Diamond Fertilizers. ${npk}`,
-            descriptionAr: `سماد ${name} عالي الجودة من شركة دايموند للأسمدة. ${npk}`,
+            descriptionAr: `سماد ${name} عالي الجودة من شركة ديموند للأسمدة. ${npk}`,
             images: [
               'https://images.unsplash.com/photo-1595855759920-86582396756a?auto=format&fit=crop&w=800&q=80' // default fertilizer image
             ],
