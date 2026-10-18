@@ -102,7 +102,7 @@ export const categoryLabels: Record<ProductCategory, { en: string; ar: string }>
   'seeds': { en: 'Seeds', ar: 'البذور' },
   'sona-plant-plastic': { en: 'Sona Plant Plastic', ar: 'سونا بلانت بلاستيك' },
   'hoses': { en: 'Hoses', ar: 'الخراطيم' },
-  'fertilizers-pesticides': { en: 'Fertilizers & Pesticides', ar: 'الأسمدة والمبيدات' },
+  'fertilizers-pesticides': { en: 'Fertilizers', ar: 'الأسمدة' },
   'soil': { en: 'Soil', ar: 'التربة' },
 }
 
