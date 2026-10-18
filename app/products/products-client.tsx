@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect } from 'react'
 import Link from 'next/link'
 import { ArrowUpRight, Search, X } from 'lucide-react'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { useLang } from '@/lib/lang-context'
@@ -37,21 +37,24 @@ const CROP_DEFS: CropDef[] = [
 export default function ProductsClient({ products }: { products: Product[] }) {
   const { isAr, dir } = useLang()
   const searchParams = useSearchParams()
+  const router = useRouter()
   const [activeCategory, setActiveCategory] = useState<ProductCategory | 'all'>('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCrop, setSelectedCrop] = useState<string | null>(null)
 
+  // Keep the active category in sync with the ?cat= URL param so that
+  // returning from a product detail page lands back in its section.
   useEffect(() => {
     const cat = searchParams.get('cat') as ProductCategory | null
-    if (cat && categories.includes(cat)) {
-      setActiveCategory(cat)
-    }
+    setActiveCategory(cat && categories.includes(cat) ? cat : 'all')
   }, [searchParams])
 
   // Choosing a category resets the crop filter (crops only apply to seeds)
+  // and records the section in the URL so Back returns to it.
   const chooseCategory = (cat: ProductCategory | 'all') => {
     setActiveCategory(cat)
     setSelectedCrop(null)
+    router.replace(cat === 'all' ? '/products' : `/products?cat=${cat}`, { scroll: false })
   }
 
   // The crop filter shows only for seeds

@@ -28,7 +28,7 @@ export default function ProductClient({ product, company, related, diseases }: P
       <div className="breadcrumb">
         <Link href="/">{isAr ? 'الرئيسية' : 'Home'}</Link>
         <span>/</span>
-        <Link href="/products">{isAr ? 'المنتجات' : 'Products'}</Link>
+        <Link href={`/products?cat=${product.category}`}>{isAr ? 'المنتجات' : 'Products'}</Link>
         <span>/</span>
         <span>{isAr ? product.nameAr : product.name}</span>
       </div>
