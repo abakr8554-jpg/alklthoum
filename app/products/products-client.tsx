@@ -126,6 +126,21 @@ export default function ProductsClient({ products }: { products: Product[] }) {
   // Inside Seeds, show crop cards until a crop is chosen
   const showCropCards = activeCategory === 'seeds' && !selectedCrop && !searchQuery
 
+  // Fertilizer type cards (liquid / powder), each with a representative photo
+  const fertTypeCards = useMemo(() => {
+    const defs = [
+      { key: 'liquid' as const, en: 'Liquid', ar: 'سائل', unit: 'W/V%' },
+      { key: 'powder' as const, en: 'Powder', ar: 'بودر', unit: 'W/W%' },
+    ]
+    return defs.map((d) => {
+      const match = products.find(
+        (p) => p.category === 'fertilizers-pesticides' && p.unit === d.unit && p.images[0],
+      )
+      return { ...d, img: match?.images[0] || '/placeholder-product.jpg' }
+    })
+  }, [products])
+  const showFertCards = activeCategory === 'fertilizers-pesticides' && !selectedFertType && !searchQuery
+
   const filtered = useMemo(() => {
     const selectedDef = selectedCrop ? CROP_DEFS.find((d) => d.en === selectedCrop) : null
     return products.filter((p) => {
@@ -251,30 +266,41 @@ export default function ProductsClient({ products }: { products: Product[] }) {
         </div>
       )}
 
-      {/* Fertilizer type filter */}
-      {fertFilterOpen && (
-        <div className="crop-filter-panel">
-          <p>{isAr ? 'تصفية حسب النوع:' : 'Filter by type:'}</p>
-          <div className="crop-pills">
-            <button
-              className={!selectedFertType ? 'active' : ''}
-              onClick={() => setSelectedFertType(null)}
-            >
-              {isAr ? 'الكل' : 'All'}
-            </button>
-            <button
-              className={selectedFertType === 'liquid' ? 'active' : ''}
-              onClick={() => setSelectedFertType(selectedFertType === 'liquid' ? null : 'liquid')}
-            >
-              {isAr ? 'سائل' : 'Liquid'}
-            </button>
-            <button
-              className={selectedFertType === 'powder' ? 'active' : ''}
-              onClick={() => setSelectedFertType(selectedFertType === 'powder' ? null : 'powder')}
-            >
-              {isAr ? 'بودر' : 'Powder'}
-            </button>
+      {/* Fertilizer type cards — pick a type to see its products */}
+      {showFertCards && (
+        <section className="products-cards-section">
+          <p className="crop-cards-title">{isAr ? 'اختر النوع:' : 'Choose a type:'}</p>
+          <div className="crop-cards-grid fert-cards-grid">
+            {fertTypeCards.map((t) => (
+              <button
+                key={t.key}
+                type="button"
+                className="crop-card"
+                onClick={() => setSelectedFertType(t.key)}
+              >
+                <div className="crop-card-media">
+                  <img src={t.img} alt={isAr ? t.ar : t.en} loading="lazy" />
+                </div>
+                <span className="crop-card-name">{isAr ? t.ar : t.en}</span>
+              </button>
+            ))}
           </div>
+        </section>
+      )}
+
+      {/* Active fertilizer type bar — back to the type cards */}
+      {fertFilterOpen && selectedFertType && (
+        <div className="crop-active-bar">
+          <button className="crop-back-btn" onClick={() => setSelectedFertType(null)}>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden
+              style={{ transform: isAr ? 'scaleX(1)' : 'scaleX(-1)' }}>
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+            {isAr ? 'كل الأنواع' : 'All types'}
+          </button>
+          <span className="crop-active-name">
+            {selectedFertType === 'liquid' ? (isAr ? 'سائل' : 'Liquid') : (isAr ? 'بودر' : 'Powder')}
+          </span>
         </div>
       )}
 
@@ -318,7 +344,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
       )}
 
       {/* Products grid */}
-      {!showCards && !showCropCards && (
+      {!showCards && !showCropCards && !showFertCards && (
       <section className="products-grid-section">
         {filtered.length === 0 ? (
           <div className="empty-state">

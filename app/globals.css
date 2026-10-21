@@ -1236,6 +1236,9 @@ html[lang='ar'] .footer-links span {
 }
 @media (max-width: 900px) { .crop-cards-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 620px) { .crop-cards-grid { grid-template-columns: repeat(2, 1fr); } }
+/* Only two fertilizer type cards — keep them larger */
+.fert-cards-grid { grid-template-columns: repeat(2, minmax(0, 320px)); }
+@media (max-width: 620px) { .fert-cards-grid { grid-template-columns: repeat(2, 1fr); } }
 
 /* Active-crop back bar */
 .crop-active-bar {
