@@ -34,6 +34,45 @@ const CROP_DEFS: CropDef[] = [
   { en: 'Bean', ar: 'الفاصوليا', match: ['Bean'] },
 ]
 
+// Category landing cards (shown before any category is picked)
+const CATEGORY_CARDS: {
+  cat: ProductCategory
+  img: string
+  en: { name: string; desc: string }
+  ar: { name: string; desc: string }
+}[] = [
+  {
+    cat: 'seeds',
+    img: 'https://images.unsplash.com/photo-1615671524827-c1fe3973b648?auto=format&fit=crop&w=1400&q=80',
+    en: { name: 'Seeds', desc: 'Hybrid varieties for tomatoes, peppers, watermelon and more.' },
+    ar: { name: 'البذور', desc: 'أصناف هجينة للطماطم والفلفل والبطيخ والمزيد.' },
+  },
+  {
+    cat: 'sona-plant-plastic',
+    img: '/images/categories/plastic.png',
+    en: { name: 'Sona Plant Plastic', desc: 'Greenhouse covers, mulch films, and high-performance agricultural plastics.' },
+    ar: { name: 'سونا بلانت بلاستيك', desc: 'أغطية بيوت محمية وأفلام تغطية وبلاستيك زراعي عالي الأداء.' },
+  },
+  {
+    cat: 'hoses',
+    img: '/images/categories/hoses.png',
+    en: { name: 'Hoses & Irrigation', desc: 'Precision drip systems and water management solutions.' },
+    ar: { name: 'الخراطيم والري', desc: 'أنظمة تنقيط دقيقة وحلول إدارة المياه.' },
+  },
+  {
+    cat: 'fertilizers-pesticides',
+    img: 'https://images.unsplash.com/photo-1598512752271-33f913a5af13?auto=format&fit=crop&w=1400&q=80',
+    en: { name: 'Fertilizers', desc: 'Crop nutrition programs for productive harvests.' },
+    ar: { name: 'الأسمدة', desc: 'برامج تغذية المحاصيل لحصاد منتج.' },
+  },
+  {
+    cat: 'soil',
+    img: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1400&q=80',
+    en: { name: 'Soil & Substrates', desc: 'Optimized growing media and soil conditioners supporting strong root development.' },
+    ar: { name: 'التربة وبدائلها', desc: 'بيئات نمو ومحسنات تربة متطورة لدعم نمو جذري قوي.' },
+  },
+]
+
 export default function ProductsClient({ products }: { products: Product[] }) {
   const { isAr, dir } = useLang()
   const searchParams = useSearchParams()
@@ -63,6 +102,9 @@ export default function ProductsClient({ products }: { products: Product[] }) {
   // The crop filter shows only for seeds; the type filter only for fertilizers
   const cropFilterOpen = activeCategory === 'seeds'
   const fertFilterOpen = activeCategory === 'fertilizers-pesticides'
+
+  // Landing view: show the category cards until a category is picked (or a search is typed)
+  const showCards = activeCategory === 'all' && !searchQuery
 
   // Only show crops we actually stock seeds for
   const availableCrops = useMemo(() => {
@@ -210,7 +252,47 @@ export default function ProductsClient({ products }: { products: Product[] }) {
         </div>
       )}
 
+      {/* Category landing cards */}
+      {showCards && (
+        <section className="products-cards-section">
+          <div className="divisions-grid">
+            {CATEGORY_CARDS.map((p, i) => {
+              const wide = i === CATEGORY_CARDS.length - 1 && CATEGORY_CARDS.length % 2 === 1
+              return (
+                <button
+                  key={p.cat}
+                  type="button"
+                  onClick={() => chooseCategory(p.cat)}
+                  className={`division-card division-card-btn ${wide ? 'is-wide' : ''}`}
+                >
+                  <div className="division-media">
+                    <div className="division-media-frame">
+                      <img src={p.img} alt={isAr ? p.ar.name : p.en.name} loading="lazy" />
+                    </div>
+                  </div>
+                  <div className="division-copy">
+                    <div className="division-meta">
+                      <span className="division-index">{String(i + 1).padStart(2, '0')}</span>
+                      <span className="division-rule" aria-hidden />
+                    </div>
+                    <h3>{isAr ? p.ar.name : p.en.name}</h3>
+                    <p>{isAr ? p.ar.desc : p.en.desc}</p>
+                    <span className="division-link">
+                      {isAr ? 'استكشف القسم' : 'Explore division'}
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden>
+                        <path d="M5 12h14M13 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                  </div>
+                </button>
+              )
+            })}
+          </div>
+        </section>
+      )}
+
       {/* Products grid */}
+      {!showCards && (
       <section className="products-grid-section">
         {filtered.length === 0 ? (
           <div className="empty-state">
@@ -263,6 +345,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
           {filtered.length} {isAr ? 'منتج' : 'products'}
         </div>
       </section>
+      )}
 
       <Footer />
     </main>

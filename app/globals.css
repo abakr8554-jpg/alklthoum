@@ -1198,6 +1198,19 @@ html[lang='ar'] .footer-links span {
 
 /* ─── Products: Grid ──────────────────────────────────────── */
 .products-grid-section { padding: 50px clamp(24px,8vw,140px) 100px; }
+
+/* Category landing cards on the products page (reuse .division-card look) */
+.products-cards-section { padding: 40px clamp(24px,8vw,140px) 90px; }
+.products-cards-section .divisions-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(20px,2.5vw,28px);
+}
+.division-card-btn {
+  width: 100%; font: inherit; text-align: start; cursor: pointer;
+  -webkit-appearance: none; appearance: none;
+}
+@media (max-width: 760px) {
+  .products-cards-section .divisions-grid { grid-template-columns: 1fr; }
+}
 .products-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 28px;
 }
