@@ -106,15 +106,25 @@ export default function ProductsClient({ products }: { products: Product[] }) {
   // Landing view: show the category cards until a category is picked (or a search is typed)
   const showCards = activeCategory === 'all' && !searchQuery
 
-  // Only show crops we actually stock seeds for
+  // Only show crops we actually stock seeds for, each with a representative photo
   const availableCrops = useMemo(() => {
     const present = new Set<string>()
+    const imgByMatch = new Map<string, string>()
     for (const p of products) {
       if (p.category !== 'seeds') continue
-      for (const c of p.targetCrops) present.add(c)
+      for (const c of p.targetCrops) {
+        present.add(c)
+        if (!imgByMatch.has(c) && p.images[0]) imgByMatch.set(c, p.images[0])
+      }
     }
-    return CROP_DEFS.filter((d) => d.match.some((m) => present.has(m)))
+    return CROP_DEFS.filter((d) => d.match.some((m) => present.has(m))).map((d) => ({
+      ...d,
+      img: d.match.map((m) => imgByMatch.get(m)).find(Boolean) || '/placeholder-product.jpg',
+    }))
   }, [products])
+
+  // Inside Seeds, show crop cards until a crop is chosen
+  const showCropCards = activeCategory === 'seeds' && !selectedCrop && !searchQuery
 
   const filtered = useMemo(() => {
     const selectedDef = selectedCrop ? CROP_DEFS.find((d) => d.en === selectedCrop) : null
@@ -201,27 +211,43 @@ export default function ProductsClient({ products }: { products: Product[] }) {
 
       </section>
 
-      {/* Crop filter dropdown */}
-      {cropFilterOpen && (
-        <div className="crop-filter-panel">
-          <p>{isAr ? 'تصفية حسب المحصول:' : 'Filter by crop:'}</p>
-          <div className="crop-pills">
-            <button
-              className={!selectedCrop ? 'active' : ''}
-              onClick={() => setSelectedCrop(null)}
-            >
-              {isAr ? 'الكل' : 'All crops'}
-            </button>
+      {/* Crop cards (Seeds) — pick a crop to see its products */}
+      {showCropCards && (
+        <section className="products-cards-section">
+          <p className="crop-cards-title">{isAr ? 'اختر المحصول:' : 'Choose a crop:'}</p>
+          <div className="crop-cards-grid">
             {availableCrops.map((crop) => (
               <button
                 key={crop.en}
-                className={selectedCrop === crop.en ? 'active' : ''}
-                onClick={() => setSelectedCrop(selectedCrop === crop.en ? null : crop.en)}
+                type="button"
+                className="crop-card"
+                onClick={() => setSelectedCrop(crop.en)}
               >
-                {isAr ? crop.ar : crop.en}
+                <div className="crop-card-media">
+                  <img src={crop.img} alt={isAr ? crop.ar : crop.en} loading="lazy" />
+                </div>
+                <span className="crop-card-name">{isAr ? crop.ar : crop.en}</span>
               </button>
             ))}
           </div>
+        </section>
+      )}
+
+      {/* Active crop bar — back to the crop cards */}
+      {cropFilterOpen && selectedCrop && (
+        <div className="crop-active-bar">
+          <button className="crop-back-btn" onClick={() => setSelectedCrop(null)}>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden
+              style={{ transform: isAr ? 'scaleX(1)' : 'scaleX(-1)' }}>
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+            {isAr ? 'كل المحاصيل' : 'All crops'}
+          </button>
+          <span className="crop-active-name">
+            {isAr
+              ? availableCrops.find((c) => c.en === selectedCrop)?.ar
+              : selectedCrop}
+          </span>
         </div>
       )}
 
@@ -292,7 +318,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
       )}
 
       {/* Products grid */}
-      {!showCards && (
+      {!showCards && !showCropCards && (
       <section className="products-grid-section">
         {filtered.length === 0 ? (
           <div className="empty-state">

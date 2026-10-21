@@ -1211,6 +1211,45 @@ html[lang='ar'] .footer-links span {
 @media (max-width: 760px) {
   .products-cards-section .divisions-grid { grid-template-columns: 1fr; }
 }
+
+/* Crop cards (Seeds) */
+.crop-cards-title {
+  margin: 0 0 20px; font-size: 14px; font-weight: 700; letter-spacing: .02em;
+  color: var(--muted, #6b756e); text-align: start;
+}
+.crop-cards-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(14px, 1.8vw, 22px);
+}
+.crop-card {
+  display: flex; flex-direction: column; gap: 0; padding: 0;
+  background: #fff; border: 1px solid rgba(20,40,25,.07); border-radius: 18px;
+  overflow: hidden; cursor: pointer; font: inherit; text-align: center;
+  box-shadow: 0 10px 30px rgba(20,40,25,.06); transition: transform .3s ease, box-shadow .3s ease;
+}
+.crop-card:hover { transform: translateY(-5px); box-shadow: 0 22px 48px rgba(20,40,25,.13); }
+.crop-card-media { aspect-ratio: 4 / 3; overflow: hidden; background: #f3f1ec; }
+.crop-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.crop-card:hover .crop-card-media img { transform: scale(1.06); }
+.crop-card-name {
+  padding: 14px 10px; font-size: clamp(15px, 1.5vw, 18px); font-weight: 700;
+  color: var(--brand-green, #2e6b1a); letter-spacing: -.01em;
+}
+@media (max-width: 900px) { .crop-cards-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 620px) { .crop-cards-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* Active-crop back bar */
+.crop-active-bar {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  padding: 18px clamp(24px,8vw,140px) 0;
+}
+.crop-back-btn {
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font: inherit;
+  background: #fff; border: 1px solid var(--border, rgba(20,40,25,.12)); border-radius: 999px;
+  padding: 9px 18px; font-size: 14px; font-weight: 600; color: var(--brand-green, #2e6b1a);
+  transition: background .2s ease, border-color .2s ease;
+}
+.crop-back-btn:hover { background: #f3f7f0; border-color: var(--brand-green, #2e6b1a); }
+.crop-active-name { font-size: 20px; font-weight: 800; letter-spacing: -.02em; color: var(--ink, #142218); }
 .products-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 28px;
 }
