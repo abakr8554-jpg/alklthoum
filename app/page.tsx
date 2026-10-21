@@ -485,7 +485,7 @@ export default function HomePage() {
           <Reveal>
             <header className="corp-values-head">
               <p className="divisions-eyebrow">{tx('Why Al Kalthoum', 'لماذا الكلثوم')}</p>
-              <h2>{tx('Built for serious agriculture', 'مبنيون لزراعة جادة')}</h2>
+              <h2>{tx('Pioneers of excellence in agricultural solutions', 'رواد التميز في الحلول الزراعية')}</h2>
             </header>
           </Reveal>
           <div className="corp-values-grid">
