@@ -1,6 +1,7 @@
 'use client'
 
 import { motion, useMotionTemplate, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion'
+import Link from 'next/link'
 import type { ReactNode } from 'react'
 import { useCallback, useRef } from 'react'
 
@@ -46,7 +47,7 @@ export default function Tilt3D({ children, className, intensity = 10, ...props }
   const Wrapper = (props: any) => {
     if (props.href) {
       return (
-        <a
+        <Link
           href={props.href}
           ref={ref as any}
           className={`lux-tilt ${className || ''}`}
@@ -55,7 +56,7 @@ export default function Tilt3D({ children, className, intensity = 10, ...props }
           style={{ perspective: 1000, display: 'block', textDecoration: 'none', color: 'inherit' }}
         >
           {props.children}
-        </a>
+        </Link>
       )
     }
     return (
