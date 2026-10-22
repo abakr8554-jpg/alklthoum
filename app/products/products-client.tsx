@@ -83,21 +83,31 @@ export default function ProductsClient({ products }: { products: Product[] }) {
   // Fertilizer sub-type filter: 'liquid' (W/V%) or 'powder' (W/W%)
   const [selectedFertType, setSelectedFertType] = useState<'liquid' | 'powder' | null>(null)
 
-  // Keep the active category in sync with the ?cat= URL param so that
-  // returning from a product detail page lands back in its section.
+  // Drive every filter level from the URL so each drill-down (category →
+  // crop/type cards → products) is its own history entry. Back then walks
+  // the levels one by one instead of jumping to the homepage.
   useEffect(() => {
     const cat = searchParams.get('cat') as ProductCategory | null
+    const crop = searchParams.get('crop')
+    const type = searchParams.get('type')
     setActiveCategory(cat && categories.includes(cat) ? cat : 'all')
+    setSelectedCrop(crop || null)
+    setSelectedFertType(type === 'liquid' || type === 'powder' ? type : null)
   }, [searchParams])
 
-  // Choosing a category resets the crop filter (crops only apply to seeds)
-  // and records the section in the URL so Back returns to it.
-  const chooseCategory = (cat: ProductCategory | 'all') => {
-    setActiveCategory(cat)
-    setSelectedCrop(null)
-    setSelectedFertType(null)
-    router.replace(cat === 'all' ? '/products' : `/products?cat=${cat}`, { scroll: false })
+  const pushFilters = (opts: { cat?: ProductCategory | 'all'; crop?: string | null; type?: string | null }) => {
+    const sp = new URLSearchParams()
+    if (opts.cat && opts.cat !== 'all') sp.set('cat', opts.cat)
+    if (opts.crop) sp.set('crop', opts.crop)
+    if (opts.type) sp.set('type', opts.type)
+    const qs = sp.toString()
+    router.push(qs ? `/products?${qs}` : '/products', { scroll: false })
   }
+
+  const chooseCategory = (cat: ProductCategory | 'all') => pushFilters({ cat })
+  const chooseCrop = (cropEn: string | null) => pushFilters({ cat: 'seeds', crop: cropEn })
+  const chooseFertType = (type: 'liquid' | 'powder' | null) =>
+    pushFilters({ cat: 'fertilizers-pesticides', type })
 
   // The crop filter shows only for seeds; the type filter only for fertilizers
   const cropFilterOpen = activeCategory === 'seeds'
@@ -236,7 +246,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
                 key={crop.en}
                 type="button"
                 className="crop-card"
-                onClick={() => setSelectedCrop(crop.en)}
+                onClick={() => chooseCrop(crop.en)}
               >
                 <div className="crop-card-media">
                   <img src={crop.img} alt={isAr ? crop.ar : crop.en} loading="lazy" />
@@ -251,7 +261,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
       {/* Active crop bar — back to the crop cards */}
       {cropFilterOpen && selectedCrop && (
         <div className="crop-active-bar">
-          <button className="crop-back-btn" onClick={() => setSelectedCrop(null)}>
+          <button className="crop-back-btn" onClick={() => chooseCrop(null)}>
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden
               style={{ transform: isAr ? 'scaleX(1)' : 'scaleX(-1)' }}>
               <path d="M5 12h14M13 5l7 7-7 7" />
@@ -276,7 +286,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
                 key={t.key}
                 type="button"
                 className="crop-card"
-                onClick={() => setSelectedFertType(t.key)}
+                onClick={() => chooseFertType(t.key)}
               >
                 <div className="crop-card-media">
                   <img src={t.img} alt={isAr ? t.ar : t.en} loading="lazy" />
@@ -291,7 +301,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
       {/* Active fertilizer type bar — back to the type cards */}
       {fertFilterOpen && selectedFertType && (
         <div className="crop-active-bar">
-          <button className="crop-back-btn" onClick={() => setSelectedFertType(null)}>
+          <button className="crop-back-btn" onClick={() => chooseFertType(null)}>
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden
               style={{ transform: isAr ? 'scaleX(1)' : 'scaleX(-1)' }}>
               <path d="M5 12h14M13 5l7 7-7 7" />
@@ -349,7 +359,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
         {filtered.length === 0 ? (
           <div className="empty-state">
             <p>{isAr ? 'لا توجد منتجات تطابق بحثك.' : 'No products match your search.'}</p>
-            <button onClick={() => { setActiveCategory('all'); setSearchQuery(''); setSelectedCrop(null); setSelectedFertType(null) }}>
+            <button onClick={() => { chooseCategory('all'); setSearchQuery('') }}>
               {isAr ? 'إعادة التعيين' : 'Reset filters'}
             </button>
           </div>
