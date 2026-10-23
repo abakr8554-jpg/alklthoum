@@ -20,12 +20,12 @@ const categories: ProductCategory[] = [
 // Crop filter definitions. `match` lists the targetCrops values that belong to
 // each pill (e.g. all pepper types roll up into one "Pepper" filter). Only crops
 // actually present in the seed catalogue are shown — see `availableCrops` below.
-type CropDef = { en: string; ar: string; match: string[] }
+type CropDef = { en: string; ar: string; match: string[]; cardImg?: string }
 const CROP_DEFS: CropDef[] = [
   { en: 'Tomato', ar: 'الطماطم', match: ['Tomato'] },
   { en: 'Pepper', ar: 'الفلفل', match: ['Pepper', 'Sweet Pepper', 'Hot Pepper', 'Processing Pepper'] },
   { en: 'Melon', ar: 'الشمام', match: ['Melon'] },
-  { en: 'Cucumber', ar: 'الخيار', match: ['Cucumber'] },
+  { en: 'Cucumber', ar: 'الخيار', match: ['Cucumber'], cardImg: '/images/crops/cucumber.webp' },
   { en: 'Eggplant', ar: 'الباذنجان', match: ['Eggplant'] },
   { en: 'Watermelon', ar: 'البطيخ', match: ['Watermelon'] },
   { en: 'Onion', ar: 'البصل', match: ['Onion'] },
@@ -129,7 +129,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
     }
     return CROP_DEFS.filter((d) => d.match.some((m) => present.has(m))).map((d) => ({
       ...d,
-      img: d.match.map((m) => imgByMatch.get(m)).find(Boolean) || '/placeholder-product.jpg',
+      img: d.cardImg || d.match.map((m) => imgByMatch.get(m)).find(Boolean) || '/placeholder-product.jpg',
     }))
   }, [products])
 
