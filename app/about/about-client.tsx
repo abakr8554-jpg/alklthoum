@@ -78,15 +78,15 @@ export default function AboutClient({ companiesCount }: { companiesCount: number
             <h2 className="ap-intro-h2">
               {isAr ? (
                 <>
-                  الزراعة ليست مجرد صناعتنا.
+                  قيادة مستقبل الزراعة،
                   <br />
-                  <em>إنها إرثنا.</em>
+                  <em>من جذورها إلى ثمارها.</em>
                 </>
               ) : (
                 <>
-                  Agriculture is not just our industry.
+                  Leading the future of agriculture,
                   <br />
-                  <em>It is our inheritance.</em>
+                  <em>from its roots to its fruits.</em>
                 </>
               )}
             </h2>
