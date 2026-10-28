@@ -73,6 +73,57 @@ const CATEGORY_CARDS: {
   },
 ]
 
+// Diamond fertilizer series — each becomes a card; a product belongs to the
+// series whose slug list contains it.
+const FERT_SERIES: { key: string; en: string; ar: string; slugs: string[] }[] = [
+  {
+    key: 'soluble', en: 'Soluble NPK', ar: 'الأسمدة الذائبة NPK',
+    slugs: [
+      'diamond-plant-15-30-15', 'diamond-plant-6-6-43', 'diamond-standard-6-6-43', 'diamond-plant-6-0-40-plus-2mgo',
+      'demo-start-30-10-10', 'demo-ripettig-9-0-40', 'diamond-plant-21-7-21-plus-2mgo', 'diamond-plant-15-5-35-plus-2mgo',
+      'diamond-plant-20-20-20', 'diamond-plant-19-19-19', 'diamond-standar-19-19-19', 'diamond-plant-15-40-10',
+      'diamond-plant-28-14-14', 'diamond-plant-13-40-13', 'diamond-standard-20-20-20', 'torar-19-19-19',
+      'torar-21-7-21-plus-2mgo', 'torar-16-8-24-plus-1mgo', 'torar-5-5-45-plus-1mgo', 'depra-19-19-19',
+      'depra-8-0-40-plus-1mgo', 'depra-8-5-40', 'image-fert-19-19-19', 'image-fert-6-6-43',
+      'image-fert-13-40-13', 'taziry-10-50-10',
+    ],
+  },
+  {
+    key: 'chelated', en: 'Chelated Micronutrients', ar: 'العناصر الصغرى المخلبية',
+    slugs: [
+      'taziry-h6', 'demo-mix', 'demo-microsoil-mix', 'demo-microsoil-z',
+      'diamond-ferosoil', 'demo-folier-f', 'demo-m', 'torar-ferosoil',
+    ],
+  },
+  {
+    key: 'humic', en: 'Humic Substances', ar: 'المواد الهيوميكية',
+    slugs: [
+      'diamond-fulvic', 'diamond-humic',
+    ],
+  },
+  {
+    key: 'suspension', en: 'Suspension', ar: 'الأسمدة المعلّقة',
+    slugs: [
+      'demo-plant-20-20-20', 'demo-plant-10-6-60', 'demo-plant-27-27-27', 'demo-plant-18-44-00',
+      'demo-plant-40-10-10', 'demo-plant-5-50-30', 'demo-plant-25-25-20', 'demo-plant-12-61-5',
+      'demo-plant-12-50-12', 'diamond-salt-destroy', 'azaro-12-12-44', 'azaro-20-20-20',
+      'azaro-30-10-30', 'azaro-6-50-30', 'azaro-12-50-12', 'depra-20-20-20',
+      'depra-high-k', 'depra-20-50-10',
+    ],
+  },
+  {
+    key: 'liquid', en: 'Liquid', ar: 'الأسمدة السائلة',
+    slugs: [
+      'diamond-phosphoric-85', 'demo-basic', 'demo-economy', 'diamond-cal',
+      'diamond-n-plus', 'diamond-kelpoxin', 'diamond-brixer', 'diamond-ktc-36',
+      'diamond-power', 'diamond-pure-plant', 'diamond-premium-n-cal-m', 'diamond-root',
+      'diamond-magic-15-5-8', 'demo-alga', 'nextra-vegetation', 'nextra-ripening',
+      'nextra-flowering', 'nextra-planting', 'n-extra', 'n-extra-premium',
+      'diamond-cal-b', 'diamond-l-bo', 'diamond-pk-00-45-55', 'diamond-np',
+    ],
+  },
+]
+
 export default function ProductsClient({ products }: { products: Product[] }) {
   const { isAr, dir } = useLang()
   const searchParams = useSearchParams()
@@ -80,34 +131,34 @@ export default function ProductsClient({ products }: { products: Product[] }) {
   const [activeCategory, setActiveCategory] = useState<ProductCategory | 'all'>('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCrop, setSelectedCrop] = useState<string | null>(null)
-  // Fertilizer sub-type filter: 'liquid' (W/V%) or 'powder' (W/W%)
-  const [selectedFertType, setSelectedFertType] = useState<'liquid' | 'powder' | null>(null)
+  // Fertilizer series filter (Soluble NPK / Chelated / Humic / Suspension / Liquid)
+  const [selectedSeries, setSelectedSeries] = useState<string | null>(null)
 
   // Drive every filter level from the URL so each drill-down (category →
-  // crop/type cards → products) is its own history entry. Back then walks
+  // crop/series cards → products) is its own history entry. Back then walks
   // the levels one by one instead of jumping to the homepage.
   useEffect(() => {
     const cat = searchParams.get('cat') as ProductCategory | null
     const crop = searchParams.get('crop')
-    const type = searchParams.get('type')
+    const series = searchParams.get('series')
     setActiveCategory(cat && categories.includes(cat) ? cat : 'all')
     setSelectedCrop(crop || null)
-    setSelectedFertType(type === 'liquid' || type === 'powder' ? type : null)
+    setSelectedSeries(FERT_SERIES.some((s) => s.key === series) ? series : null)
   }, [searchParams])
 
-  const pushFilters = (opts: { cat?: ProductCategory | 'all'; crop?: string | null; type?: string | null }) => {
+  const pushFilters = (opts: { cat?: ProductCategory | 'all'; crop?: string | null; series?: string | null }) => {
     const sp = new URLSearchParams()
     if (opts.cat && opts.cat !== 'all') sp.set('cat', opts.cat)
     if (opts.crop) sp.set('crop', opts.crop)
-    if (opts.type) sp.set('type', opts.type)
+    if (opts.series) sp.set('series', opts.series)
     const qs = sp.toString()
     router.push(qs ? `/products?${qs}` : '/products', { scroll: false })
   }
 
   const chooseCategory = (cat: ProductCategory | 'all') => pushFilters({ cat })
   const chooseCrop = (cropEn: string | null) => pushFilters({ cat: 'seeds', crop: cropEn })
-  const chooseFertType = (type: 'liquid' | 'powder' | null) =>
-    pushFilters({ cat: 'fertilizers-pesticides', type })
+  const chooseSeries = (key: string | null) =>
+    pushFilters({ cat: 'fertilizers-pesticides', series: key })
 
   // The crop filter shows only for seeds; the type filter only for fertilizers
   const cropFilterOpen = activeCategory === 'seeds'
@@ -136,23 +187,18 @@ export default function ProductsClient({ products }: { products: Product[] }) {
   // Inside Seeds, show crop cards until a crop is chosen
   const showCropCards = activeCategory === 'seeds' && !selectedCrop && !searchQuery
 
-  // Fertilizer type cards (liquid / powder), each with a representative photo
-  const fertTypeCards = useMemo(() => {
-    const defs = [
-      { key: 'liquid' as const, en: 'Liquid', ar: 'سائل', unit: 'W/V%' },
-      { key: 'powder' as const, en: 'Powder', ar: 'بودر', unit: 'W/W%' },
-    ]
-    return defs.map((d) => {
-      const match = products.find(
-        (p) => p.category === 'fertilizers-pesticides' && p.unit === d.unit && p.images[0],
-      )
-      return { ...d, img: match?.images[0] || '/placeholder-product.jpg' }
+  // Fertilizer series cards, each with a representative photo
+  const fertSeriesCards = useMemo(() => {
+    return FERT_SERIES.map((s) => {
+      const match = products.find((p) => s.slugs.includes(p.slug) && p.images[0])
+      return { ...s, img: match?.images[0] || '/placeholder-product.jpg' }
     })
   }, [products])
-  const showFertCards = activeCategory === 'fertilizers-pesticides' && !selectedFertType && !searchQuery
+  const showFertCards = activeCategory === 'fertilizers-pesticides' && !selectedSeries && !searchQuery
 
   const filtered = useMemo(() => {
     const selectedDef = selectedCrop ? CROP_DEFS.find((d) => d.en === selectedCrop) : null
+    const selSeries = selectedSeries ? FERT_SERIES.find((s) => s.key === selectedSeries) : null
     return products.filter((p) => {
       const matchCat = activeCategory === 'all' || p.category === activeCategory
       const name = isAr ? p.nameAr : p.name
@@ -163,12 +209,10 @@ export default function ProductsClient({ products }: { products: Product[] }) {
         desc.toLowerCase().includes(searchQuery.toLowerCase())
       const matchCrop =
         !selectedDef || selectedDef.match.some((m) => p.targetCrops.includes(m))
-      const matchFertType =
-        !selectedFertType ||
-        (selectedFertType === 'liquid' ? p.unit === 'W/V%' : p.unit === 'W/W%')
-      return matchCat && matchSearch && matchCrop && matchFertType
+      const matchSeries = !selSeries || selSeries.slugs.includes(p.slug)
+      return matchCat && matchSearch && matchCrop && matchSeries
     })
-  }, [products, activeCategory, searchQuery, selectedCrop, selectedFertType, isAr])
+  }, [products, activeCategory, searchQuery, selectedCrop, selectedSeries, isAr])
 
   return (
     <main lang={isAr ? 'ar' : 'en'} dir={dir} id="top">
@@ -276,32 +320,32 @@ export default function ProductsClient({ products }: { products: Product[] }) {
         </div>
       )}
 
-      {/* Fertilizer type cards — pick a type to see its products */}
+      {/* Fertilizer series cards — pick a series to see its products */}
       {showFertCards && (
         <section className="products-cards-section">
           <p className="crop-cards-title">{isAr ? 'اختر النوع:' : 'Choose a type:'}</p>
-          <div className="crop-cards-grid fert-cards-grid">
-            {fertTypeCards.map((t) => (
+          <div className="crop-cards-grid">
+            {fertSeriesCards.map((s) => (
               <button
-                key={t.key}
+                key={s.key}
                 type="button"
                 className="crop-card"
-                onClick={() => chooseFertType(t.key)}
+                onClick={() => chooseSeries(s.key)}
               >
                 <div className="crop-card-media">
-                  <img src={t.img} alt={isAr ? t.ar : t.en} loading="lazy" />
+                  <img src={s.img} alt={isAr ? s.ar : s.en} loading="lazy" />
                 </div>
-                <span className="crop-card-name">{isAr ? t.ar : t.en}</span>
+                <span className="crop-card-name">{isAr ? s.ar : s.en}</span>
               </button>
             ))}
           </div>
         </section>
       )}
 
-      {/* Active fertilizer type bar — back to the type cards */}
-      {fertFilterOpen && selectedFertType && (
+      {/* Active fertilizer series bar — back to the series cards */}
+      {fertFilterOpen && selectedSeries && (
         <div className="crop-active-bar">
-          <button className="crop-back-btn" onClick={() => chooseFertType(null)}>
+          <button className="crop-back-btn" onClick={() => chooseSeries(null)}>
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden
               style={{ transform: isAr ? 'scaleX(1)' : 'scaleX(-1)' }}>
               <path d="M5 12h14M13 5l7 7-7 7" />
@@ -309,7 +353,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
             {isAr ? 'كل الأنواع' : 'All types'}
           </button>
           <span className="crop-active-name">
-            {selectedFertType === 'liquid' ? (isAr ? 'سائل' : 'Liquid') : (isAr ? 'بودر' : 'Powder')}
+            {(() => { const s = FERT_SERIES.find((x) => x.key === selectedSeries); return isAr ? s?.ar : s?.en })()}
           </span>
         </div>
       )}
