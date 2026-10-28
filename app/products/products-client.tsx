@@ -77,7 +77,7 @@ const CATEGORY_CARDS: {
 // series whose slug list contains it.
 const FERT_SERIES: { key: string; en: string; ar: string; slugs: string[] }[] = [
   {
-    key: 'soluble', en: 'Soluble NPK', ar: 'الأسمدة الذائبة NPK',
+    key: 'soluble', en: 'Soluble NPK', ar: 'الأسمدة القابلة للذوبان NPK',
     slugs: [
       'diamond-plant-15-30-15', 'diamond-plant-6-6-43', 'diamond-standard-6-6-43', 'diamond-plant-6-0-40-plus-2mgo',
       'demo-start-30-10-10', 'demo-ripettig-9-0-40', 'diamond-plant-21-7-21-plus-2mgo', 'diamond-plant-15-5-35-plus-2mgo',
