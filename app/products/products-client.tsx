@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { ArrowUpRight, Search, X } from 'lucide-react'
 import { useSearchParams, useRouter } from 'next/navigation'
@@ -134,6 +134,10 @@ export default function ProductsClient({ products }: { products: Product[] }) {
   // Fertilizer series filter (Soluble NPK / Chelated / Humic / Suspension / Liquid)
   const [selectedSeries, setSelectedSeries] = useState<string | null>(null)
 
+  // true only after a filter click (forward drill-down), so we scroll the new
+  // cards into view then — but never on Back, which restores its own scroll.
+  const scrollOnNavRef = useRef(false)
+
   // Drive every filter level from the URL so each drill-down (category →
   // crop/series cards → products) is its own history entry. Back then walks
   // the levels one by one instead of jumping to the homepage.
@@ -144,6 +148,17 @@ export default function ProductsClient({ products }: { products: Product[] }) {
     setActiveCategory(cat && categories.includes(cat) ? cat : 'all')
     setSelectedCrop(crop || null)
     setSelectedSeries(FERT_SERIES.some((s) => s.key === series) ? series : null)
+    if (scrollOnNavRef.current) {
+      scrollOnNavRef.current = false
+      // Wait for the soft navigation + new content to settle, then bring the
+      // filter bar (with the cards right below it) to the top of the viewport.
+      const toFilters = () => {
+        const bar = document.getElementById('product-filters')
+        if (bar) window.scrollTo({ top: bar.offsetTop, behavior: 'smooth' })
+      }
+      setTimeout(toFilters, 180)
+      setTimeout(toFilters, 360)
+    }
   }, [searchParams])
 
   const pushFilters = (opts: { cat?: ProductCategory | 'all'; crop?: string | null; series?: string | null }) => {
@@ -152,6 +167,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
     if (opts.crop) sp.set('crop', opts.crop)
     if (opts.series) sp.set('series', opts.series)
     const qs = sp.toString()
+    scrollOnNavRef.current = true
     router.push(qs ? `/products?${qs}` : '/products', { scroll: false })
   }
 
@@ -242,7 +258,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
       </section>
 
       {/* Filters bar */}
-      <section className="products-filter-bar">
+      <section className="products-filter-bar" id="product-filters">
         {/* Search */}
         <div className="search-box">
           <Search size={15} />
