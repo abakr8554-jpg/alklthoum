@@ -7,7 +7,7 @@ import { saveProductAction } from '@/app/admin/actions'
 
 const CATEGORIES = [
   { value: 'seeds', label: 'Seeds — بذور' },
-  { value: 'sona-plant-plastic', label: 'Sona Plant Plastic' },
+  { value: 'sona-plant-plastic', label: 'Sona Plast' },
   { value: 'hoses', label: 'Hoses — خراطيم' },
   { value: 'fertilizers-pesticides', label: 'Fertilizers & Pesticides — أسمدة ومبيدات' },
   { value: 'soil', label: 'Soil — تربة' },

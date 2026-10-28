@@ -84,11 +84,11 @@ const PRODUCT_SECTIONS: {
     cat: 'sona-plant-plastic',
     img: '/images/categories/plastic.png',
     en: {
-      name: 'Sona Plant Plastic',
+      name: 'Sona Plast',
       desc: 'Greenhouse covers, mulch films, and high-performance agricultural plastics.',
     },
     ar: {
-      name: 'سونا بلانت بلاستيك',
+      name: 'سونا بلاست',
       desc: 'أغطية بيوت محمية وأفلام تغطية وبلاستيك زراعي عالي الأداء.',
     },
   },
