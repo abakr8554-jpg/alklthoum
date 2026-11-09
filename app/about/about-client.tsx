@@ -46,13 +46,16 @@ export default function AboutClient({ companiesCount }: { companiesCount: number
       <Header variant="solid" />
 
       <section className="ap-hero">
-        <div
-          className="ap-hero-bg"
-          style={{
-            backgroundImage:
-              'url(https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=80)',
-          }}
-        />
+        <video
+          className="ap-hero-bg ap-hero-video"
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=80"
+        >
+          <source src="/videos/our-story.mp4" type="video/mp4" />
+        </video>
         <div className="ap-hero-overlay" />
         <div className="ap-hero-content">
           <span className="ap-label">{isAr ? '01 / من نحن' : '01 / Who We Are'}</span>

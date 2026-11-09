@@ -1822,6 +1822,7 @@ html[lang='ar'] .footer-links span {
   transition: transform 8s ease-out;
 }
 .ap-hero:hover .ap-hero-bg { transform: scale(1); }
+.ap-hero-video { width: 100%; height: 100%; object-fit: cover; }
 .ap-hero-overlay {
   position: absolute; inset: 0;
   background:
