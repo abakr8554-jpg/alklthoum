@@ -12,6 +12,13 @@ import {
   type ArticleCategory,
 } from '@/lib/articles'
 
+// Public Facebook posts from the Al Kalthoum page (embedded via the official
+// plugin — only live posts are listed; removed/unavailable ones are omitted).
+const FB_POSTS = [
+  'https://www.facebook.com/story.php?story_fbid=1561307602682067&id=100064085259698',
+  'https://www.facebook.com/story.php?story_fbid=1552920690187425&id=100064085259698',
+]
+
 export default function BlogClient({ articles }: { articles: Article[] }) {
   const { isAr, dir } = useLang()
 
@@ -92,6 +99,33 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
             })}
           </div>
         )}
+      </section>
+
+      <section className="fb-feed" aria-label={isAr ? 'منشورات فيسبوك' : 'Facebook posts'}>
+        <div className="fb-feed-head">
+          <p className="fb-feed-eyebrow">{isAr ? 'من فيسبوك' : 'From Facebook'}</p>
+          <h2>{isAr ? 'آخر منشوراتنا على فيسبوك' : 'Latest from our Facebook'}</h2>
+        </div>
+        <div className="fb-feed-grid">
+          {FB_POSTS.map((href) => (
+            <div key={href} className="fb-feed-card">
+              <iframe
+                src={`https://www.facebook.com/plugins/post.php?href=${encodeURIComponent(
+                  href,
+                )}&show_text=true&width=340`}
+                width={340}
+                height={550}
+                style={{ border: 'none', overflow: 'hidden' }}
+                scrolling="no"
+                frameBorder={0}
+                allowFullScreen
+                loading="lazy"
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                title={isAr ? 'منشور فيسبوك' : 'Facebook post'}
+              />
+            </div>
+          ))}
+        </div>
       </section>
 
       <Footer />
