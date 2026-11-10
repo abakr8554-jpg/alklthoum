@@ -458,9 +458,15 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.15} className="sp-about-img is-lux">
             <Tilt3D intensity={8}>
-              <img
-                src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=800&q=85"
-                alt={tx('Agricultural field', 'حقل زراعي')}
+              <video
+                className="sp-about-video"
+                src="/videos/our-story.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                poster="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=800&q=85"
+                aria-label={tx('Agricultural field', 'حقل زراعي')}
               />
             </Tilt3D>
           </Reveal>
@@ -515,7 +521,7 @@ export default function HomePage() {
             <Tilt3D intensity={12}>
               <div className="sp-ai-cta-img-inner">
                 <img
-                  src="https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?auto=format&fit=crop&w=600&q=80"
+                  src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=800&q=85"
                   alt={tx('Plant leaf analysis', 'تحليل ورقة نبات')}
                 />
               </div>
