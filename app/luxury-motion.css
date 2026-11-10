@@ -448,30 +448,3 @@ html[dir='rtl'] .lux-progress {
     height: 100%;
   }
 }
-
-/* ── About "Who We Are" media as video — same lux tilt frame as the image ── */
-.sp-about-img.is-lux .sp-about-video {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: 28px;
-  box-shadow:
-    0 40px 80px rgba(15, 36, 25, 0.16),
-    0 0 0 1px rgba(15, 36, 25, 0.06);
-  transform: rotateY(-6deg) rotateX(2deg);
-  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.sp-about-img.is-lux:hover .sp-about-video {
-  transform: rotateY(0deg) rotateX(0deg) scale(1.02);
-}
-@media (prefers-reduced-motion: reduce) {
-  .sp-about-img.is-lux .sp-about-video {
-    transform: none !important;
-  }
-}
-@media (max-width: 900px) {
-  .sp-about-img.is-lux .sp-about-video {
-    transform: none;
-  }
-}
