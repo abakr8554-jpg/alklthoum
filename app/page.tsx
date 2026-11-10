@@ -458,9 +458,15 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.15} className="sp-about-img is-lux">
             <Tilt3D intensity={8}>
-              <img
-                src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=800&q=85"
-                alt={tx('Agricultural field', 'حقل زراعي')}
+              <video
+                className="sp-about-video"
+                src="/videos/our-story.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                poster="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=800&q=85"
+                aria-label={tx('Agricultural field', 'حقل زراعي')}
               />
             </Tilt3D>
           </Reveal>
