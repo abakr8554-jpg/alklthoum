@@ -28,7 +28,7 @@ const ORBIT_BRANDS: ConstellationBrand[] = companies.map((c) => ({
 
 const SLIDES = [
   {
-    img: '/images/hero-headquarters.png',
+    img: '/images/hero-headquarters.webp',
     en: {
       title: ['Together We', 'Make the Future'],
       accent: '',
@@ -69,7 +69,7 @@ const PRODUCT_SECTIONS: {
   },
   {
     cat: 'sona-plant-plastic',
-    img: '/images/categories/plastic.png',
+    img: '/images/categories/plastic.webp',
     en: {
       name: 'Sona Plast',
       desc: 'Greenhouse covers, mulch films, and high-performance agricultural plastics.',
@@ -81,7 +81,7 @@ const PRODUCT_SECTIONS: {
   },
   {
     cat: 'hoses',
-    img: '/images/categories/hoses.png',
+    img: '/images/categories/hoses.webp',
     en: { name: 'Hoses & Irrigation', desc: 'Precision drip systems and water management solutions.' },
     ar: { name: 'الخراطيم والري', desc: 'أنظمة تنقيط دقيقة وحلول إدارة المياه.' },
   },

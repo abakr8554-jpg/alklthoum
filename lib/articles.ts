@@ -130,7 +130,7 @@ Explore our divisions, find your nearest distributor, or contact us to discuss p
 شعارنا الجديد «معاً نصنع المستقبل» يعكس طريقة عملنا — مع المزارعين والموزعين والشركاء — لبناء إنتاجية مستدامة في مصر.
 
 استكشف أقسامنا، اعثر على أقرب موزع، أو تواصل معنا لمناقشة فرص الشراكة.`,
-    coverImage: '/images/hero-headquarters.png',
+    coverImage: '/images/hero-headquarters.webp',
     author: 'Al Kalthoum Group',
     authorAr: 'مجموعة الكلثوم',
     category: 'company',

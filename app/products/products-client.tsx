@@ -49,13 +49,13 @@ const CATEGORY_CARDS: {
   },
   {
     cat: 'sona-plant-plastic',
-    img: '/images/categories/plastic.png',
+    img: '/images/categories/plastic.webp',
     en: { name: 'Sona Plast', desc: 'Greenhouse covers, mulch films, and high-performance agricultural plastics.' },
     ar: { name: 'سونا بلاست', desc: 'أغطية بيوت محمية وأفلام تغطية وبلاستيك زراعي عالي الأداء.' },
   },
   {
     cat: 'hoses',
-    img: '/images/categories/hoses.png',
+    img: '/images/categories/hoses.webp',
     en: { name: 'Hoses & Irrigation', desc: 'Precision drip systems and water management solutions.' },
     ar: { name: 'الخراطيم والري', desc: 'أنظمة تنقيط دقيقة وحلول إدارة المياه.' },
   },

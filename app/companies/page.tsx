@@ -1,6 +1,13 @@
+import type { Metadata } from 'next'
 import { getCompanies } from '@/lib/cms/queries'
 import { companyMapPositions } from '@/lib/data'
 import CompaniesClient from './companies-client'
+
+export const metadata: Metadata = {
+  title: 'Our Group',
+  description:
+    'The specialist companies of Al Kalthoum Group — seeds, farms, fresh fruit, agricultural plastics and fertilizers under one agricultural group.',
+}
 
 export const dynamic = 'force-dynamic'
 

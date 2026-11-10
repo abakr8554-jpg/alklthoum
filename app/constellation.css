@@ -75,6 +75,11 @@
   object-position: center !important;
   pointer-events: none;
   mix-blend-mode: multiply;
+  filter: saturate(1.12) contrast(1.03);
+  transition: filter 0.35s ease;
+}
+.hub-logo-card:hover .hub-logo-img {
+  filter: saturate(1.28) contrast(1.08);
 }
 
 /* Subtle 3D tilt on the whole scene */
