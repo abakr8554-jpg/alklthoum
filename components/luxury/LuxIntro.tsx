@@ -104,24 +104,19 @@ export default function LuxIntro() {
                 transition={{ duration: 0.8, ease: SOFT_EASE, delay: 0.18 }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/logo-mark.svg" alt="" className="lux-intro-logo-img" />
+                <img
+                  src="/logo.png"
+                  alt="Al Kalthoum"
+                  className="lux-intro-logo-img lux-intro-logo-img--full"
+                />
               </motion.div>
             </div>
-
-            <motion.p
-              className="lux-intro-mark"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-            >
-              {isAr ? 'مجموعة الكلثوم' : 'AL KALTHOUM'}
-            </motion.p>
 
             <motion.span
               className="lux-intro-line"
               initial={{ scaleX: 0, opacity: 0 }}
               animate={{ scaleX: 1, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.6, ease: SOFT_EASE }}
+              transition={{ duration: 0.8, delay: 0.5, ease: SOFT_EASE }}
             />
 
             <motion.span

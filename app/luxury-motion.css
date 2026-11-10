@@ -205,6 +205,13 @@ html[dir='rtl'] .lux-progress {
   filter: brightness(1.05);
 }
 
+/* Full official lockup (mark + wordmark) — sized so the name stays legible */
+.lux-intro-logo-img--full {
+  height: clamp(150px, 23vw, 215px) !important;
+  max-width: min(260px, 62vw);
+  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.35));
+}
+
 .lux-intro-mark {
   margin: 8px 0 0;
   font-size: 11px;
