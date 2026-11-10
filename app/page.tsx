@@ -196,7 +196,7 @@ export default function HomePage() {
     <div lang={isAr ? 'ar' : 'en'} dir={dir} className="sp is-soft" id="top">
       <Header variant="soft" />
 
-      <section className="soft-hero" aria-label={tx('Hero', 'الواجهة')}>
+      <section className="soft-hero soft-hero--wide" aria-label={tx('Hero', 'الواجهة')}>
         <div className="soft-hero-shell">
           <div className="soft-hero-copy">
             <div key={`title-${slide}`}>
