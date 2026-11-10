@@ -53,19 +53,6 @@ const SLIDES = [
       lead: 'ندمج الخبرة الزراعية بأحدث التقنيات لإنتاج أجود المحاصيل.',
     },
   },
-  {
-    img: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1600&q=85',
-    en: {
-      title: ['Al Kalthoum with you', 'from seed'],
-      accent: 'to harvest',
-      lead: 'Plastics, irrigation, seeds and crop inputs — with field support from planting to harvest.',
-    },
-    ar: {
-      title: ['الكلثوم معك', 'من البذرة'],
-      accent: 'حتى الثمرة',
-      lead: 'بلاستيك وري وبذور ومستلزمات محاصيل — مع دعم ميداني من الزراعة حتى الحصاد.',
-    },
-  },
 ]
 
 const PRODUCT_SECTIONS: {

@@ -1414,7 +1414,7 @@ html[lang='ar'] .soft-hero-stats .sp-stat-label {
   margin: 0;
   gap: 0;
   position: relative;
-  min-height: 100svh;
+  min-height: clamp(540px, 78svh, 740px);
 }
 
 /* image → full-bleed cinematic background */
@@ -1455,9 +1455,9 @@ html[dir='rtl'] .sp.is-soft .soft-hero--wide .soft-visual-gradient {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  min-height: 100svh;
+  min-height: clamp(540px, 78svh, 740px);
   justify-content: center;
-  padding: 104px clamp(16px, 5vw, 64px) 128px;
+  padding: 100px clamp(16px, 5vw, 64px) 116px;
   box-sizing: border-box;
 }
 .sp.is-soft .soft-hero--wide .soft-hero-copy > div,
@@ -1514,7 +1514,7 @@ html[dir='rtl'] .sp.is-soft .soft-hero--wide .soft-visual-gradient {
 @media (max-width: 980px) {
   .sp.is-soft .soft-hero--wide .soft-hero-shell,
   .sp.is-soft .soft-hero--wide .soft-hero-copy {
-    min-height: 88svh;
+    min-height: clamp(500px, 70svh, 620px);
   }
   .sp.is-soft .soft-hero--wide .soft-hero-title-row {
     flex-direction: column;
