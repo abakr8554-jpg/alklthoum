@@ -5,7 +5,7 @@ import ProductsClient from './products-client'
 export const dynamic = 'force-dynamic'
 
 export const metadata = {
-  title: 'Products | Al Kalthoum Group',
+  title: 'Products',
   description: 'Agricultural products — greenhouse films, drip irrigation, seeds, fertilizers and more.',
 }
 

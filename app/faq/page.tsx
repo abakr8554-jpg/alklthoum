@@ -4,7 +4,7 @@ import FaqList from '@/components/FaqList'
 import { getFaqs } from '@/lib/cms/queries'
 
 export const metadata = {
-  title: 'FAQ | Al Kalthoum Group',
+  title: 'FAQ',
   description: 'Frequently asked questions about Al Kalthoum Group products and services.',
 }
 

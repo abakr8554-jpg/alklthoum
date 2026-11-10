@@ -12,9 +12,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params
   const product = await getProductBySlug(slug)
-  if (!product) return { title: 'Product | Al Kalthoum Group' }
+  if (!product) return { title: 'Product' }
   return {
-    title: `${product.name} | Al Kalthoum Group`,
+    title: `${product.name}`,
     description: product.shortDescription,
     openGraph: {
       title: product.name,

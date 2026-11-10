@@ -2,7 +2,7 @@ import { getArticles } from '@/lib/cms/queries'
 import BlogClient from './blog-client'
 
 export const metadata = {
-  title: 'Blog & Articles | Al Kalthoum Group',
+  title: 'Blog & Articles',
   description: 'News, tips, and agricultural insights from Al Kalthoum Group.',
 }
 

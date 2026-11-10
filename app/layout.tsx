@@ -2,6 +2,8 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { LangProvider } from '@/lib/lang-context'
 import SoftBody from '@/components/SoftBody'
+import LuxIntro from '@/components/luxury/LuxIntro'
+import LuxUX from '@/components/luxury/LuxUX'
 import { SITE } from '@/lib/site'
 import './globals.css'
 
@@ -98,6 +100,8 @@ export default function RootLayout({
         />
         <LangProvider>
           <SoftBody />
+          <LuxIntro />
+          <LuxUX />
           {children}
         </LangProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}

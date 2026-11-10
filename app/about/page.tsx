@@ -4,7 +4,7 @@ import AboutClient from './about-client'
 export const dynamic = 'force-dynamic'
 
 export const metadata = {
-  title: 'About | Al Kalthoum Group',
+  title: 'About',
   description: 'Learn about Al Kalthoum Group — decades of agriculture, innovation, and partnership with farmers.',
 }
 
