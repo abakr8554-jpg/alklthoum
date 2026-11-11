@@ -1442,7 +1442,7 @@ html[lang='ar'] .soft-hero-stats .sp-stat-label {
     linear-gradient(90deg, rgba(8, 16, 12, 0.9) 0%, rgba(8, 16, 12, 0.62) 32%, rgba(8, 16, 12, 0.12) 64%, rgba(8, 16, 12, 0) 100%),
     linear-gradient(180deg, rgba(8, 16, 12, 0.5) 0%, rgba(8, 16, 12, 0) 34%, rgba(8, 16, 12, 0) 58%, rgba(8, 16, 12, 0.5) 100%);
 }
-html[dir='rtl'] .sp.is-soft .soft-hero--wide .soft-visual-gradient {
+body[dir='rtl'] .sp.is-soft .soft-hero--wide .soft-visual-gradient {
   background:
     linear-gradient(270deg, rgba(8, 16, 12, 0.9) 0%, rgba(8, 16, 12, 0.62) 32%, rgba(8, 16, 12, 0.12) 64%, rgba(8, 16, 12, 0) 100%),
     linear-gradient(180deg, rgba(8, 16, 12, 0.5) 0%, rgba(8, 16, 12, 0) 34%, rgba(8, 16, 12, 0) 58%, rgba(8, 16, 12, 0.5) 100%);

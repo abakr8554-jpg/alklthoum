@@ -19,7 +19,7 @@ html.intro-locked body {
   pointer-events: none;
 }
 /* Grow from the start edge in both writing directions */
-html[dir='rtl'] .lux-progress {
+body[dir='rtl'] .lux-progress {
   transform-origin: 100% 50%;
 }
 

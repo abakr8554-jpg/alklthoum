@@ -31,7 +31,10 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     document.documentElement.lang = lang
-    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'
+    // Set dir on <body> not <html> so the browser keeps the scrollbar on the
+    // right edge regardless of language (html[dir=rtl] shifts the native
+    // scrollbar to the left, creating a dark strip on the left side of the page).
+    document.body.dir = lang === 'ar' ? 'rtl' : 'ltr'
   }, [lang])
 
   const setLang = (l: Lang) => {
