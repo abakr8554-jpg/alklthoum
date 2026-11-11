@@ -137,6 +137,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
   // true only after a filter click (forward drill-down), so we scroll the new
   // cards into view then — but never on Back, which restores its own scroll.
   const scrollOnNavRef = useRef(false)
+  const isFirstRender = useRef(true)
 
   // Drive every filter level from the URL so each drill-down (category →
   // crop/series cards → products) is its own history entry. Back then walks
@@ -151,7 +152,10 @@ export default function ProductsClient({ products }: { products: Product[] }) {
     if (scrollOnNavRef.current) {
       scrollOnNavRef.current = false
       window.scrollTo({ top: 0 })
+    } else if (isFirstRender.current && cat) {
+      window.scrollTo({ top: 0 })
     }
+    isFirstRender.current = false
   }, [searchParams])
 
   const pushFilters = (opts: { cat?: ProductCategory | 'all'; crop?: string | null; series?: string | null }) => {
