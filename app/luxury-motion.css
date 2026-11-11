@@ -450,11 +450,9 @@ body[dir='rtl'] .lux-progress {
 }
 
 /* ── About "Who We Are" media as video — same lux tilt frame as the image ── */
-.sp-about-img.is-lux .sp-about-video {
-  display: block;
-  width: 100%;
+.sp-about-img.is-lux .sp-about-video-frame {
   aspect-ratio: 4 / 3;
-  object-fit: cover;
+  overflow: hidden;
   border-radius: 28px;
   box-shadow:
     0 40px 80px rgba(15, 36, 25, 0.16),
@@ -462,16 +460,32 @@ body[dir='rtl'] .lux-progress {
   transform: rotateY(-6deg) rotateX(2deg);
   transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.sp-about-img.is-lux:hover .sp-about-video {
+.sp-about-img.is-lux:hover .sp-about-video-frame {
   transform: rotateY(0deg) rotateX(0deg) scale(1.02);
 }
+/* The source clip has letterbox bars baked in (content is 81% of the frame
+   height); zoom past them so the frame is filled edge to edge. */
+.sp-about-img.is-lux .sp-about-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.26);
+}
 @media (prefers-reduced-motion: reduce) {
-  .sp-about-img.is-lux .sp-about-video {
+  .sp-about-img.is-lux .sp-about-video-frame {
     transform: none !important;
   }
 }
 @media (max-width: 900px) {
-  .sp-about-img.is-lux .sp-about-video {
+  .sp-about-img.is-lux .sp-about-video-frame {
     transform: none;
   }
+}
+
+/* Brand-mark stand-in for an image that failed to load */
+img.img-fallback {
+  object-fit: contain !important;
+  padding: 14%;
+  background: #eef5ea;
 }

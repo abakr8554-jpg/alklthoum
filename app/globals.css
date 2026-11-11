@@ -1813,7 +1813,6 @@ html[lang='ar'] .footer-links span {
   min-height: 520px;
   display: flex; align-items: flex-end;
   overflow: hidden; color: #f3f1e8;
-  margin-top: 80px; /* header height */
 }
 .ap-hero-bg {
   position: absolute; inset: 0;

@@ -12,10 +12,10 @@ export const SITE = {
   foundedYear: 1993,
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://alkalthoum.com',
   email: 'info@alkalthoum.com',
-  phone: '010 9034 4040',
+  phone: '+20 10 9034 4040',
   phoneTel: '+201090344040',
   whatsapp: '201090344040',
-  phones: ['010 9034 4040', '010 0217 2598', '050 240 0838', '050 240 6606'],
+  phones: ['+20 10 9034 4040', '+20 10 0217 2598', '+20 50 240 0838', '+20 50 240 6606'],
   address: {
     en: 'Nabaroh Road, Beside Al-Wadi International School, Mansoura, Egypt',
     ar: 'طريق نبروه، بجوار مدرسة الوادي الدولية، المنصورة، مصر',

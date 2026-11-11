@@ -460,16 +460,18 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.15} className="sp-about-img is-lux">
             <Tilt3D intensity={8}>
-              <video
-                className="sp-about-video"
-                src="/videos/our-story.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                poster="/images/unsplash/corn-field.webp"
-                aria-label={tx('Agricultural field', 'حقل زراعي')}
-              />
+              <div className="sp-about-video-frame">
+                <video
+                  className="sp-about-video"
+                  src="/videos/our-story.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster="/images/unsplash/corn-field.webp"
+                  aria-label={tx('Agricultural field', 'حقل زراعي')}
+                />
+              </div>
             </Tilt3D>
           </Reveal>
         </div>
@@ -497,7 +499,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="sp-ai-cta band-white">
+      <section className="sp-ai-cta band-mint">
         <div className="sp-container sp-ai-cta-grid">
           <Reveal className="sp-ai-cta-text">
             <span className="sp-ai-badge">
@@ -566,7 +568,7 @@ export default function HomePage() {
                 <div>
                   <h4>{tx('Phone', 'الهاتف')}</h4>
                   <p>
-                    <a href={`tel:${SITE.phoneTel}`}>{SITE.phone}</a>
+                    <a href={`tel:${SITE.phoneTel}`} dir="ltr" style={{ unicodeBidi: 'plaintext' }}>{SITE.phone}</a>
                   </p>
                 </div>
               </div>

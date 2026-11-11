@@ -52,7 +52,7 @@ export default function ContactPage() {
               {SITE.phones.map((p) => (
                 <a
                   key={p}
-                  href={`tel:+20${p.replace(/[^\d]/g, '').replace(/^0/, '')}`}
+                  href={`tel:+${p.replace(/[^\d]/g, '')}`}
                   dir="ltr"
                   style={{ display: 'block', unicodeBidi: 'plaintext' }}
                 >

@@ -11,8 +11,9 @@
   --brand-green-deep: #1a3f14;
   --brand-orange: #e85a1a;
   --band-mint: #eef5ea;
-  --band-sand: #f3efe6;
-  --band-white: #ffffff;
+  /* One warm canvas for every light band: white is reserved for cards. */
+  --band-sand: var(--soft-bg);
+  --band-white: var(--soft-bg);
   --band-forest: #14301f;
   --soft-radius: 36px;
   --soft-radius-sm: 22px;
@@ -247,10 +248,29 @@ html[lang='ar'] .sp.is-soft .soft-hero-stats .sp-stat-label {
   margin: 20px;
   border-radius: var(--soft-radius);
 }
-.sp.is-soft .sp-ai-cta.band-white {
-  background: var(--band-white);
-  margin: 0;
-  border-radius: 0;
+.sp.is-soft .sp-ai-cta.band-mint {
+  background: linear-gradient(135deg, #eef5ea 0%, #e2eedb 100%);
+  margin: 0 20px;
+  padding: clamp(64px, 8vw, 104px) 0;
+  border-radius: var(--soft-radius);
+  color: var(--soft-ink);
+}
+.sp.is-soft .sp-ai-cta.band-mint::before {
+  display: none;
+}
+.sp.is-soft .sp-ai-cta.band-mint .sp-ai-cta-text h2 {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  color: var(--soft-ink);
+}
+.sp.is-soft .sp-ai-cta.band-mint .sp-ai-cta-text p {
+  color: var(--soft-muted);
+}
+.sp.is-soft .sp-ai-cta.band-mint .sp-ai-badge {
+  color: var(--brand-green);
+  background: #ffffff;
+  border-color: rgba(47, 107, 31, 0.16);
+  backdrop-filter: none;
 }
 .sp.is-soft .sp-contact.band-sand {
   background: var(--band-sand);

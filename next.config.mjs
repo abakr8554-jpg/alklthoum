@@ -14,6 +14,17 @@ const nextConfig = {
     ],
   },
 
+  // CMS records saved before the WebP conversion still point at the old PNG.
+  async redirects() {
+    return [
+      {
+        source: '/images/hero-headquarters.png',
+        destination: '/images/hero-headquarters.webp',
+        permanent: true,
+      },
+    ]
+  },
+
   experimental: {
     serverActions: {
       bodySizeLimit: '10mb',

@@ -37,6 +37,27 @@ export default function LuxUX() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [isAdmin])
 
+  // A CMS record can outlive its image file; show the brand mark instead of a broken icon.
+  useEffect(() => {
+    if (isAdmin) return
+    const FALLBACK = '/logo.png'
+    const swap = (img: HTMLImageElement) => {
+      if (img.getAttribute('src') === FALLBACK) return
+      img.removeAttribute('srcset')
+      img.src = FALLBACK
+      img.classList.add('img-fallback')
+    }
+    const onError = (e: Event) => {
+      if (e.target instanceof HTMLImageElement) swap(e.target)
+    }
+    document.addEventListener('error', onError, true)
+    // Images that already failed before this listener was attached.
+    Array.from(document.images).forEach((img) => {
+      if (img.complete && img.naturalWidth === 0 && img.getAttribute('src')) swap(img)
+    })
+    return () => document.removeEventListener('error', onError, true)
+  }, [isAdmin, pathname])
+
   // Magnetic pull on primary CTAs
   useEffect(() => {
     if (reduce || isAdmin) return

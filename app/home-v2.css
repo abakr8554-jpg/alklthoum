@@ -331,7 +331,8 @@
 .sp-about-eyebrow::before {
   content: ''; width: 32px; height: 2px; background: #E8571A; border-radius: 2px;
 }
-.sp-about-text h1 {
+.sp-about-text h1,
+.sp-about-text h2 {
   font-size: clamp(16px, 1.8vw, 20px); font-weight: 600;
   line-height: 1.75; color: var(--sp-text); margin: 0 0 28px;
 }

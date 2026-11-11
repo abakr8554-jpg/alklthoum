@@ -102,7 +102,7 @@
    (raised specificity to beat `.sp.is-soft .companies-hub { background: transparent }`) */
 .sp.is-soft .companies-hub.soft-hub {
   background:
-    linear-gradient(180deg, #f6f4ee 0%, #eef5ea 30%, #ecf5e7 62%, #f4f1ea 100%);
+    linear-gradient(180deg, #f7f5f0 0%, #eef5ea 30%, #ecf5e7 62%, #f7f5f0 100%);
 }
 
 /* Layered brand halos glowing behind the orbit */
