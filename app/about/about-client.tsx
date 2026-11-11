@@ -52,7 +52,7 @@ export default function AboutClient({ companiesCount }: { companiesCount: number
           loop
           muted
           playsInline
-          poster="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=80"
+          poster="/images/unsplash/hero-field.jpg"
         >
           <source src="/videos/our-story.mp4" type="video/mp4" />
         </video>

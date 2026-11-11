@@ -684,7 +684,7 @@ export const products: Product[] = [
     descriptionAr:
       'بيرلايت موسع عالي الجودة (درجة 3–6 مم) للخلط في بيئات الأصص وأنظمة الزراعة المائية وركائز البيوت المحمية. يحسن الصرف مع الاحتفاظ ببعض الرطوبة.',
     images: [
-      'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=800&q=80',
+      '/images/unsplash/cat-soil.jpg',
     ],
     targetCrops: ['All crops', 'Hydroponics'],
     targetCropsAr: ['جميع المحاصيل', 'الزراعة المائية'],
@@ -8257,7 +8257,7 @@ export const diseases: Disease[] = [
       'تجنب الري الزائد',
     ],
     severity: 'high',
-    image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=800&q=80',
+    image: '/images/unsplash/cat-soil.jpg',
     recommendedProductIds: ['tomato-meola', 'npk-20-20-20'],
   },
   {
@@ -8309,7 +8309,7 @@ export const diseases: Disease[] = [
       'تجنب التسميد الآزوتي الزائد',
     ],
     severity: 'medium',
-    image: 'https://images.unsplash.com/photo-1592419044706-39796d40f98c?auto=format&fit=crop&w=800&q=80',
+    image: '/images/unsplash/company-biotech.jpg',
     recommendedProductIds: ['fungicide-copper', 'npk-20-20-20'],
   },
   {
@@ -8361,7 +8361,7 @@ export const diseases: Disease[] = [
       'اختر أصناف مقاومة',
     ],
     severity: 'medium',
-    image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=800&q=80',
+    image: '/images/unsplash/seedlings.jpg',
     recommendedProductIds: ['fungicide-copper'],
   },
   {
@@ -8413,7 +8413,7 @@ export const diseases: Disease[] = [
       'راقب توقعات الطقس لخطر الإصابة',
     ],
     severity: 'high',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80',
+    image: '/images/unsplash/farm-landscape.jpg',
     recommendedProductIds: ['fungicide-copper', 'npk-20-20-20'],
   },
   {
@@ -8465,7 +8465,7 @@ export const diseases: Disease[] = [
       'عقّم الأدوات بين النباتات',
     ],
     severity: 'high',
-    image: 'https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=800&q=80',
+    image: '/images/unsplash/plant-close.jpg',
     recommendedProductIds: ['tomato-nhawand', 'insecticide-imidacloprid'],
   },
 ]

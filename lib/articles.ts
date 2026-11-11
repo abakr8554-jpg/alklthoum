@@ -61,7 +61,7 @@ Together, these steps help farms stay productive through heat, dust, and seasona
 
 معاً، تساعد هذه الخطوات المزارع على البقاء منتجة رغم الحرارة والغبار وتقلب المواسم — واقع الزراعة في مصر.`,
     coverImage:
-      'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1200&q=80',
+      '/images/unsplash/corn-field.jpg',
     author: 'Al Kalthoum Group',
     authorAr: 'مجموعة الكلثوم',
     category: 'tips',
@@ -101,7 +101,7 @@ Contact your nearest authorised distributor or reach out through our website for
 
 تواصل مع أقرب موزع معتمد أو عبر موقعنا للحصول على إرشاد فني.`,
     coverImage:
-      'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1200&q=80',
+      '/images/unsplash/cat-soil.jpg',
     author: 'Sona Plast Team',
     authorAr: 'فريق سونا بلاست',
     category: 'industry',

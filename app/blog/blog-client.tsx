@@ -12,12 +12,7 @@ import {
   type ArticleCategory,
 } from '@/lib/articles'
 
-// Public Facebook posts from the Al Kalthoum page (embedded via the official
-// plugin — only live posts are listed; removed/unavailable ones are omitted).
-const FB_POSTS = [
-  'https://www.facebook.com/story.php?story_fbid=1561307602682067&id=100064085259698',
-  'https://www.facebook.com/story.php?story_fbid=1552920690187425&id=100064085259698',
-]
+const FB_PAGE = 'https://www.facebook.com/profile.php?id=100064085259698'
 
 export default function BlogClient({ articles }: { articles: Article[] }) {
   const { isAr, dir } = useLang()
@@ -46,7 +41,7 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
           className="page-hero-bg"
           style={{
             backgroundImage:
-              'url(https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1800&q=80)',
+              'url(/images/unsplash/corn-field.jpg)',
           }}
         />
       </section>
@@ -101,30 +96,24 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
         )}
       </section>
 
-      <section className="fb-feed" aria-label={isAr ? 'منشورات فيسبوك' : 'Facebook posts'}>
+      <section className="fb-feed" aria-label={isAr ? 'تابعنا على فيسبوك' : 'Follow us on Facebook'}>
         <div className="fb-feed-head">
-          <p className="fb-feed-eyebrow">{isAr ? 'من فيسبوك' : 'From Facebook'}</p>
-          <h2>{isAr ? 'آخر منشوراتنا على فيسبوك' : 'Latest from our Facebook'}</h2>
-        </div>
-        <div className="fb-feed-grid">
-          {FB_POSTS.map((href) => (
-            <div key={href} className="fb-feed-card">
-              <iframe
-                src={`https://www.facebook.com/plugins/post.php?href=${encodeURIComponent(
-                  href,
-                )}&show_text=true&width=340`}
-                width={340}
-                height={550}
-                style={{ border: 'none', overflow: 'hidden' }}
-                scrolling="no"
-                frameBorder={0}
-                allowFullScreen
-                loading="lazy"
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                title={isAr ? 'منشور فيسبوك' : 'Facebook post'}
-              />
-            </div>
-          ))}
+          <p className="fb-feed-eyebrow">{isAr ? 'تابعنا' : 'Follow us'}</p>
+          <h2>{isAr ? 'نشاطنا على فيسبوك' : 'Latest from our Facebook'}</h2>
+          <p style={{ color: 'var(--muted)', marginTop: '0.75rem', fontSize: '1rem' }}>
+            {isAr
+              ? 'تابع صفحتنا على فيسبوك لمتابعة أحدث أخبار المجموعة والنصائح الزراعية.'
+              : 'Follow our Facebook page for the latest group news and agricultural tips.'}
+          </p>
+          <a
+            href={FB_PAGE}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button primary-button"
+            style={{ marginTop: '1.5rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
+          >
+            {isAr ? 'زيارة الصفحة' : 'Visit our page'} <ArrowUpRight size={14} />
+          </a>
         </div>
       </section>
 

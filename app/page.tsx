@@ -41,7 +41,7 @@ const SLIDES = [
     },
   },
   {
-    img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=85',
+    img: '/images/unsplash/hero-field.jpg',
     en: {
       title: ['Integrated', 'agricultural solutions'],
       accent: 'high quality',
@@ -63,7 +63,7 @@ const PRODUCT_SECTIONS: {
 }[] = [
   {
     cat: 'seeds',
-    img: 'https://images.unsplash.com/photo-1615671524827-c1fe3973b648?auto=format&fit=crop&w=1400&q=80',
+    img: '/images/unsplash/cat-seeds.jpg',
     en: { name: 'Seeds', desc: 'Hybrid varieties for tomatoes, peppers, watermelon and more.' },
     ar: { name: 'البذور', desc: 'أصناف هجينة للطماطم والفلفل والبطيخ والمزيد.' },
   },
@@ -87,13 +87,13 @@ const PRODUCT_SECTIONS: {
   },
   {
     cat: 'fertilizers-pesticides',
-    img: 'https://images.unsplash.com/photo-1598512752271-33f913a5af13?auto=format&fit=crop&w=1400&q=80',
+    img: '/images/unsplash/cat-fertilizers.jpg',
     en: { name: 'Fertilizers', desc: 'Crop nutrition programs for productive harvests.' },
     ar: { name: 'الأسمدة', desc: 'برامج تغذية المحاصيل لحصاد منتج.' },
   },
   {
     cat: 'soil',
-    img: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1400&q=80',
+    img: '/images/unsplash/cat-soil.jpg',
     en: { name: 'Soil & Substrates', desc: 'Optimized growing media and soil conditioners supporting strong root development.' },
     ar: { name: 'التربة وبدائلها', desc: 'بيئات نمو ومحسنات تربة متطورة لدعم نمو جذري قوي.' },
   },
@@ -157,9 +157,9 @@ const PROCESS = [
 ]
 
 const AVATARS = [
-  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80',
-  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80',
-  'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=80&q=80',
+  '/images/unsplash/avatar-1.jpg',
+  '/images/unsplash/avatar-2.jpg',
+  '/images/unsplash/avatar-3.jpg',
 ]
 
 export default function HomePage() {
@@ -465,7 +465,7 @@ export default function HomePage() {
                 loop
                 muted
                 playsInline
-                poster="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=800&q=85"
+                poster="/images/unsplash/corn-field.jpg"
                 aria-label={tx('Agricultural field', 'حقل زراعي')}
               />
             </Tilt3D>
@@ -521,7 +521,7 @@ export default function HomePage() {
             <Tilt3D intensity={12}>
               <div className="sp-ai-cta-img-inner">
                 <img
-                  src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=800&q=85"
+                  src="/images/unsplash/corn-field.jpg"
                   alt={tx('Plant leaf analysis', 'تحليل ورقة نبات')}
                 />
               </div>
