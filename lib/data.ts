@@ -684,7 +684,7 @@ export const products: Product[] = [
     descriptionAr:
       'بيرلايت موسع عالي الجودة (درجة 3–6 مم) للخلط في بيئات الأصص وأنظمة الزراعة المائية وركائز البيوت المحمية. يحسن الصرف مع الاحتفاظ ببعض الرطوبة.',
     images: [
-      '/images/unsplash/cat-soil.jpg',
+      '/images/unsplash/cat-soil.webp',
     ],
     targetCrops: ['All crops', 'Hydroponics'],
     targetCropsAr: ['جميع المحاصيل', 'الزراعة المائية'],
@@ -8257,7 +8257,7 @@ export const diseases: Disease[] = [
       'تجنب الري الزائد',
     ],
     severity: 'high',
-    image: '/images/unsplash/cat-soil.jpg',
+    image: '/images/unsplash/cat-soil.webp',
     recommendedProductIds: ['tomato-meola', 'npk-20-20-20'],
   },
   {
@@ -8309,7 +8309,7 @@ export const diseases: Disease[] = [
       'تجنب التسميد الآزوتي الزائد',
     ],
     severity: 'medium',
-    image: '/images/unsplash/company-biotech.jpg',
+    image: '/images/unsplash/company-biotech.webp',
     recommendedProductIds: ['fungicide-copper', 'npk-20-20-20'],
   },
   {
@@ -8361,7 +8361,7 @@ export const diseases: Disease[] = [
       'اختر أصناف مقاومة',
     ],
     severity: 'medium',
-    image: '/images/unsplash/seedlings.jpg',
+    image: '/images/unsplash/seedlings.webp',
     recommendedProductIds: ['fungicide-copper'],
   },
   {
@@ -8413,7 +8413,7 @@ export const diseases: Disease[] = [
       'راقب توقعات الطقس لخطر الإصابة',
     ],
     severity: 'high',
-    image: '/images/unsplash/farm-landscape.jpg',
+    image: '/images/unsplash/farm-landscape.webp',
     recommendedProductIds: ['fungicide-copper', 'npk-20-20-20'],
   },
   {
@@ -8465,7 +8465,7 @@ export const diseases: Disease[] = [
       'عقّم الأدوات بين النباتات',
     ],
     severity: 'high',
-    image: '/images/unsplash/plant-close.jpg',
+    image: '/images/unsplash/plant-close.webp',
     recommendedProductIds: ['tomato-nhawand', 'insecticide-imidacloprid'],
   },
 ]

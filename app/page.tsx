@@ -41,7 +41,7 @@ const SLIDES = [
     },
   },
   {
-    img: '/images/unsplash/hero-field.jpg',
+    img: '/images/unsplash/hero-field.webp',
     en: {
       title: ['Integrated', 'agricultural solutions'],
       accent: 'high quality',
@@ -63,7 +63,7 @@ const PRODUCT_SECTIONS: {
 }[] = [
   {
     cat: 'seeds',
-    img: '/images/unsplash/cat-seeds.jpg',
+    img: '/images/unsplash/cat-seeds.webp',
     en: { name: 'Seeds', desc: 'Hybrid varieties for tomatoes, peppers, watermelon and more.' },
     ar: { name: 'البذور', desc: 'أصناف هجينة للطماطم والفلفل والبطيخ والمزيد.' },
   },
@@ -87,13 +87,13 @@ const PRODUCT_SECTIONS: {
   },
   {
     cat: 'fertilizers-pesticides',
-    img: '/images/unsplash/cat-fertilizers.jpg',
+    img: '/images/unsplash/cat-fertilizers.webp',
     en: { name: 'Fertilizers', desc: 'Crop nutrition programs for productive harvests.' },
     ar: { name: 'الأسمدة', desc: 'برامج تغذية المحاصيل لحصاد منتج.' },
   },
   {
     cat: 'soil',
-    img: '/images/unsplash/cat-soil.jpg',
+    img: '/images/unsplash/cat-soil.webp',
     en: { name: 'Soil & Substrates', desc: 'Optimized growing media and soil conditioners supporting strong root development.' },
     ar: { name: 'التربة وبدائلها', desc: 'بيئات نمو ومحسنات تربة متطورة لدعم نمو جذري قوي.' },
   },
@@ -157,9 +157,9 @@ const PROCESS = [
 ]
 
 const AVATARS = [
-  '/images/unsplash/avatar-1.jpg',
-  '/images/unsplash/avatar-2.jpg',
-  '/images/unsplash/avatar-3.jpg',
+  '/images/unsplash/avatar-1.webp',
+  '/images/unsplash/avatar-2.webp',
+  '/images/unsplash/avatar-3.webp',
 ]
 
 export default function HomePage() {
@@ -268,6 +268,8 @@ export default function HomePage() {
                     alt=""
                     className="soft-visual-main"
                     style={{ opacity: slide === i ? 1 : 0, transition: 'opacity 1.1s ease' }}
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                    fetchPriority={i === 0 ? 'high' : 'low'}
                   />
                 ))}
                 <div className="soft-visual-gradient" aria-hidden />
@@ -465,7 +467,7 @@ export default function HomePage() {
                 loop
                 muted
                 playsInline
-                poster="/images/unsplash/corn-field.jpg"
+                poster="/images/unsplash/corn-field.webp"
                 aria-label={tx('Agricultural field', 'حقل زراعي')}
               />
             </Tilt3D>
@@ -521,7 +523,7 @@ export default function HomePage() {
             <Tilt3D intensity={12}>
               <div className="sp-ai-cta-img-inner">
                 <img
-                  src="/images/unsplash/corn-field.jpg"
+                  src="/images/unsplash/corn-field.webp"
                   alt={tx('Plant leaf analysis', 'تحليل ورقة نبات')}
                 />
               </div>

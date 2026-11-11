@@ -41,7 +41,7 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
           className="page-hero-bg"
           style={{
             backgroundImage:
-              'url(/images/unsplash/corn-field.jpg)',
+              'url(/images/unsplash/corn-field.webp)',
           }}
         />
       </section>

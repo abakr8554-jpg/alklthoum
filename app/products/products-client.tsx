@@ -43,7 +43,7 @@ const CATEGORY_CARDS: {
 }[] = [
   {
     cat: 'seeds',
-    img: '/images/unsplash/cat-seeds.jpg',
+    img: '/images/unsplash/cat-seeds.webp',
     en: { name: 'Seeds', desc: 'Hybrid varieties for tomatoes, peppers, watermelon and more.' },
     ar: { name: 'البذور', desc: 'أصناف هجينة للطماطم والفلفل والبطيخ والمزيد.' },
   },
@@ -61,13 +61,13 @@ const CATEGORY_CARDS: {
   },
   {
     cat: 'fertilizers-pesticides',
-    img: '/images/unsplash/cat-fertilizers.jpg',
+    img: '/images/unsplash/cat-fertilizers.webp',
     en: { name: 'Fertilizers', desc: 'Crop nutrition programs for productive harvests.' },
     ar: { name: 'الأسمدة', desc: 'برامج تغذية المحاصيل لحصاد منتج.' },
   },
   {
     cat: 'soil',
-    img: '/images/unsplash/cat-soil.jpg',
+    img: '/images/unsplash/cat-soil.webp',
     en: { name: 'Soil & Substrates', desc: 'Optimized growing media and soil conditioners supporting strong root development.' },
     ar: { name: 'التربة وبدائلها', desc: 'بيئات نمو ومحسنات تربة متطورة لدعم نمو جذري قوي.' },
   },

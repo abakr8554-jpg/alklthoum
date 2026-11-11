@@ -105,7 +105,7 @@ export default function DistributorsPage() {
           className="page-hero-bg"
           style={{
             backgroundImage:
-              'url(/images/unsplash/farm-landscape.jpg)',
+              'url(/images/unsplash/farm-landscape.webp)',
           }}
         />
       </section>
@@ -286,7 +286,7 @@ export default function DistributorsPage() {
         </div>
         <div className="dist-map-visual">
           <img
-            src="/images/unsplash/farm-landscape.jpg"
+            src="/images/unsplash/farm-landscape.webp"
             alt="Distribution network"
             style={{ width: '100%', height: 360, objectFit: 'cover', borderRadius: 8, opacity: 0.6 }}
           />

@@ -52,7 +52,7 @@ export default function AboutClient({ companiesCount }: { companiesCount: number
           loop
           muted
           playsInline
-          poster="/images/unsplash/hero-field.jpg"
+          poster="/images/unsplash/hero-field.webp"
         >
           <source src="/videos/our-story.mp4" type="video/mp4" />
         </video>

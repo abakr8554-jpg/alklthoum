@@ -3115,23 +3115,3 @@ html[lang='ar'] .ap-hero-content h1 {
   font-weight: 700;
   color: #151515;
 }
-.fb-feed-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  justify-content: center;
-  align-items: flex-start;
-}
-.fb-feed-card {
-  width: 340px;
-  max-width: 100%;
-  border-radius: 18px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 16px 44px rgba(15, 36, 25, 0.1);
-  border: 1px solid rgba(15, 36, 25, 0.06);
-}
-.fb-feed-card iframe {
-  display: block;
-  width: 100%;
-}
