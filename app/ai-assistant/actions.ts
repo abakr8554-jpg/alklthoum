@@ -70,7 +70,7 @@ const MOCK_RESULT: AIAnalysisResult = {
   diseaseId: 'early-blight',
 }
 
-const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-3.6-flash'
+const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-3.8-flash'
 
 // A few sensible product picks for the offline demo, resolved to REAL catalog ids.
 function demoRecommendations(): string[] {
@@ -139,7 +139,7 @@ Rules:
             ],
             generationConfig: {
               temperature: 0.2,
-              maxOutputTokens: 2048,
+              maxOutputTokens: 8192,
               responseMimeType: 'application/json',
             },
           }),

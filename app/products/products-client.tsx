@@ -150,17 +150,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
     setSelectedSeries(FERT_SERIES.some((s) => s.key === series) ? series : null)
     if (scrollOnNavRef.current) {
       scrollOnNavRef.current = false
-      // Forward drill-down: bring the filter bar (with the cards right below it)
-      // to the top of the viewport. Retry instantly a few times because the new
-      // view can render/settle at different moments (shorter views on mobile
-      // were landing low), and Back is untouched (it restores its own scroll).
-      let tries = 0
-      const toFilters = () => {
-        const bar = document.getElementById('product-filters')
-        if (bar) window.scrollTo({ top: bar.offsetTop })
-        if (++tries < 6) setTimeout(toFilters, 110)
-      }
-      setTimeout(toFilters, 70)
+      window.scrollTo({ top: 0 })
     }
   }, [searchParams])
 

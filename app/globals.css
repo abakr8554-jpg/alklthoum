@@ -1459,7 +1459,7 @@ html[lang='ar'] .footer-links span {
   position: relative; z-index: 1;
   padding: clamp(40px,6vw,80px) clamp(24px,8vw,140px);
 }
-.company-hero-content h1 { font-family: var(--font-sans); font-size: clamp(40px,5.5vw,72px); font-weight: 800; margin: 8px 0 20px; letter-spacing: -.03em; }
+.company-hero-content h1 { font-family: var(--font-display); font-size: clamp(40px,5.5vw,72px); font-weight: 800; margin: 8px 0 20px; letter-spacing: -.03em; }
 .company-hero-content p { max-width: 560px; font-size: 15px; line-height: 1.65; color: rgba(243,241,232,.78); }
 .company-detail-section { padding: 70px clamp(24px,8vw,140px); }
 .company-detail-grid { display: grid; grid-template-columns: 1fr 340px; gap: 60px; align-items: start; }
@@ -1531,7 +1531,7 @@ html[lang='ar'] .footer-links span {
   margin-bottom: 24px;
 }
 .ai-hero h1 {
-  font-family: var(--font-sans); font-size: clamp(40px,5.5vw,72px);
+  font-family: var(--font-display); font-size: clamp(40px,5.5vw,72px);
   font-weight: 800; letter-spacing: -.03em; line-height: .92; margin: 0 0 24px;
 }
 .ai-hero h1 em { color: var(--lime); }
@@ -2997,18 +2997,27 @@ img {
    headers and spacing all follow the same scale.
    ============================================================ */
 
-/* Unify every page hero title to the same scale/weight
-   (metrics only — font-family stays per-language). */
+/* Unify every page hero title to the same scale/weight/family as the homepage. */
 .page-hero-title,
 .company-hero-content h1,
 .contact-hero h1,
 .blog-article-hero-content h1,
 .ai-hero-content h1,
 .ap-hero-content h1 {
+  font-family: var(--font-display);
   font-size: clamp(40px, 6vw, 80px);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 0.98;
+}
+html[lang='ar'] .page-hero-title,
+html[lang='ar'] .company-hero-content h1,
+html[lang='ar'] .contact-hero h1,
+html[lang='ar'] .blog-article-hero-content h1,
+html[lang='ar'] .ai-hero-content h1,
+html[lang='ar'] .ap-hero-content h1 {
+  font-family: var(--font-ar-display);
+  letter-spacing: 0;
 }
 
 /* Consistent lime italic accent inside hero titles */

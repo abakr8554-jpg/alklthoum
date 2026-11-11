@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { ArrowUpRight, CheckCircle2, ChevronLeft, ChevronRight, Leaf, Target, Zap } from 'lucide-react'
+import { ArrowUpRight, CheckCircle2, ChevronLeft, ChevronRight, Leaf, Target } from 'lucide-react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { useLang } from '@/lib/lang-context'
@@ -125,9 +125,6 @@ export default function ProductClient({ product, company, related, diseases }: P
           <div className="product-cta-row">
             <Link href="/contact" className="button primary-button">
               {isAr ? 'اطلب هذا المنتج' : 'Request this product'} <ArrowUpRight size={14} />
-            </Link>
-            <Link href="/ai-assistant" className="button outline-button">
-              {isAr ? 'تشخيص بالذكاء الاصطناعي' : 'AI Diagnosis'} <Zap size={14} />
             </Link>
           </div>
         </div>
